@@ -4628,6 +4628,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1444551779426459699, guid: df16232f34ce5724c82a2e179f2aa7e5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2717676185917458734, guid: df16232f34ce5724c82a2e179f2aa7e5, type: 3}
+      propertyPath: m_Center.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3540926031404690491, guid: df16232f34ce5724c82a2e179f2aa7e5, type: 3}
       propertyPath: m_Name
       value: Player
@@ -4671,6 +4679,10 @@ PrefabInstance:
     - target: {fileID: 5874934304785847690, guid: df16232f34ce5724c82a2e179f2aa7e5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7291760244603847451, guid: df16232f34ce5724c82a2e179f2aa7e5, type: 3}
+      propertyPath: near clip plane
+      value: 0.04
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
