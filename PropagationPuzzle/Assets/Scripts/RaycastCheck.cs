@@ -3,8 +3,9 @@ using UnityEngine.InputSystem;
 
 public class RaycastCheck : MonoBehaviour
 {
+    public bool showRays;
     int maxReflections = 10;
-    private void Update()
+    private void FixedUpdate()
     {
         OnCast();
     }
@@ -22,8 +23,11 @@ public class RaycastCheck : MonoBehaviour
             {
                 Physics.Raycast(ray, out hit, Mathf.Infinity);
                 // For debugging
-                float drawLength = hit.distance;
-                Debug.DrawRay(ray.origin, ray.direction * drawLength, new Color(1, 1, 1, 1 - (float)i / maxReflections));
+                if (showRays)
+                {
+                    float drawLength = hit.distance;
+                    Debug.DrawRay(ray.origin, ray.direction * drawLength, new Color(1, 1, 1, 1 - (float)i / maxReflections));
+                }
                 // ^^
                 ray = new Ray(hit.point, Vector3.Reflect(ray.direction, hit.normal));
             }

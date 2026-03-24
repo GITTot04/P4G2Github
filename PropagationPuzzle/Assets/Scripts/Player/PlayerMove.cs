@@ -18,6 +18,7 @@ public class PlayerMove : MonoBehaviour
     void Move(Vector2 movement)
     {
         Vector2 movingSpeed = new Vector2(rigid.linearVelocity.x + movement.x, rigid.linearVelocity.z + movement.y) ;
+
         if (movingSpeed.magnitude <= playerStats.MaxSpeed)
         {
             Vector3 accVector = new Vector3(movement.x, 0, movement.y);
