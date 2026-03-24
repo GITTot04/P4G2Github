@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: PlayerStats
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
   lookSpeed: 1
-  moveSpeed: 1516
-  maxSpeed: 5.03
+  moveSpeed: 1000
+  maxSpeed: 2.05
