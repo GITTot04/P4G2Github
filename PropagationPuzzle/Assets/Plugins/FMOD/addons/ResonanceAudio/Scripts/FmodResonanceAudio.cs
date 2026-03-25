@@ -68,6 +68,59 @@ namespace FMODUnityResonance
         // FMOD Resonance Audio Listener Plugin.
         private static FMOD.DSP listenerPlugin;
 
+        public static Transform ListenerTransform
+        {
+            get
+            {
+                if (listenerTransform == null)
+                {
+                    var listener = GameObject.FindFirstObjectByType<StudioListener>();
+                    if (listener != null)
+                    {
+                        listenerTransform = listener.transform;
+                    }
+                }
+                return listenerTransform;
+            }
+        }
+        private static Transform listenerTransform = null;
+
+        public static float ComputeOcclusion(Transform sourceTransform)
+        {
+            var listener = GameObject.FindFirstObjectByType<StudioListener>();
+            occlusionMaskValue = listener.occlusionMask;
+
+            float occlusion = 0.0f;
+            if (ListenerTransform != null)
+            {
+                Vector3 listenerPosition = ListenerTransform.position;
+                Vector3 sourceFromListener = sourceTransform.position - listenerPosition;
+
+                int numHits = Physics.RaycastNonAlloc(listenerPosition, sourceFromListener, occlusionHits, sourceFromListener.magnitude, occlusionMaskValue);
+
+                for (int i = 0; i < numHits; ++i)
+                {
+                    if (occlusionHits[i].transform != listenerTransform && occlusionHits[i].transform != sourceTransform)
+                    {
+                        occlusion += 1.0f;
+                    }
+                }
+            }
+            return occlusion;
+        }
+
+        /// Maximum allowed number of raycast hits for occlusion computation per source.
+        public const int maxNumOcclusionHits = 12;
+
+        // Pre-allocated raycast hit list for occlusion computation.
+        private static RaycastHit[] occlusionHits = new RaycastHit[maxNumOcclusionHits];
+
+        // Occlusion layer mask.
+        private static int occlusionMaskValue = -1;
+
+        /// Source occlusion detection rate in seconds.
+        public const float occlusionDetectionInterval = 0.2f;
+
         /// Updates the room effects of the environment with given |room| properties.
         /// @note This should only be called from the main Unity thread.
         public static void UpdateAudioRoom(FmodResonanceAudioRoom room, bool roomEnabled)

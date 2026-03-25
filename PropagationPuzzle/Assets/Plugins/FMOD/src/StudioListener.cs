@@ -12,6 +12,7 @@ namespace FMODUnity
         [SerializeField]
         private GameObject attenuationObject = null;
 
+        public LayerMask occlusionMask = -1;
         public GameObject AttenuationObject
         {
             get { return attenuationObject; }
