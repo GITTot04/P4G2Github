@@ -11,7 +11,7 @@ public class PlayerMove : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector2 movementInput = Rotate(PlayerInput.instance.PlayerMovement.normalized, -transform.rotation.eulerAngles.y);
+        Vector2 movementInput = VectorOperation.Rotate2(PlayerInput.instance.PlayerMovement.normalized, -transform.rotation.eulerAngles.y);
 
         Move(movementInput * playerStats.MoveSpeed * Time.fixedDeltaTime);
     }
@@ -32,15 +32,5 @@ public class PlayerMove : MonoBehaviour
         }
 
     }
-    public static Vector2 Rotate(Vector2 vector, float degrees)
-    {
-        float sin = Mathf.Sin(degrees * Mathf.Deg2Rad);
-        float cos = Mathf.Cos(degrees * Mathf.Deg2Rad);
-
-        float tx = vector.x;
-        float ty = vector.y;
-        vector.x = (cos * tx) - (sin * ty);
-        vector.y = (sin * tx) + (cos * ty);
-        return vector;
-    }
+    
 }
