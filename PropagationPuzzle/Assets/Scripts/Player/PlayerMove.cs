@@ -21,7 +21,6 @@ public class PlayerMove : MonoBehaviour
        
             
         Vector3 accVector = new Vector3(movement.x, 0, movement.y);
-        Debug.Log(accVector);
         rigid.AddForce(accVector, ForceMode.Acceleration);
 
         Vector2 movingSpeed = new Vector2(rigid.linearVelocity.x, rigid.linearVelocity.z);
