@@ -31,6 +31,7 @@ public class RaycastCheck : MonoBehaviour
             {
                 rayReflections[i] = ray;
                 Physics.Raycast(ray, out hit, Mathf.Infinity, ~playerLayer);
+                float checkDrawLength = hit.distance;
                 if (i == 0)
                 {
                     originalLength = hit.distance;
@@ -45,7 +46,7 @@ public class RaycastCheck : MonoBehaviour
                 {
                     for (int j = i; j > 0; j--)
                     {
-                        Physics.Raycast(rayReflections[j].origin, gameObject.transform.position - rayReflections[j].origin, out hit, Mathf.Infinity);
+                        Physics.Raycast(rayReflections[j].origin + (gameObject.transform.position - rayReflections[j].origin) * -0.0001f, gameObject.transform.position - rayReflections[j].origin, out hit, Mathf.Infinity);
                         if (hit.collider.gameObject.tag == "Player")
                         {
                             if (showSoundDirectionRays)
