@@ -6,15 +6,19 @@ public class RaycastCheck : MonoBehaviour
     //For debugging
     public bool showReflectionRays;
     public bool showSoundDirectionRays;
-    public bool showFirstReflectionRays;
     // ^^
     int maxReflections = 10;
-    int playerLayer = 6;
+    LayerMask playerMask;
+
+    private void Start()
+    {
+        playerMask = LayerMask.GetMask("Player");
+    }
     private void FixedUpdate()
     {
-        OnCast();
+        SoundCheck();
     }
-    public void OnCast()
+    public void SoundCheck()
     {
         Ray ray = new Ray();
         Ray[] rayReflections = new Ray[maxReflections];
@@ -24,23 +28,15 @@ public class RaycastCheck : MonoBehaviour
             float xMove = Mathf.Cos(angleRad);
             float zMove = Mathf.Sin(angleRad);
             ray = new Ray(gameObject.transform.position, new Vector3(xMove, 0f, zMove).normalized);
-            Ray originalRay = ray;
-            float originalLength = 0;
             RaycastHit hit;
             for (int i = 0; i < maxReflections; i++)
             {
                 rayReflections[i] = ray;
-                Physics.Raycast(ray, out hit, Mathf.Infinity, ~playerLayer);
-                float checkDrawLength = hit.distance;
-                if (i == 0)
-                {
-                    originalLength = hit.distance;
-                }
-                // For debugging
+                Physics.Raycast(ray, out hit, Mathf.Infinity, ~playerMask);
+                // debugging
                 if (showReflectionRays)
                 {
-                    float drawLength = hit.distance;
-                    Debug.DrawRay(ray.origin, ray.direction * drawLength, new Color(1, 1, 1, 0.5f - 0.5f * (float)i / maxReflections));
+                    Debug.DrawRay(ray.origin, ray.direction * hit.distance, new Color(1, 1, 1, 0.5f - 0.5f * (float)i / maxReflections));
                 }
                 if (hit.collider.gameObject.tag == "Speaker")
                 {
@@ -49,17 +45,13 @@ public class RaycastCheck : MonoBehaviour
                         Physics.Raycast(rayReflections[j].origin + (gameObject.transform.position - rayReflections[j].origin) * -0.0001f, gameObject.transform.position - rayReflections[j].origin, out hit, Mathf.Infinity);
                         if (hit.collider.gameObject.tag == "Player")
                         {
+                            // debugging
                             if (showSoundDirectionRays)
                             {
-                                Debug.DrawRay(rayReflections[j].origin, gameObject.transform.position - rayReflections[j].origin /** hit.distance*/, new Color(1, 0.5f, 0.5f, 1));
+                                Debug.DrawRay(rayReflections[j].origin, gameObject.transform.position - rayReflections[j].origin, new Color(1, 0.75f, 0.75f, 1));
                             }
                             break;
                         }
-                    }
-                    // For debugging         FIRST REFLECTION
-                    if (showFirstReflectionRays)
-                    {
-                        Debug.DrawRay(originalRay.origin, originalRay.direction * originalLength, new Color(1, 0.5f, 0.5f, 1/* - (float)i / maxReflections*/));
                     }
                     break;
                 }

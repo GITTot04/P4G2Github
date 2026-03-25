@@ -1230,7 +1230,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RaycastCheck
   showReflectionRays: 0
   showSoundDirectionRays: 1
-  showFirstReflectionRays: 0
 --- !u!1 &731328969
 GameObject:
   m_ObjectHideFlags: 0
