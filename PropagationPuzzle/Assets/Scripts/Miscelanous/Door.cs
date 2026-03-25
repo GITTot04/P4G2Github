@@ -3,6 +3,7 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
     public GameObject Indicator;
+    public GameObject DoorLight;
 
     bool open = false;
     public bool IsOpen => open;
@@ -70,10 +71,12 @@ public class Door : MonoBehaviour
                 if (open)
                 {
                     Indicator.gameObject.GetComponent<Renderer>().material.color = new Color32(0, 255, 0, 255);
-                } else
+                    DoorLight.gameObject.GetComponent<Renderer>().material.SetColor("_Color", new Color32(0, 255, 0, 255));
+                } 
+                else
                 {
-
                     Indicator.gameObject.GetComponent<Renderer>().material.color = new Color32(255, 0, 0, 255);
+                    DoorLight.gameObject.GetComponent<Renderer>().material.SetColor("_Color", new Color32(255, 0, 0, 255));
                 }
             }
         }
