@@ -2,8 +2,11 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
+    public GameObject Indicator;
 
     bool open = false;
+    public bool IsOpen => open;
+
     float startRotation;
     float targetAngle;
     float escapeAngle;
@@ -64,6 +67,14 @@ public class Door : MonoBehaviour
             if (progressTimer >= 1f)
             {
                 inProgress = false;
+                if (open)
+                {
+                    Indicator.gameObject.GetComponent<Renderer>().material.color = new Color32(0, 255, 0, 255);
+                } else
+                {
+
+                    Indicator.gameObject.GetComponent<Renderer>().material.color = new Color32(255, 0, 0, 255);
+                }
             }
         }
     }
