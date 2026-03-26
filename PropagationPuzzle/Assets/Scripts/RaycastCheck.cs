@@ -5,6 +5,7 @@ public class RaycastCheck : MonoBehaviour
     // debugging
     public bool showReflectionRays;
     public bool showSoundDirectionRays;
+    public bool showAverageSoundDirection;
 
     int maxReflections = 10;
     LayerMask playerMask;
@@ -76,14 +77,24 @@ public class RaycastCheck : MonoBehaviour
         }
         float soundXValue = 0;
         float soundZValue = 0;
+        float totalReflection = 0; //idk if this is needed
         for (int i = 0; i < successfulRays; i++)
         {
             soundXValue += soundDirectionsAndReflections[i].Item1.x * (1 - soundDirectionsAndReflections[i].Item2 / maxReflections);
             soundZValue += soundDirectionsAndReflections[i].Item1.z * (1 - soundDirectionsAndReflections[i].Item2 / maxReflections);
+            totalReflection += soundDirectionsAndReflections[i].Item2; //idk if this is needed
         }
         if (successfulRays > 0)
         {
-            Debug.DrawRay(gameObject.transform.position, new Vector3(soundXValue / successfulRays, 0, soundZValue / successfulRays), new Color(0, 0, 0, 1));
+            float averageXValue = soundXValue / successfulRays;
+            float averageZValue = soundZValue / successfulRays;
+            float averageReflection = totalReflection / successfulRays; //idk if this is needed
+            Debug.Log(averageReflection);
+            //debugging
+            if (showAverageSoundDirection)
+            {
+                Debug.DrawRay(gameObject.transform.position, new Vector3(averageXValue, 0, averageZValue), new Color(0, 0, 0, 1));
+            }
         }
     }
 }
