@@ -7,6 +7,7 @@ public class RaycastCheck : MonoBehaviour
     public bool showSoundDirectionRays;
     public bool showAverageSoundDirection;
 
+    public int occlusionForFmod;
     int maxReflections = 10;
     int maxOcclusions = 5;
     int successfulRays;
@@ -139,6 +140,7 @@ public class RaycastCheck : MonoBehaviour
     public void ShootOccludedRay(Ray ray, int reflection, int occlusion) // Increase occlusion and shoot out an occluded ray. May call itself a few times
     {
         occlusion += 1;
+        occlusionForFmod = occlusion; // Set the occlusion value for FMOD
         if (occlusion < 5)
         {
             ShootReflectionRays(ray, reflection, occlusion, true);
