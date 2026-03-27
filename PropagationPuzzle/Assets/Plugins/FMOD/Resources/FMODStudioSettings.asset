@@ -378,10 +378,10 @@ MonoBehaviour:
   m_Name: FMODStudioSettings
   m_EditorClassIdentifier: FMODUnity::FMODUnity.Settings
   switchSettingsMigration: 1
-  HasSourceProject: 1
-  HasPlatforms: 1
+  HasSourceProject: 0
+  HasPlatforms: 0
   sourceProjectPath: ../../../FMOD Things/FMOD test1/FMOD test1.fspro
-  sourceBankPath: ../../../FMOD Things/FMOD test1/Build
+  sourceBankPath: FMODAssets/Desktop
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1
