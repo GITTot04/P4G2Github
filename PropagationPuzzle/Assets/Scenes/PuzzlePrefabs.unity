@@ -2967,6 +2967,10 @@ PrefabInstance:
       propertyPath: m_CullingMask.m_Bits
       value: 64
       objectReference: {fileID: 0}
+    - target: {fileID: 834562044955063300, guid: 88153f64a5d0f6a4c84883d4eab922b3, type: 3}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 8400000, guid: 8503aa2c3707244e6b91b58d0823bab8, type: 2}
     - target: {fileID: 1669653912382441003, guid: 88153f64a5d0f6a4c84883d4eab922b3, type: 3}
       propertyPath: m_Name
       value: CanvasMiniMap
@@ -6701,7 +6705,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &1627450746
 Light:
   m_ObjectHideFlags: 0
@@ -7077,7 +7081,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a1e2d8df73b9b6e478bee300f9b506dc, type: 2}
+  - {fileID: 2100000, guid: a1b880483d997144c90d0fcc3576b466, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
