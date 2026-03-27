@@ -14,6 +14,7 @@ public class OcclusionManipulation : MonoBehaviour
         {
             Debug.Log("Emitter GameObject is not assigned.");
             emitter = FindFirstObjectByType<StudioEventEmitter>()?.gameObject;
+            Debug.Log("Found emitter: " + (emitter != null ? emitter.name : "None"));
         }
         
     }
