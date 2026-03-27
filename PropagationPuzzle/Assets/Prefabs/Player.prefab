@@ -280,10 +280,6 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 9caa3d8a-6b2f-4e8e-8bad-6ede561bd9be
     m_ActionName: UI/TrackedDeviceOrientation
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 078f66f1-c537-4c03-b1d4-a63843a6d6c5
-    m_ActionName: 'RaycastTest/Cast[/Keyboard/g]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: 
@@ -509,6 +505,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 8404692275673576930}
   - {fileID: 6358419460310295551}
   m_Father: {fileID: 5874934304785847690}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -526,3 +523,77 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerRotate
   playerBody: {fileID: 3540926031404690491}
   playerStats: {fileID: 11400000, guid: 6ac491d5f43d1a640b06b9b560d5ad53, type: 2}
+--- !u!1001 &7601261529624539835
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1444551779426459699}
+    m_Modifications:
+    - target: {fileID: 2152276482668545881, guid: d81ad8fc433432e4b93ce7ac8ce8883d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2152276482668545881, guid: d81ad8fc433432e4b93ce7ac8ce8883d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2152276482668545881, guid: d81ad8fc433432e4b93ce7ac8ce8883d, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.16666667
+      objectReference: {fileID: 0}
+    - target: {fileID: 2152276482668545881, guid: d81ad8fc433432e4b93ce7ac8ce8883d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.1630001
+      objectReference: {fileID: 0}
+    - target: {fileID: 2152276482668545881, guid: d81ad8fc433432e4b93ce7ac8ce8883d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.34600002
+      objectReference: {fileID: 0}
+    - target: {fileID: 2152276482668545881, guid: d81ad8fc433432e4b93ce7ac8ce8883d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.497
+      objectReference: {fileID: 0}
+    - target: {fileID: 2152276482668545881, guid: d81ad8fc433432e4b93ce7ac8ce8883d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2152276482668545881, guid: d81ad8fc433432e4b93ce7ac8ce8883d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2152276482668545881, guid: d81ad8fc433432e4b93ce7ac8ce8883d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.70710677
+      objectReference: {fileID: 0}
+    - target: {fileID: 2152276482668545881, guid: d81ad8fc433432e4b93ce7ac8ce8883d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2152276482668545881, guid: d81ad8fc433432e4b93ce7ac8ce8883d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2152276482668545881, guid: d81ad8fc433432e4b93ce7ac8ce8883d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 2152276482668545881, guid: d81ad8fc433432e4b93ce7ac8ce8883d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8809636602552012430, guid: d81ad8fc433432e4b93ce7ac8ce8883d, type: 3}
+      propertyPath: m_Name
+      value: Remote
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d81ad8fc433432e4b93ce7ac8ce8883d, type: 3}
+--- !u!4 &8404692275673576930 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2152276482668545881, guid: d81ad8fc433432e4b93ce7ac8ce8883d, type: 3}
+  m_PrefabInstance: {fileID: 7601261529624539835}
+  m_PrefabAsset: {fileID: 0}
