@@ -7,7 +7,7 @@ public class RaycastCheck : MonoBehaviour
     public bool showSoundDirectionRays;
     public bool showAverageSoundDirection;
 
-    public int occlusionForFmod;
+    public float occlusionForFmod;
     int maxReflections = 10;
     int maxOcclusions = 5;
     int successfulRays;
