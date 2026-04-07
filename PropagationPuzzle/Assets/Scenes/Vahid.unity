@@ -670,7 +670,9 @@ MonoBehaviour:
   TriggerOnce: 0
   Preload: 0
   NonRigidbodyVelocity: 0
-  Params: []
+  Params:
+  - Name: Occlusion
+    Value: 10
   OverrideAttenuation: 0
   OverrideMinDistance: 0
   OverrideMaxDistance: 40
@@ -1708,7 +1710,7 @@ MonoBehaviour:
   attenuationObject: {fileID: 0}
   occlusionMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 2048
 --- !u!1 &1766648014
 GameObject:
   m_ObjectHideFlags: 0

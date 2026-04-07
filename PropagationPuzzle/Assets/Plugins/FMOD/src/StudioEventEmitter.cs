@@ -9,6 +9,7 @@ namespace FMODUnity
     [AddComponentMenu("FMOD Studio/FMOD Studio Event Emitter")]
     public class StudioEventEmitter : EventHandler
     {
+        
         public static Transform ListenerTransform
         {
             get
@@ -31,7 +32,6 @@ namespace FMODUnity
         {
             var listener = GameObject.FindFirstObjectByType<StudioListener>();
             occlusionMaskValue = listener.occlusionMask;
-
             float occlusion = 0.0f;
             if (ListenerTransform != null)
             {
