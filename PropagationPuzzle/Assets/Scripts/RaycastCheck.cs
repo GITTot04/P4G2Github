@@ -71,7 +71,7 @@ public class RaycastCheck : MonoBehaviour
         for (int i = priorReflection; i < maxReflections; i++)
         {
             rayReflections[i] = ray;
-            Physics.Raycast(ray, out hit, Mathf.Infinity, ~playerMask); // SHoots the initial ray ignoring the player
+            Physics.Raycast(ray, out hit, Mathf.Infinity, ~playerMask); // Shoots the initial ray ignoring the player
 
             // debugging
             if (showReflectionRays)
@@ -83,8 +83,10 @@ public class RaycastCheck : MonoBehaviour
             {
                 ShootOccludedRay(new Ray(hit.point + (ray.direction.normalized * 0.0001f), ray.direction.normalized), i, occlusion);
             }
+
             if (hit.collider.gameObject.tag == "Speaker")
             {
+                /*
                 if (calledByOccludedRay) // Rays that have already passed through doors should not get blocked by the doors on the way back
                 {
                     Physics.Raycast(hit.point + (gameObject.transform.position - hit.point) * -0.0001f, gameObject.transform.position - hit.point, out hit, Mathf.Infinity, ~doorMask);
@@ -93,6 +95,9 @@ public class RaycastCheck : MonoBehaviour
                 {
                     Physics.Raycast(hit.point + (gameObject.transform.position - hit.point) * -0.0001f, gameObject.transform.position - hit.point, out hit, Mathf.Infinity);
                 }
+                */
+                //idk which is more correct (above or below)
+                Physics.Raycast(hit.point + (gameObject.transform.position - hit.point) * -0.0001f, gameObject.transform.position - hit.point, out hit, Mathf.Infinity);
 
                 if (hit.collider.gameObject.tag == "Player") // Check if the player has direct LOS with the sound object
                 {
@@ -102,8 +107,9 @@ public class RaycastCheck : MonoBehaviour
                 }
                 else
                 {
-                    for (int j = i; j > 0; j--) // Retrace the step of the ray until the player has LOS with the reflection point
+                    for (int j = i; j > 0; j--) // Retrace the steps of the rays reflection until the player has LOS with the reflection point
                     {
+                        /*
                         if (calledByOccludedRay)
                         {
                             Physics.Raycast(rayReflections[j].origin + (gameObject.transform.position - rayReflections[j].origin) * -0.0001f, gameObject.transform.position - rayReflections[j].origin, out hit, Mathf.Infinity, ~doorMask);
@@ -112,6 +118,11 @@ public class RaycastCheck : MonoBehaviour
                         {
                             Physics.Raycast(rayReflections[j].origin + (gameObject.transform.position - rayReflections[j].origin) * -0.0001f, gameObject.transform.position - rayReflections[j].origin, out hit, Mathf.Infinity);
                         }
+                        */
+                        //idk which is more correct (above or below)
+                        Physics.Raycast(rayReflections[j].origin + (gameObject.transform.position - rayReflections[j].origin) * -0.0001f, gameObject.transform.position - rayReflections[j].origin, out hit, Mathf.Infinity);
+
+
                         if (hit.collider.gameObject.tag == "Player")
                         {
                             soundDirectionsAndReflections[successfulRays] = new SoundRay((gameObject.transform.position - rayReflections[j].origin) * -1, i, occlusion);
@@ -142,19 +153,6 @@ public class RaycastCheck : MonoBehaviour
         if (occlusion < 5)
         {
             ShootReflectionRays(ray, reflection, occlusion, true);
-        }
-    }
-
-    public struct SoundRay // Values
-    {
-        public Vector3 direction;
-        public int reflections;
-        public int occlusions;
-        public SoundRay(Vector3 d, int r, int o)
-        {
-            direction = d;
-            reflections = r;
-            occlusions = o;
         }
     }
 }
