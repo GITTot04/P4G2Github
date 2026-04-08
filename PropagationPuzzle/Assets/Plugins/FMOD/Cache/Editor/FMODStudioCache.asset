@@ -44,6 +44,30 @@ MonoBehaviour:
   - Name: 
     Value: 818
   Exists: 1
+--- !u!114 &-8664755241792091908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/SoundCode1/Occlusion
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: Occlusion
+  StudioPath: 
+  Min: 0
+  Max: 10
+  Default: 10
+  ID:
+    data1: 2884152393
+    data2: 2121631991
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &-6948693480926354093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,6 +142,34 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 13800
+--- !u!114 &-3191393028576246288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SoundCode1
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/SoundCode1
+  Guid:
+    Data1: -1426710761
+    Data2: 1246971964
+    Data3: -2020352127
+    Data4: 1144976086
+  Banks:
+  - {fileID: 1684218612973378681}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -8664755241792091908}
+  MinDistance: 1
+  MaxDistance: 40
+  Length: 1280
 --- !u!114 &-2345181793530352462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,16 +255,19 @@ MonoBehaviour:
   - {fileID: 1684218612973378681}
   EditorEvents:
   - {fileID: 3682826142363650934}
+  - {fileID: -3191393028576246288}
   EditorParameters: []
   MasterBanks:
   - {fileID: 1684218612973378681}
   StringsBanks:
   - {fileID: 2797704637506245926}
   cacheVersion: 131858
-  cacheTime: 639112482484638643
+  cacheTime: 639112517834183266
   SerializableEventsDict:
   - key: event:/Music
     index: 0
+  - key: event:/SoundCode1
+    index: 1
 --- !u!114 &969658120283383512
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -286,10 +341,10 @@ MonoBehaviour:
   Path: ../FMOD test1/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639112482484618442
+  lastModified: 639112517834173240
   FileSizes:
   - Name: Desktop
-    Value: 2430912
+    Value: 2446208
   Exists: 1
 --- !u!114 &2243812063178151001
 MonoBehaviour:
@@ -346,10 +401,10 @@ MonoBehaviour:
   Path: ../FMOD test1/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639112482484638643
+  lastModified: 639112517834183266
   FileSizes:
   - Name: Desktop
-    Value: 910
+    Value: 964
   Exists: 1
 --- !u!114 &3315971631908134076
 MonoBehaviour:
