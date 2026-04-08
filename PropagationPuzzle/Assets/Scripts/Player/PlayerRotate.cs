@@ -23,7 +23,7 @@ public class PlayerRotate : MonoBehaviour
 
     void RotateVertical (float amount)
     {
-        if (transform.rotation.eulerAngles.x + amount < 90 || transform.rotation.eulerAngles.x + amount > 270)
+        if (cam.transform.rotation.eulerAngles.x + amount < 90 || cam.transform.rotation.eulerAngles.x + amount > 270)
         {
             cam.transform.Rotate(new Vector3(amount, 0f, 0f));
         }

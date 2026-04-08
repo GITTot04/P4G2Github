@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2566852525876859996}
   - component: {fileID: 5540890608502641663}
   - component: {fileID: 1299747244185878930}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,7 +100,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9090902731408263059}
   - component: {fileID: 4822591767100218813}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: EmitterTest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -135,5 +135,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b99ba428833b5584eac6a96a1c046d03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SoundEmitter
+  intensityMulitplier: 0
   intensity: 0
   occlusion: 0
