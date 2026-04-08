@@ -299,6 +299,92 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 65007232}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &144532765
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 144532767}
+  - component: {fileID: 144532768}
+  - component: {fileID: 144532769}
+  m_Layer: 0
+  m_Name: Audio Emitter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &144532767
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 144532765}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.08165, y: 2, z: -1.06703}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &144532768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 144532765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioEventEmitter
+  CollisionTag: 
+  occlusionEnabled: 1
+  occlusionParameterName: Occlusion
+  occlusionIntensity: 4.84
+  currentOcclusion: 0
+  nextOcclusionUpdate: 0
+  EventReference:
+    Guid:
+      Data1: 1984781898
+      Data2: 1239486868
+      Data3: 1691446165
+      Data4: 1881812457
+    Path: event:/Music
+  Event: 
+  EventPlayTrigger: 1
+  EventStopTrigger: 12
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 0
+  OverrideMaxDistance: 40
+--- !u!114 &144532769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 144532765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e58b0ed9cd205b47989718cc76dba4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OcclusionManipulation
+  occlusionValue: 0
+  minOcclusionValue: 0
+  maxOcclusionValue: 10
+  emitter: {fileID: 0}
+  raycastCheck: {fileID: 0}
 --- !u!1 &158052924
 GameObject:
   m_ObjectHideFlags: 0
@@ -1231,6 +1317,7 @@ MonoBehaviour:
   showReflectionRays: 0
   showSoundDirectionRays: 1
   showAverageSoundDirection: 0
+  occlusionForFmod: 0
 --- !u!1 &731328969
 GameObject:
   m_ObjectHideFlags: 0
@@ -2851,6 +2938,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3117414351330013017, guid: df16232f34ce5724c82a2e179f2aa7e5, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3540926031404690491, guid: df16232f34ce5724c82a2e179f2aa7e5, type: 3}
       propertyPath: m_Name
       value: Player
@@ -2915,6 +3006,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 7591706096560531997, guid: df16232f34ce5724c82a2e179f2aa7e5, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2922,7 +3017,32 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3540926031404690491, guid: df16232f34ce5724c82a2e179f2aa7e5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 648153116}
+    - targetCorrespondingSourceObject: {fileID: 5860472991370521027, guid: df16232f34ce5724c82a2e179f2aa7e5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1478417677}
   m_SourcePrefab: {fileID: 100100000, guid: df16232f34ce5724c82a2e179f2aa7e5, type: 3}
+--- !u!1 &1478417676 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5860472991370521027, guid: df16232f34ce5724c82a2e179f2aa7e5, type: 3}
+  m_PrefabInstance: {fileID: 1478417675}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1478417677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1478417676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioListener
+  nonRigidbodyVelocity: 0
+  attenuationObject: {fileID: 0}
+  occlusionMask:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!1 &1479728115
 GameObject:
   m_ObjectHideFlags: 0
@@ -4950,3 +5070,4 @@ SceneRoots:
   - {fileID: 1478417675}
   - {fileID: 731328973}
   - {fileID: 1343195359}
+  - {fileID: 144532767}
