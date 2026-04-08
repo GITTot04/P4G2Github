@@ -135,6 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b99ba428833b5584eac6a96a1c046d03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SoundEmitter
+  rayStats: {fileID: 11400000, guid: 39fcb53dd6db34548803021fa59cd8ac, type: 2}
   intensityMulitplier: 0
   intensity: 0
   occlusion: 0

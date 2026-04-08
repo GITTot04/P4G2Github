@@ -55,7 +55,12 @@ public class SpacialSoundInterpreter : MonoBehaviour
         }
 
         //Finds appropiate emitter
-        int emitterNumber = (int) (angle / 360f * directionCount);
+        int emitterNumber = (int) ((angle / 360f * (directionCount+0.5) ));
+
+        if (emitterNumber >= directionCount)
+        {
+            emitterNumber = 0;
+        }
         soundEmitters[emitterNumber].AddRay(soundRay);
 
     }

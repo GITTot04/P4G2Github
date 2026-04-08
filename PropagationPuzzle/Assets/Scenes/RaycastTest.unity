@@ -1228,9 +1228,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84e1c69ed5426ca4f980d975223e0201, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RaycastCheck
+  rayStats: {fileID: 11400000, guid: 39fcb53dd6db34548803021fa59cd8ac, type: 2}
   showReflectionRays: 0
   showSoundDirectionRays: 1
   showAverageSoundDirection: 0
+  occlusionForFmod: 0
+  soundInterpreter: {fileID: 648153117}
+--- !u!114 &648153117 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -7697571644449680371, guid: df16232f34ce5724c82a2e179f2aa7e5, type: 3}
+  m_PrefabInstance: {fileID: 1478417675}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 648153109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1277c0ae759846d4ca43d2514d7978c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpacialSoundInterpreter
 --- !u!1 &731328969
 GameObject:
   m_ObjectHideFlags: 0

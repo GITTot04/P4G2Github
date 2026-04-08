@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class RaycastCheck : MonoBehaviour
 {
+    public SoundRayStats rayStats;
+
     // debugging
     public bool showReflectionRays;
     public bool showSoundDirectionRays;
     public bool showAverageSoundDirection;
 
     public float occlusionForFmod;
-    int maxReflections = 10;
-    int maxOcclusions = 5;
     int successfulRays;
     Ray[] rayReflections;
     SoundRay[] soundDirectionsAndReflections;
@@ -35,8 +35,8 @@ public class RaycastCheck : MonoBehaviour
     public void SoundCheck()
     {
         Ray ray = new Ray();
-        rayReflections = new Ray[maxReflections];
-        soundDirectionsAndReflections = new SoundRay[360 * maxOcclusions]; // 360 degrees times the maximum amount of occlusions won't exceed the array
+        rayReflections = new Ray[rayStats.MaxReflections];
+        soundDirectionsAndReflections = new SoundRay[360 * rayStats.MaxOcclusions]; // 360 degrees times the maximum amount of occlusions won't exceed the array
         successfulRays = 0;
         // Shoot rays once per degree for 360 degrees
         for (float angle = 0; angle < 360; angle += 1)
@@ -54,8 +54,8 @@ public class RaycastCheck : MonoBehaviour
         float totalOcclusion = 0; // idk if this is needed
         for (int i = 0; i < successfulRays; i++) // Calculate total values
         {
-            soundXValue += soundDirectionsAndReflections[i].direction.x * (1 - soundDirectionsAndReflections[i].reflections / maxReflections);
-            soundZValue += soundDirectionsAndReflections[i].direction.z * (1 - soundDirectionsAndReflections[i].reflections / maxReflections);
+            soundXValue += soundDirectionsAndReflections[i].direction.x * (1 - soundDirectionsAndReflections[i].reflections / rayStats.MaxReflections);
+            soundZValue += soundDirectionsAndReflections[i].direction.z * (1 - soundDirectionsAndReflections[i].reflections / rayStats.MaxReflections);
             totalReflection += soundDirectionsAndReflections[i].reflections; // idk if this is needed
             totalOcclusion += soundDirectionsAndReflections[i].occlusions; // idk if this is needed
         }
@@ -77,7 +77,7 @@ public class RaycastCheck : MonoBehaviour
     public void ShootReflectionRays(Ray ray, int priorReflection, int occlusion, bool calledByOccludedRay)
     {
         RaycastHit hit;
-        for (int i = priorReflection; i < maxReflections; i++)
+        for (int i = priorReflection; i < rayStats.MaxReflections; i++)
         {
             rayReflections[i] = ray;
             Physics.Raycast(ray, out hit, Mathf.Infinity, ~playerMask); // Shoots the initial ray ignoring the player
@@ -85,7 +85,7 @@ public class RaycastCheck : MonoBehaviour
             // debugging
             if (showReflectionRays)
             {
-                Debug.DrawRay(ray.origin, ray.direction * hit.distance, new Color(1 - (float)occlusion/5, 1 - (float)occlusion/5, 1, 1f - (float)i / maxReflections));
+                Debug.DrawRay(ray.origin, ray.direction * hit.distance, new Color(1 - (float)occlusion/5, 1 - (float)occlusion/5, 1, 1f - (float)i / rayStats.MaxReflections));
             }
 
             if (hit.collider.gameObject.tag == "Door") // Call the method for shooting the occluded ray when a door is hit
