@@ -1708,7 +1708,7 @@ MonoBehaviour:
   attenuationObject: {fileID: 0}
   occlusionMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 2048
 --- !u!1 &1766648014
 GameObject:
   m_ObjectHideFlags: 0

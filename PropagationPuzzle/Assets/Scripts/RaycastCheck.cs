@@ -15,6 +15,10 @@ public class RaycastCheck : MonoBehaviour
     SoundRay[] soundDirectionsAndReflections;
     LayerMask playerMask;
     LayerMask doorMask;
+
+    //Oskar
+    public SpacialSoundInterpreter soundInterpreter;
+
     private void Start()
     {
         playerMask = LayerMask.GetMask("Player");
@@ -22,7 +26,11 @@ public class RaycastCheck : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        //Oskar 
+        soundInterpreter.ResetEmitterValues();
+
         SoundCheck();
+        
     }
     public void SoundCheck()
     {
@@ -126,8 +134,12 @@ public class RaycastCheck : MonoBehaviour
 
                         if (hit.collider.gameObject.tag == "Player")
                         {
-                            soundDirectionsAndReflections[successfulRays] = new SoundRay((gameObject.transform.position - rayReflections[j].origin) * -1, i, occlusion);
+                            SoundRay soundRay = new SoundRay((gameObject.transform.position - rayReflections[j].origin) * -1, i, occlusion);
+                            soundDirectionsAndReflections[successfulRays] = soundRay;
                             successfulRays++;
+
+                            //Oskar
+                            soundInterpreter.AddSoundRay(soundRay);
 
                             // debugging
                             if (showSoundDirectionRays)

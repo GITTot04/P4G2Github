@@ -3,7 +3,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerRotate : MonoBehaviour
 {
-    public GameObject playerBody;
+    public GameObject playerHead;
+    public Camera cam;
     public PlayerStats playerStats;
     Vector2 lastMousePosition;
 
@@ -17,14 +18,14 @@ public class PlayerRotate : MonoBehaviour
 
     void RotateHorizontal (float amount)
     {
-        playerBody.transform.Rotate(new Vector3(0f, amount, 0f));
+        playerHead.transform.Rotate(new Vector3(0f, amount, 0f));
     }
 
     void RotateVertical (float amount)
     {
         if (transform.rotation.eulerAngles.x + amount < 90 || transform.rotation.eulerAngles.x + amount > 270)
         {
-            transform.Rotate(new Vector3(amount, 0f, 0f));
+            cam.transform.Rotate(new Vector3(amount, 0f, 0f));
         }
         
     }
