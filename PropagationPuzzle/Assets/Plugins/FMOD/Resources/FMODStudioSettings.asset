@@ -405,7 +405,8 @@ MonoBehaviour:
   Plugins: []
   MasterBanks:
   - Master
-  Banks: []
+  Banks:
+  - PuzzleSoundCodes
   BanksToLoad:
   - Master
   LiveUpdatePort: 9264
