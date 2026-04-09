@@ -45,7 +45,7 @@ public class SpacialSoundInterpreter : MonoBehaviour
     {
         //Gets angle of incomming ray
         Vector2 angleVector = new Vector2(soundRay.direction.x, soundRay.direction.z);
-        float angle = Vector2.SignedAngle(Vector2.up, angleVector);
+        float angle = Vector2.SignedAngle(Vector2.up, angleVector) + (360f / (directionCount * 2f));
         if (angle < 0f)
         {
             angle += 360f;
@@ -55,7 +55,7 @@ public class SpacialSoundInterpreter : MonoBehaviour
         }
 
         //Finds appropiate emitter
-        int emitterNumber = (int) ((angle / 360f * (directionCount+0.5) ));
+        int emitterNumber = (int) (angle / 360f * (directionCount));
 
         if (emitterNumber >= directionCount)
         {
