@@ -65,7 +65,8 @@ public class RaycastCheck : MonoBehaviour
             float averageZValue = soundZValue / successfulRays;
             float averageReflection = totalReflection / successfulRays; //idk if this is needed
             float averageOcclusion = totalOcclusion / successfulRays; // idk if this is needed
-            
+            occlusionForFmod = averageOcclusion;
+
             //debugging
             if (showAverageSoundDirection)
             {
@@ -163,7 +164,6 @@ public class RaycastCheck : MonoBehaviour
     public void ShootOccludedRay(Ray ray, int reflection, int occlusion) // Increase occlusion and shoot out an occluded ray. May call itself a few times
     {
         occlusion += 1;
-        occlusionForFmod = occlusion; // Set the occlusion value for FMOD
         if (occlusion < 5)
         {
             ShootReflectionRays(ray, reflection, occlusion, true);

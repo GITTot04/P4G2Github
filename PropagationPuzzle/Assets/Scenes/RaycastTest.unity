@@ -871,6 +871,7 @@ GameObject:
   - component: {fileID: 355585244}
   - component: {fileID: 355585243}
   - component: {fileID: 355585245}
+  - component: {fileID: 355585246}
   m_Layer: 0
   m_Name: Audio
   m_TagString: Untagged
@@ -904,8 +905,8 @@ MonoBehaviour:
       Data4: 1881812457
     Path: event:/Music
   Event: 
-  EventPlayTrigger: 0
-  EventStopTrigger: 0
+  EventPlayTrigger: 1
+  EventStopTrigger: 2
   AllowFadeout: 1
   TriggerOnce: 1
   Preload: 0
@@ -922,12 +923,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 355585242}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.67, y: 0.96, z: 1.12}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 0.8333333, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 648153125}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &355585245
 MonoBehaviour:
@@ -942,6 +943,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayingSound
   emitter: {fileID: 355585243}
+--- !u!114 &355585246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 355585242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e58b0ed9cd205b47989718cc76dba4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OcclusionManipulation
+  occlusionValue: 0
+  minOcclusionValue: 0
+  maxOcclusionValue: 10
+  emitter: {fileID: 0}
+  raycastCheck: {fileID: 0}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1314,7 +1332,23 @@ MonoBehaviour:
   showSoundDirectionRays: 1
   showAverageSoundDirection: 0
   occlusionForFmod: 0
-  soundInterpreter: {fileID: 0}
+  soundInterpreter: {fileID: 648153117}
+--- !u!114 &648153117 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -7697571644449680371, guid: df16232f34ce5724c82a2e179f2aa7e5, type: 3}
+  m_PrefabInstance: {fileID: 1478417675}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 648153109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1277c0ae759846d4ca43d2514d7978c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpacialSoundInterpreter
+--- !u!4 &648153125 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5874934304785847690, guid: df16232f34ce5724c82a2e179f2aa7e5, type: 3}
+  m_PrefabInstance: {fileID: 1478417675}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &648153126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3018,7 +3052,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 5874934304785847690, guid: df16232f34ce5724c82a2e179f2aa7e5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 355585244}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3540926031404690491, guid: df16232f34ce5724c82a2e179f2aa7e5, type: 3}
       insertIndex: -1
@@ -5054,4 +5091,3 @@ SceneRoots:
   - {fileID: 1478417675}
   - {fileID: 731328973}
   - {fileID: 1343195359}
-  - {fileID: 355585244}

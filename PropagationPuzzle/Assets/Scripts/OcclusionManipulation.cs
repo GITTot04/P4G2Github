@@ -20,7 +20,7 @@ public class OcclusionManipulation : MonoBehaviour
         }
         
     }
-    public void Update()
+    public void FixedUpdate()
     {
         if (emitter != null)
         {
@@ -29,9 +29,9 @@ public class OcclusionManipulation : MonoBehaviour
             StudioEventEmitter eventEmitter = emitter.GetComponent<StudioEventEmitter>();
             if (eventEmitter != null)
             {
-                occlusionValue = Mathf.Clamp(rayChecker.occlusionForFmod, minOcclusionValue, maxOcclusionValue); // Ensure occlusion value is between 0 and 1
-                eventEmitter.GetComponent<StudioEventEmitter>().occlusionIntensity = occlusionValue;
-                //eventEmitter.SetParameter("Occlusion", occlusionValue);
+                occlusionValue = rayChecker.occlusionForFmod;
+                //eventEmitter.occlusionIntensity = occlusionValue * 10f;
+                eventEmitter.SetParameter("Occlusion", occlusionValue*3f);
             }
         }
     }
