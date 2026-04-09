@@ -1,0 +1,44 @@
+using UnityEngine;
+
+public class AudioOcclusion : MonoBehaviour
+{
+    private FMOD.Studio.EventInstance instance;
+
+    public FMODUnity.EventReference fmodEvent;
+
+    [SerializeField]
+    private bool occlusionEnabled = false;
+
+    [SerializeField]
+    private string occlusionParameterName = null;
+
+    [Range(0.0f, 10.0f)]
+    [SerializeField]
+    private float occlusionIntensity = 1f;
+
+    private float currentOcclusion = 0.0f;
+    private float nextOcclusionUpdate = 0.0f;
+
+    void Start()
+    {
+        instance = FMODUnity.RuntimeManager.CreateInstance(fmodEvent);
+        instance.start();
+    }
+    void Update()
+    {
+        if (instance.isValid())
+        {
+            instance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(this.gameObject));
+            if (!occlusionEnabled)
+            {
+                currentOcclusion = 0.0f;
+            }
+            else if (Time.time >= nextOcclusionUpdate)
+            {
+                nextOcclusionUpdate = Time.time + FMODUnityResonance.FmodResonanceAudio.occlusionDetectionInterval;
+                currentOcclusion = occlusionIntensity * FMODUnityResonance.FmodResonanceAudio.ComputeOcclusion(transform);
+                instance.setParameterByName(occlusionParameterName, currentOcclusion);
+            }
+        }
+    }
+}
