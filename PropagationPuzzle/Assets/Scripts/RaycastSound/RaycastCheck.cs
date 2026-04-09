@@ -9,6 +9,7 @@ public class RaycastCheck : MonoBehaviour
     public bool showSoundDirectionRays;
     public bool showAverageSoundDirection;
 
+    int degreesOfRays = 360;
     public float occlusionForFmod;
     int successfulRays;
     Ray[] rayReflections;
@@ -30,16 +31,18 @@ public class RaycastCheck : MonoBehaviour
         soundInterpreter.ResetEmitterValues();
 
         SoundCheck();
+
+        soundInterpreter.SetEmitterValues();
         
     }
     public void SoundCheck()
     {
         Ray ray = new Ray();
         rayReflections = new Ray[rayStats.MaxReflections];
-        soundDirectionsAndReflections = new SoundRay[360 * rayStats.MaxOcclusions]; // 360 degrees times the maximum amount of occlusions won't exceed the array
+        soundDirectionsAndReflections = new SoundRay[degreesOfRays * rayStats.MaxOcclusions]; // 360 degrees times the maximum amount of occlusions won't exceed the array
         successfulRays = 0;
         // Shoot rays once per degree for 360 degrees
-        for (float angle = 0; angle < 360; angle += 1)
+        for (float angle = 0; angle < 360; angle += 360/degreesOfRays)
         {
             float angleRad = angle * Mathf.Deg2Rad;
             float xMove = Mathf.Cos(angleRad);
@@ -91,6 +94,7 @@ public class RaycastCheck : MonoBehaviour
             if (hit.collider.gameObject.tag == "Door") // Call the method for shooting the occluded ray when a door is hit
             {
                 ShootOccludedRay(new Ray(hit.point + (ray.direction.normalized * 0.0001f), ray.direction.normalized), i, occlusion);
+                //i += (int)(rayStats.MaxReflections / 4);
             }
 
             if (hit.collider.gameObject.tag == "Speaker")
@@ -164,7 +168,7 @@ public class RaycastCheck : MonoBehaviour
     {
         occlusion += 1;
         occlusionForFmod = occlusion; // Set the occlusion value for FMOD
-        if (occlusion < 5)
+        if (occlusion < rayStats.MaxOcclusions)
         {
             ShootReflectionRays(ray, reflection, occlusion, true);
         }

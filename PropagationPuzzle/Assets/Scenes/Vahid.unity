@@ -614,8 +614,6 @@ GameObject:
   m_Component:
   - component: {fileID: 413931805}
   - component: {fileID: 413931806}
-  - component: {fileID: 413931807}
-  - component: {fileID: 413931808}
   m_Layer: 0
   m_Name: AudioThing
   m_TagString: Untagged
@@ -674,46 +672,6 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 0
   OverrideMaxDistance: 40
---- !u!114 &413931807
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 413931804}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9468c5f457ace64f8d4df6d642b107f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioBankLoader
-  LoadEvent: 1
-  UnloadEvent: 0
-  Banks:
-  - Master
-  CollisionTag: 
-  PreloadSamples: 0
---- !u!114 &413931808
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 413931804}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f56ba6765bd77e442a33be55144f4960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
-  fmodEvent:
-    Guid:
-      Data1: 1984781898
-      Data2: 1239486868
-      Data3: 1691446165
-      Data4: 1881812457
-    Path: event:/Music
-  occlusionEnabled: 1
-  occlusionParameterName: Occlusion
-  occlusionIntensity: 1
 --- !u!1 &716084595
 GameObject:
   m_ObjectHideFlags: 0
@@ -1949,10 +1907,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84e1c69ed5426ca4f980d975223e0201, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RaycastCheck
+  rayStats: {fileID: 0}
   showReflectionRays: 1
   showSoundDirectionRays: 1
   showAverageSoundDirection: 1
   occlusionForFmod: 0
+  soundInterpreter: {fileID: 0}
 --- !u!1 &1946715882
 GameObject:
   m_ObjectHideFlags: 0

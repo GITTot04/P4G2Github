@@ -10,4 +10,14 @@ public class SoundRayStats : ScriptableObject
 
     [SerializeField] int maxOcclusions = 5;
     public int MaxOcclusions => maxOcclusions;
+
+    [SerializeField] float occlusionCap = 1;
+    public float OcclusionCap => occlusionCap;
+
+    [SerializeField] float maxIntensity;
+    public float MaxIntensity => maxIntensity;
+
+    [SerializeField] float intensityVolume;
+    public float IntensityVolume => intensityVolume;
+
 }
