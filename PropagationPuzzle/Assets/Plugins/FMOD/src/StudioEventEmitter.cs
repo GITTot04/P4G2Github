@@ -27,12 +27,13 @@ namespace FMODUnity
         }
 
         private static Transform listenerTransform = null;
-
-        public static float ComputeOcclusion(Transform sourceTransform)
+        public float occlusionThingTest;
+        public float ComputeOcclusion(Transform sourceTransform)
         {
             var listener = GameObject.FindFirstObjectByType<StudioListener>();
             occlusionMaskValue = listener.occlusionMask;
             float occlusion = 0.0f;
+            /*
             if (ListenerTransform != null)
             {
                 Vector3 listenerPosition = ListenerTransform.position;
@@ -47,7 +48,8 @@ namespace FMODUnity
                         occlusion += 1.0f;
                     }
                 }
-            }
+            }*/
+            occlusion = occlusionThingTest;
             return occlusion;
         }
 
