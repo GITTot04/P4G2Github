@@ -49,7 +49,7 @@ namespace FMODUnity
                     }
                 }
             }*/
-            occlusion = occlusionThingTest;
+            //occlusion = occlusionThingTest;
             return occlusion;
         }
 
@@ -484,7 +484,7 @@ namespace FMODUnity
                 else if (Time.time >= nextOcclusionUpdate)
                 {
                     nextOcclusionUpdate = Time.time + occlusionDetectionInterval;
-                    currentOcclusion = occlusionIntensity * ComputeOcclusion(transform);
+                    currentOcclusion = occlusionIntensity;// * ComputeOcclusion(transform);
                     instance.setParameterByName(occlusionParameterName, currentOcclusion);
                 }
             }
