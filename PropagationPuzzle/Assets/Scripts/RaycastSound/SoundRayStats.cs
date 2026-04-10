@@ -20,4 +20,6 @@ public class SoundRayStats : ScriptableObject
     [SerializeField] float intensityVolume;
     public float IntensityVolume => intensityVolume;
 
+    [SerializeField] float intensityChangeSpeed;
+    public float IntensityChangeSpeed => intensityChangeSpeed;
 }

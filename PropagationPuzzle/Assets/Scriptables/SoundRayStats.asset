@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6105fece2c5879c42a75fd535c0a265c, type: 3}
   m_Name: SoundRayStats
   m_EditorClassIdentifier: Assembly-CSharp::SoundRayStats
-  maxReflections: 15
+  maxReflections: 12
   maxOcclusions: 3
   occlusionCap: 25.3
   maxIntensity: 180
   intensityVolume: 2.24
+  intensityChangeSpeed: 5

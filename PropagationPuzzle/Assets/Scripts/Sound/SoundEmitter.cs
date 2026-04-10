@@ -8,23 +8,67 @@ public class SoundEmitter : MonoBehaviour
     public float intensityMulitplier;
 
     public float intensity;
+    float lastIntensity;
     public float occlusion;
     public int rayCount;
 
+    
+
+    SoundRay[] bestRays;
+    int newRayPosition;
+
     void Start()
     {
+        bestRays = new SoundRay[20];
         SoundManager.instance.onPlaySound += PlaySound;
+        ResetValues();
     }
     public void ResetValues ()
     {
         intensity = 0f;
         occlusion = 0f;
         rayCount = 0;
+
+        newRayPosition = 0;
         
+    }
+    SoundRay GetMostReflectRay ()
+    {
+        SoundRay mostReflectRay = bestRays[0];
+
+        for (int i = 1; i < bestRays.Length; i++)
+        {
+            if (bestRays[i].reflections > mostReflectRay.reflections)
+            {
+                mostReflectRay = bestRays[i];
+            }
+        }
+        return mostReflectRay;
     }
     public void AddRay (SoundRay soundRay)
     {
-        //Calculation Ray Specific values
+        if (bestRays == null)
+        {
+            bestRays = new SoundRay[10];
+            //Debug.Log("Bestrays was null");
+        }
+        
+        if (newRayPosition < bestRays.Length)
+        {
+            bestRays[newRayPosition] = soundRay;
+            newRayPosition++;
+        } else
+        {
+            SoundRay replaceRay = GetMostReflectRay();
+            if (soundRay.reflections < replaceRay.reflections)
+            {
+                replaceRay = soundRay;
+            }
+        }
+
+        /*
+
+        //Calculate Ray Specific values
         float rayIntensity = (float)1 - Mathf.Clamp(((float)soundRay.reflections * 2 / (float)rayStats.MaxReflections),0f,1f);
         float rayOcclusion = ((float)soundRay.occlusions / (float)rayStats.MaxOcclusions);
 
@@ -34,9 +78,25 @@ public class SoundEmitter : MonoBehaviour
         //Debug.Log(soundRay.occlusions);
 
         rayCount += 1;
+        */
     }
     public void SetValues ()
     {
+        for (int i = 0; i < newRayPosition; i++)
+        {
+
+            //Calculate Ray Specific values
+            float rayIntensity = (float)1 - Mathf.Clamp(((float)bestRays[i].reflections * 1f / (float)rayStats.MaxReflections), 0f, 1f);
+            float rayOcclusion = ((float)bestRays[i].occlusions / (float)rayStats.MaxOcclusions);
+            
+            //Adding to emitter
+            intensity += rayIntensity;
+            occlusion += rayOcclusion;
+            //Debug.Log(soundRay.occlusions);
+
+            rayCount += 1;
+        }
+
         //Occlusion
         float averageOcclusion = 0;
         if (rayCount > 0)
@@ -46,10 +106,11 @@ public class SoundEmitter : MonoBehaviour
             
         } 
         float finalOcclusion = Mathf.Lerp (0f, rayStats.OcclusionCap, averageOcclusion);
-        if (rayCount > 10)
+       
+        /*if (rayCount > 10)
         {
            Debug.Log("Occlusion: " +  occlusion + ", average occlusion:" + averageOcclusion + ", raycount:" + rayCount);
-        }
+        }*/
         //eventEmitter.occlusionIntensity = finalOcclusion;
         //eventEmitter.EventInstance.setParameterByName("Occlusion", 5);
         //eventEmitter.EventInstance.setParameterByName("Occlusion", 10);
@@ -59,8 +120,15 @@ public class SoundEmitter : MonoBehaviour
         {
             intensity = rayStats.MaxIntensity;
         }*/
-        float finalIntensity = intensity / rayCount;
-        eventEmitter.EventInstance.setVolume(finalIntensity);
+        float finalIntensity = 0f;
+        if (rayCount > 0)
+        {
+            finalIntensity = intensity / rayCount;
+        }
+
+        float intensitySet = Mathf.Lerp(lastIntensity, finalIntensity, Time.fixedDeltaTime * rayStats.IntensityChangeSpeed);
+        eventEmitter.EventInstance.setVolume(intensitySet);
+        lastIntensity = intensitySet;
     }
     void PlaySound ()
     {
