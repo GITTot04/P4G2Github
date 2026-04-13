@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="Bank" id="{d4d30fe9-9ff8-4ad9-9e66-3f8723797148}">
+		<property name="name">
+			<value>PuzzleSoundCodes</value>
+		</property>
+		<relationship name="folder">
+			<destination>{8f052f3f-3ceb-46c5-be9d-e45712865bb9}</destination>
+		</relationship>
+	</object>
+</objects>
