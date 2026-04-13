@@ -63,7 +63,7 @@ namespace FMODUnity
         private static int occlusionMaskValue = -1;
 
         /// Source occlusion detection rate in seconds.
-        public const float occlusionDetectionInterval = 0.2f;
+        public const float occlusionDetectionInterval = 0.1f;
 
         public bool occlusionEnabled = false;
         public string occlusionParameterName = null;
