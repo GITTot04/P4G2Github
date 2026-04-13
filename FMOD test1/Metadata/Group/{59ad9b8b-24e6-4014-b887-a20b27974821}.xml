@@ -4,6 +4,9 @@
 		<property name="name">
 			<value>Music Group</value>
 		</property>
+		<relationship name="masters">
+			<destination>{133a9901-3d17-4fdf-9e67-ebf80ae4d82b}</destination>
+		</relationship>
 		<relationship name="effectChain">
 			<destination>{833b8e38-4324-4ae3-9174-158d18d9360e}</destination>
 		</relationship>
@@ -51,7 +54,6 @@
 		<property name="name">
 			<value>Room Properties</value>
 		</property>
-		<property name="value" />
 		<property name="dataType">
 			<value>0</value>
 		</property>

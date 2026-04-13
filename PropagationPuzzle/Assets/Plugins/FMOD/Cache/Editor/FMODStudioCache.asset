@@ -428,7 +428,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: 2797704637506245926}
   cacheVersion: 131858
-  cacheTime: 639116759314290895
+  cacheTime: 639116822635444164
   SerializableEventsDict:
   - key: event:/Music
     index: 0
@@ -545,10 +545,10 @@ MonoBehaviour:
   Path: ../FMOD test1/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639116759314290895
+  lastModified: 639116822635444164
   FileSizes:
   - Name: Desktop
-    Value: 2432448
+    Value: 2432576
   Exists: 1
 --- !u!114 &2243812063178151001
 MonoBehaviour:
@@ -605,10 +605,10 @@ MonoBehaviour:
   Path: ../FMOD test1/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639116759314290895
+  lastModified: 639116822635444164
   FileSizes:
   - Name: Desktop
-    Value: 1282
+    Value: 1330
   Exists: 1
 --- !u!114 &3315971631908134076
 MonoBehaviour:
@@ -697,10 +697,10 @@ MonoBehaviour:
   Path: ../FMOD test1/Build/Desktop/PuzzleSoundCodes.bank
   Name: PuzzleSoundCodes
   StudioPath: bank:/PuzzleSoundCodes
-  lastModified: 639116742860135697
+  lastModified: 639116821788906411
   FileSizes:
   - Name: Desktop
-    Value: 105024
+    Value: 111840
   Exists: 1
 --- !u!114 &3974966643967744170
 MonoBehaviour:
