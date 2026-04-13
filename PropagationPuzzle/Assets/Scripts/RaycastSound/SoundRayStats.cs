@@ -22,4 +22,7 @@ public class SoundRayStats : ScriptableObject
 
     [SerializeField] float intensityChangeSpeed;
     public float IntensityChangeSpeed => intensityChangeSpeed;
+
+    [SerializeField] int bestRayCount;
+    public int BestRayCount => bestRayCount;
 }
