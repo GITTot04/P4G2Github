@@ -18,3 +18,4 @@ MonoBehaviour:
   maxIntensity: 180
   intensityVolume: 2.24
   intensityChangeSpeed: 5
+  bestRayCount: 20
