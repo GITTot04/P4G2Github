@@ -964,7 +964,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1277c0ae759846d4ca43d2514d7978c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpacialSoundInterpreter
-  directionCount: 2
+  directionCount: 8
   Emitter: {fileID: 6731924419349855233, guid: 8a50ee438e9c67c48a2f9dc0252c7dae, type: 3}
   soundEmitters: []
 --- !u!114 &243500024
