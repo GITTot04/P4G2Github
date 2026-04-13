@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
+    public GameObject head;
     public PlayerStats playerStats;
     public Rigidbody rigid;
     void Start()
@@ -11,7 +12,7 @@ public class PlayerMove : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector2 movementInput = VectorOperation.Rotate2(PlayerInput.instance.PlayerMovement.normalized, -transform.rotation.eulerAngles.y);
+        Vector2 movementInput = VectorOperation.Rotate2(PlayerInput.instance.PlayerMovement.normalized, -head.transform.rotation.eulerAngles.y);
 
         Move(movementInput * playerStats.MoveSpeed * Time.fixedDeltaTime);
     }

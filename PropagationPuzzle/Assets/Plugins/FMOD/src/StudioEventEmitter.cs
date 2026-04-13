@@ -482,7 +482,7 @@ namespace FMODUnity
                 else if (Time.time >= nextOcclusionUpdate)
                 {
                     nextOcclusionUpdate = Time.time + occlusionDetectionInterval;
-                    currentOcclusion = occlusionIntensity * ComputeOcclusion(transform);
+                    currentOcclusion = occlusionIntensity;
                     instance.setParameterByName(occlusionParameterName, currentOcclusion);
                 }
             }
