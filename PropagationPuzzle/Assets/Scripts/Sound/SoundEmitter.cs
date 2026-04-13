@@ -94,20 +94,21 @@ public class SoundEmitter : MonoBehaviour
         }
 
         //Occlusion
-        float averageOcclusion = 0;
+        
         if (newRayPosition > 0)
         {
-           
+            float averageOcclusion = 0;
             averageOcclusion = occlusion / (float)(newRayPosition);
             
+            float finalOcclusion = Mathf.Lerp(0f, rayStats.OcclusionCap, averageOcclusion);
+
+            eventEmitter.occlusionIntensity = finalOcclusion;
         }
-        float finalOcclusion = Mathf.Lerp (0f, rayStats.OcclusionCap, averageOcclusion);
-        
+      
         /*if (rayCount > 10)
         {
            Debug.Log("Occlusion: " +  occlusion + ", average occlusion:" + averageOcclusion + ", raycount:" + rayCount);
         }*/
-        eventEmitter.occlusionIntensity = finalOcclusion;
         //eventEmitter.EventInstance.setParameterByName("Occlusion", 5);
         //eventEmitter.EventInstance.setParameterByName("Occlusion", 10);
 
