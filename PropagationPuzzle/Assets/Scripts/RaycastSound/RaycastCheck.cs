@@ -48,7 +48,7 @@ public class RaycastCheck : MonoBehaviour
             float xMove = Mathf.Cos(angleRad);
             float zMove = Mathf.Sin(angleRad);
             ray = new Ray(gameObject.transform.position, new Vector3(xMove, 0f, zMove).normalized); // Create the ray to be shot
-            ShootReflectionRays(ray, 0, 0, false);
+            ShootReflectionRays(ray, 0, 0, 0, false);
         }
 
         float soundXValue = 0;
@@ -77,10 +77,11 @@ public class RaycastCheck : MonoBehaviour
         }
     }
 
-    public void ShootReflectionRays(Ray ray, int priorReflection, int occlusion, bool calledByOccludedRay)
+    public void ShootReflectionRays(Ray ray, int priorReflections, int reflectionValue, int occlusion, bool calledByOccludedRay)
     {
+        int reflectionIntensity = reflectionValue;
         RaycastHit hit;
-        for (int i = priorReflection; i < rayStats.MaxReflections; i++)
+        for (int i = priorReflections; i < rayStats.MaxReflections && reflectionIntensity < rayStats.MaxReflections; i++)
         {
             rayReflections[i] = ray;
             Physics.Raycast(ray, out hit, Mathf.Infinity, ~playerMask); // Shoots the initial ray ignoring the player
@@ -88,13 +89,20 @@ public class RaycastCheck : MonoBehaviour
             // debugging
             if (showReflectionRays)
             {
-                Debug.DrawRay(ray.origin, ray.direction * hit.distance, new Color(1 - (float)occlusion/5, 1 - (float)occlusion/5, 1, 1f - (float)i / rayStats.MaxReflections));
+                Debug.DrawRay(ray.origin, ray.direction * hit.distance, new Color(1 - (float)occlusion/5, 1 - (float)occlusion/5, 1, 1f - (float)reflectionIntensity / rayStats.MaxReflections));
             }
 
             if (hit.collider.gameObject.tag == "Door") // Call the method for shooting the occluded ray when a door is hit
             {
-                ShootOccludedRay(new Ray(hit.point + (ray.direction.normalized * 0.0001f), ray.direction.normalized), i, occlusion);
-                //i += (int)(rayStats.MaxReflections / 4);
+                if (reflectionIntensity * 2 > rayStats.MaxReflections)
+                {
+                    break;
+                }
+                else
+                {
+                    ShootOccludedRay(new Ray(hit.point + (ray.direction.normalized * 0.0001f), ray.direction.normalized), i, reflectionIntensity * 2, occlusion);
+                    reflectionIntensity *= 2;
+                }
             }
 
             if (hit.collider.gameObject.tag == "Speaker")
@@ -114,7 +122,7 @@ public class RaycastCheck : MonoBehaviour
 
                 if (hit.collider.gameObject.tag == "Player") // Check if the player has direct LOS with the sound object
                 {
-                    soundDirectionsAndReflections[successfulRays] = new SoundRay((gameObject.transform.position - hit.point) * -1, i, occlusion);
+                    soundDirectionsAndReflections[successfulRays] = new SoundRay((gameObject.transform.position - hit.point) * -1, reflectionIntensity, occlusion);
                     successfulRays++;
                     break;
                 }
@@ -138,7 +146,7 @@ public class RaycastCheck : MonoBehaviour
 
                         if (hit.collider.gameObject.tag == "Player")
                         {
-                            SoundRay soundRay = new SoundRay((gameObject.transform.position - rayReflections[j].origin) * -1, i, occlusion);
+                            SoundRay soundRay = new SoundRay((gameObject.transform.position - rayReflections[j].origin) * -1, reflectionIntensity, occlusion);
                             soundDirectionsAndReflections[successfulRays] = soundRay;
                             successfulRays++;
 
@@ -164,13 +172,13 @@ public class RaycastCheck : MonoBehaviour
         }
     }
 
-    public void ShootOccludedRay(Ray ray, int reflection, int occlusion) // Increase occlusion and shoot out an occluded ray. May call itself a few times
+    public void ShootOccludedRay(Ray ray, int reflection, int reflectionValue, int occlusion) // Increase occlusion and shoot out an occluded ray. May call itself a few times
     {
         occlusion += 1;
         occlusionForFmod = occlusion; // Set the occlusion value for FMOD
         if (occlusion < rayStats.MaxOcclusions)
         {
-            ShootReflectionRays(ray, reflection, occlusion, true);
+            ShootReflectionRays(ray, reflection, reflectionValue, occlusion, true);
         }
     }
 }
