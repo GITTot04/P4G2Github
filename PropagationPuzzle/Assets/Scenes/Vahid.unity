@@ -766,16 +766,18 @@ MonoBehaviour:
   occlusionThingTest: 0
   occlusionEnabled: 1
   occlusionParameterName: Occlusion
+  minOcclusionValueRange: 0
+  maxOcclusionValueRange: 10
   occlusionIntensity: 1
   currentOcclusion: 0
   nextOcclusionUpdate: 0
   EventReference:
     Guid:
-      Data1: -424593384
-      Data2: 1170505427
-      Data3: 1549399448
-      Data4: 1787531070
-    Path: event:/SoundCode5
+      Data1: 1984781898
+      Data2: 1239486868
+      Data3: 1691446165
+      Data4: 1881812457
+    Path: event:/Music
   Event: 
   EventPlayTrigger: 1
   EventStopTrigger: 12
@@ -785,7 +787,7 @@ MonoBehaviour:
   NonRigidbodyVelocity: 0
   Params: []
   OverrideAttenuation: 0
-  OverrideMinDistance: 1
+  OverrideMinDistance: 0
   OverrideMaxDistance: 40
 --- !u!114 &413931807
 MonoBehaviour:
