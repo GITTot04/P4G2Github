@@ -157,6 +157,6 @@ public class RaycastCheck : MonoBehaviour
         {
             ShootReflectionRays(ray, reflection, occlusion, true);
         }
-        occlusionForFmod = occlusion;
+        
     }
 }
