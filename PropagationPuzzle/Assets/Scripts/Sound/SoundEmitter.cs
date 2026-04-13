@@ -1,5 +1,6 @@
 using UnityEngine;
 using FMODUnity;
+using Unity.VisualScripting;
 
 public class SoundEmitter : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class SoundEmitter : MonoBehaviour
     public float intensity;
     float lastIntensity;
     public float occlusion;
+    public bool debugReflections;
 
     
 
@@ -30,21 +32,25 @@ public class SoundEmitter : MonoBehaviour
         newRayPosition = 0;
         
     }
-    SoundRay GetMostReflectRay ()
+    int GetMostReflectRay ()
     {
+        int arrayPos;
         SoundRay mostReflectRay = bestRays[0];
+        arrayPos = 0;
 
         for (int i = 1; i < bestRays.Length; i++)
         {
             if (bestRays[i].reflections > mostReflectRay.reflections)
             {
                 mostReflectRay = bestRays[i];
+                arrayPos = i;
             }
         }
-        return mostReflectRay;
+        return arrayPos;
     }
     public void AddRay (SoundRay soundRay)
     {
+        
         if (bestRays == null)
         {
             bestRays = new SoundRay[rayStats.BestRayCount];
@@ -57,10 +63,10 @@ public class SoundEmitter : MonoBehaviour
             newRayPosition++;
         } else
         {
-            SoundRay replaceRay = GetMostReflectRay();
-            if (soundRay.reflections < replaceRay.reflections)
+            int replaceRay = GetMostReflectRay();
+            if (soundRay.reflections < bestRays[replaceRay].reflections)
             {
-                replaceRay = soundRay;
+                bestRays[replaceRay] = soundRay;
             }
         }
 
@@ -84,7 +90,12 @@ public class SoundEmitter : MonoBehaviour
         {
 
             //Calculate Ray Specific values
-            float rayIntensity = (float)1 - Mathf.Clamp(((float)bestRays[i].reflections * 1.1f / (float)rayStats.MaxReflections), 0f, 1f);
+            float rayIntensity = (float)1 - Mathf.Clamp(((float)bestRays[i].reflections * 1f / (float)rayStats.MaxReflections), 0f, 1f);
+            if (debugReflections)
+            {
+                Debug.Log(bestRays[i].reflections);
+            }
+            //Debug.Log(bestRays[i].reflections);
             float rayOcclusion = ((float)bestRays[i].occlusions / (float)rayStats.MaxOcclusions);
             
             //Adding to emitter

@@ -169,6 +169,7 @@ public class RaycastCheck : MonoBehaviour
             {
                 ray = new Ray(hit.point, Vector3.Reflect(ray.direction, hit.normal));
             }
+            reflectionIntensity++;
         }
     }
 
