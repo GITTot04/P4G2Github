@@ -9,6 +9,8 @@ public class ExitDoor : MonoBehaviour
     bool open = false;
     public bool IsOpen => open;
 
+    public float openDirection;
+
     float startRotation;
     float targetAngle;
     float escapeAngle;
@@ -23,20 +25,13 @@ public class ExitDoor : MonoBehaviour
     void Start()
     {
         startRotation = Hinge.transform.rotation.eulerAngles.y;
+        PlayerInput.instance.onAction += UnlockDoor;
     }
 
-    public void Interact(Vector3 viewDiretion)
-    {
-        if (!inProgress && !open)
-        {
-            escapeAngle = Hinge.transform.rotation.eulerAngles.y;
-            Open(viewDiretion);
-        }
-    }
 
-    void Open(Vector3 viewDirection)
+    void UnlockDoor()
     {
-        if (Vector3.Dot(viewDirection, Hinge.transform.forward) < 0)
+        if (openDirection < 0)
         {
             targetAngle = startRotation + 90;
         } else
@@ -46,17 +41,9 @@ public class ExitDoor : MonoBehaviour
         open = true;
         inProgress = true;
         progressTimer = 0f;
+        escapeAngle = startRotation;
     }
 
-    void Close()
-    {
-
-        open = false;
-        targetAngle = startRotation;
-        inProgress = true;
-        progressTimer = 0f;
- 
-    }
 
 
     void FixedUpdate()
