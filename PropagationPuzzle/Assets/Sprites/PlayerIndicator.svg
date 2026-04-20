@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="PlayerIndicator.svg"
+   inkscape:export-batch-name="batch"
+   inkscape:export-batch-path="C:\Users\thema\Documents\GitHub\P4G2Github\PropagationPuzzle\Assets\Sprites"
+   inkscape:version="1.4.3 (0d15f75, 2025-12-25)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#111111"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="1.4142136"
+     inkscape:cx="75.660425"
+     inkscape:cy="213.19269"
+     inkscape:window-width="1920"
+     inkscape:window-height="1111"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1">
+    <inkscape:path-effect
+       effect="powerclip"
+       message=""
+       id="path-effect4"
+       is_visible="true"
+       lpeversion="1"
+       inverse="true"
+       flatten="false"
+       hide_clip="false" />
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4">
+      <rect
+         style="display:none;opacity:1;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:4.82391;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:51401.6;stroke-opacity:1"
+         id="rect4"
+         width="4.2182565"
+         height="15.306243"
+         x="68.451065"
+         y="122.4651"
+         ry="0.040205371"
+         d="m 68.49127,122.4651 h 4.137846 c 0.02227,0 0.04021,0.0179 0.04021,0.0402 v 15.22583 c 0,0.0223 -0.01793,0.0402 -0.04021,0.0402 H 68.49127 c -0.02227,0 -0.04021,-0.0179 -0.04021,-0.0402 v -15.22583 c 0,-0.0223 0.01793,-0.0402 0.04021,-0.0402 z" />
+      <path
+         id="lpe_path-effect4"
+         style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:4.82391;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:51401.6;stroke-opacity:1"
+         class="powerclip"
+         d="M 36.101279,80.355448 H 105.01906 V 196.91126 H 36.101279 Z M 68.49127,122.4651 c -0.02227,0 -0.04021,0.0179 -0.04021,0.0402 v 15.22583 c 0,0.0223 0.01793,0.0402 0.04021,0.0402 h 4.137846 c 0.02227,0 0.04021,-0.0179 0.04021,-0.0402 V 122.5053 c 0,-0.0223 -0.01793,-0.0402 -0.04021,-0.0402 z" />
+    </clipPath>
+  </defs>
+  <g
+     inkscape:label="Lag 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <circle
+       style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:5.17348;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:51401.6;stroke-opacity:1"
+       id="path4"
+       inkscape:label="path4"
+       r="43.563164"
+       cy="46.562222"
+       cx="47.091019" />
+    <path
+       id="path1"
+       style="opacity:1;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:5.6;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:51401.6;stroke-opacity:1"
+       inkscape:transform-center-y="-5.433399"
+       d="M 70.560429,88.155168 43.901074,134.33012 H 97.219267 Z M 65.68114,134.44588 c -0.01724,0.002 -0.03049,0.0164 -0.03049,0.0341 v 54.59718 c 0,0.0189 0.01521,0.0341 0.03411,0.0341 h 9.750826 c 0.0189,0 0.03411,-0.0152 0.03411,-0.0341 v -54.59718 c 0,-0.0189 -0.01521,-0.0341 -0.03411,-0.0341 H 65.68476 c -0.0012,0 -0.0025,-1.2e-4 -0.0036,0 z"
+       clip-path="url(#clipPath4)"
+       transform="matrix(0.70601662,0,0,0.70601662,-2.7149077,-51.203102)"
+       inkscape:original-d="M 70.560429,88.155168 43.901074,134.33012 H 97.219267 Z M 65.68114,134.44588 c -0.01724,0.002 -0.03049,0.0164 -0.03049,0.0341 v 54.59718 c 0,0.0189 0.01521,0.0341 0.03411,0.0341 h 9.750826 c 0.0189,0 0.03411,-0.0152 0.03411,-0.0341 v -54.59718 c 0,-0.0189 -0.01521,-0.0341 -0.03411,-0.0341 H 65.68476 c -0.0012,0 -0.0025,-1.2e-4 -0.0036,0 z"
+       inkscape:path-effect="#path-effect4" />
+  </g>
+</svg>

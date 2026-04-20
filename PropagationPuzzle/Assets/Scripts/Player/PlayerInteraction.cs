@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
 {
+    public GameObject head;
     public LayerMask layerMask;
     public float interactionDistance = 1f;
     void Start()
@@ -17,12 +18,13 @@ public class PlayerInteraction : MonoBehaviour
     {
         Debug.Log("interacting");
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit, interactionDistance, layerMask))
+        if (Physics.Raycast(head.transform.position, head.transform.forward, out hit, interactionDistance, layerMask))
         {
+            Debug.Log("Hit something" + hit.transform.gameObject.name);
             if (hit.transform.tag == "Door")
             {
                 Debug.Log("hit door");
-                hit.transform.parent.gameObject.GetComponent<ExitDoor>().Interact(transform.forward);
+                hit.transform.parent.gameObject.GetComponent<Door>().Interact(head.transform.forward);
             }
         }
 

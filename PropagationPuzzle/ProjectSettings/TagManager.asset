@@ -4,8 +4,8 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - Door
   - Speaker
+  - Door
   layers:
   - Default
   - TransparentFX
@@ -13,8 +13,13 @@ TagManager:
   - 
   - Water
   - UI
+  - Wall
   - Player
+  - Door
   - Minimap
+  - Wall
+  - Occlusion
+  - Emitter
   - 
   - 
   - 
@@ -31,12 +36,7 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Remote
   - 
   - 
   m_SortingLayers:
