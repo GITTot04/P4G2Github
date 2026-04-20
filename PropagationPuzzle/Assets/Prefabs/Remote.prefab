@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8219133519167364122}
   - component: {fileID: 2813645039356164728}
   - component: {fileID: 8461643449352618905}
-  m_Layer: 0
+  m_Layer: 29
   m_Name: Remote button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 1401662164237725933}
   - component: {fileID: 2441521017914495451}
   - component: {fileID: 1634401314333043894}
-  m_Layer: 0
+  m_Layer: 29
   m_Name: Remote
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -215,7 +215,7 @@ GameObject:
   - component: {fileID: 3252987511211939324}
   - component: {fileID: 7404330088013544818}
   - component: {fileID: 4400376158200879782}
-  m_Layer: 0
+  m_Layer: 29
   m_Name: Remote
   m_TagString: Untagged
   m_Icon: {fileID: 0}

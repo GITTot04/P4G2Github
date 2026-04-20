@@ -11,4 +11,5 @@ public struct SoundRay // Values
         reflections = r;
         occlusions = o;
     }
+    
 }

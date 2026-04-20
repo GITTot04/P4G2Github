@@ -9,7 +9,6 @@ namespace FMODUnity
     [AddComponentMenu("FMOD Studio/FMOD Studio Event Emitter")]
     public class StudioEventEmitter : EventHandler
     {
-        
         public static Transform ListenerTransform
         {
             get
@@ -27,13 +26,13 @@ namespace FMODUnity
         }
 
         private static Transform listenerTransform = null;
-        public float occlusionThingTest;
-        public float ComputeOcclusion(Transform sourceTransform)
+
+        public static float ComputeOcclusion(Transform sourceTransform)
         {
             var listener = GameObject.FindFirstObjectByType<StudioListener>();
             occlusionMaskValue = listener.occlusionMask;
+
             float occlusion = 0.0f;
-            /*
             if (ListenerTransform != null)
             {
                 Vector3 listenerPosition = ListenerTransform.position;
@@ -48,8 +47,7 @@ namespace FMODUnity
                         occlusion += 1.0f;
                     }
                 }
-            }*/
-            //occlusion = occlusionThingTest;
+            }
             return occlusion;
         }
 
@@ -63,13 +61,11 @@ namespace FMODUnity
         private static int occlusionMaskValue = -1;
 
         /// Source occlusion detection rate in seconds.
-        public const float occlusionDetectionInterval = 0.1f;
+        public const float occlusionDetectionInterval = 0.2f;
 
         public bool occlusionEnabled = false;
         public string occlusionParameterName = null;
-        public float minOcclusionValueRange = 0.0f;
-        public float maxOcclusionValueRange = 10.0f;
-        //[Range(0.0f, 10.0f)]
+        [Range(0.0f, 10.0f)]
         public float occlusionIntensity = 1.0f;
         public float currentOcclusion = 0.0f;
         public float nextOcclusionUpdate = 0.0f;
@@ -484,12 +480,10 @@ namespace FMODUnity
                     currentOcclusion = 0.0f;
                 }
                 else if (Time.time >= nextOcclusionUpdate)
-                {   
-                    occlusionIntensity = Mathf.Clamp(occlusionIntensity, minOcclusionValueRange, maxOcclusionValueRange);
+                {
                     nextOcclusionUpdate = Time.time + occlusionDetectionInterval;
-                    currentOcclusion = occlusionIntensity;// * ComputeOcclusion(transform);
+                    currentOcclusion = occlusionIntensity;
                     instance.setParameterByName(occlusionParameterName, currentOcclusion);
-                    
                 }
             }
         }
