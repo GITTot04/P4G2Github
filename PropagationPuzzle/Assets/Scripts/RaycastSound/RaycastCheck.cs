@@ -103,8 +103,12 @@ public class RaycastCheck : MonoBehaviour
 
                 if (hit.collider.gameObject.tag == "Player") // Check if the player has direct LOS with the sound object
                 {
-                    soundDirectionsAndReflections[successfulRays] = new SoundRay((gameObject.transform.position - hit.point) * -1, reflectionIntensity, occlusion);
+                    SoundRay soundRay = new SoundRay((gameObject.transform.position - hit.point) * -1, reflectionIntensity, occlusion);
+                    soundDirectionsAndReflections[successfulRays] = soundRay;
                     successfulRays++;
+
+                    //Oskar
+                    soundInterpreter.AddSoundRay(soundRay);
                     break;
                 }
                 else
