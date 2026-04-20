@@ -22,7 +22,7 @@ public class PlayerInteraction : MonoBehaviour
             if (hit.transform.tag == "Door")
             {
                 Debug.Log("hit door");
-                hit.transform.parent.gameObject.GetComponent<Door>().Interact(transform.forward);
+                hit.transform.parent.gameObject.GetComponent<ExitDoor>().Interact(transform.forward);
             }
         }
 
