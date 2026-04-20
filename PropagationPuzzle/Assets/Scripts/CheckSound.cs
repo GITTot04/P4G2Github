@@ -1,70 +1,44 @@
 using UnityEngine;
 
-public class RaycastCheck : MonoBehaviour
+public class CheckSound : MonoBehaviour
 {
     public SoundRayStats rayStats;
 
     // debugging
     public bool showReflectionRays;
-    public bool showSoundDirectionRays;
-    public bool showAverageSoundDirection;
 
     int degreesOfRays = 360;
-    int successfulRays;
     Ray[] rayReflections;
-    SoundRay[] soundDirectionsAndReflections;
     LayerMask playerMask;
+    SoundRay[] bestRays;
+    int newRayPosition;
 
-    //Oskar
-    public SpacialSoundInterpreter soundInterpreter;
+    public float intensity;
+    public float occlusion;
 
     private void Start()
     {
         playerMask = LayerMask.GetMask("Player");
+        SoundManager.instance.onPlaySound += FindOcclusionAndIntensity;
     }
-    private void FixedUpdate()
+    public void FindOcclusionAndIntensity()
     {
-        //Oskar 
-        soundInterpreter.ResetEmitterValues();
-
+        ResetValues();
         SoundCheck();
-
-        soundInterpreter.SetEmitterValues();
-        
+        CalculateValues();
     }
     public void SoundCheck()
     {
         Ray ray = new Ray();
         rayReflections = new Ray[rayStats.MaxReflections];
-        soundDirectionsAndReflections = new SoundRay[degreesOfRays * rayStats.MaxOcclusions]; // 360 degrees times the maximum amount of occlusions won't exceed the array
-        successfulRays = 0;
         // Shoot rays once per degree for 360 degrees
-        for (float angle = 0; angle < 360; angle += 360/degreesOfRays)
+        for (float angle = 0; angle < 360; angle += 360 / degreesOfRays)
         {
             float angleRad = angle * Mathf.Deg2Rad;
             float xMove = Mathf.Cos(angleRad);
             float zMove = Mathf.Sin(angleRad);
             ray = new Ray(gameObject.transform.position, new Vector3(xMove, 0f, zMove).normalized); // Create the ray to be shot
             ShootReflectionRays(ray, 0, 0, 0);
-        }
-
-        float soundXValue = 0;
-        float soundZValue = 0;
-        for (int i = 0; i < successfulRays; i++) // Calculate total values
-        {
-            soundXValue += soundDirectionsAndReflections[i].direction.x * (1 - soundDirectionsAndReflections[i].reflections / rayStats.MaxReflections);
-            soundZValue += soundDirectionsAndReflections[i].direction.z * (1 - soundDirectionsAndReflections[i].reflections / rayStats.MaxReflections);
-        }
-        if (successfulRays > 0) // Get the averages
-        {
-            float averageXValue = soundXValue / successfulRays;
-            float averageZValue = soundZValue / successfulRays;
-            
-            //debugging
-            if (showAverageSoundDirection)
-            {
-                Debug.DrawRay(gameObject.transform.position, new Vector3(averageXValue, 0, averageZValue), new Color(0, 0, 0, 1));
-            }
         }
     }
 
@@ -80,7 +54,7 @@ public class RaycastCheck : MonoBehaviour
             // debugging
             if (showReflectionRays)
             {
-                Debug.DrawRay(ray.origin, ray.direction * hit.distance, new Color(1 - (float)occlusion/5, 1 - (float)occlusion/5, 1, 1f - (float)reflectionIntensity / rayStats.MaxReflections));
+                Debug.DrawRay(ray.origin, ray.direction * hit.distance, new Color(1 - (float)occlusion / 5, 1 - (float)occlusion / 5, 1, 1f - (float)reflectionIntensity / rayStats.MaxReflections));
             }
 
             if (hit.collider.gameObject.tag == "Door") // Call the method for shooting the occluded ray when a door is hit
@@ -98,40 +72,25 @@ public class RaycastCheck : MonoBehaviour
 
             if (hit.collider.gameObject.tag == "Speaker")
             {
-                Physics.Raycast(hit.point + (gameObject.transform.position - hit.point) * -0.0001f, gameObject.transform.position - hit.point, out hit, Mathf.Infinity);
+                Physics.Raycast(hit.point + (gameObject.transform.position - hit.point) * -0.0001f, gameObject.transform.position - hit.point, out hit, Mathf.Infinity, ~playerMask);
 
-                if (hit.collider.gameObject.tag == "Player") // Check if the player has direct LOS with the sound object
+                if (hit.collider.gameObject == gameObject) // Check if the player has direct LOS with the sound object
                 {
                     SoundRay soundRay = new SoundRay((gameObject.transform.position - hit.point) * -1, reflectionIntensity, occlusion);
-                    soundDirectionsAndReflections[successfulRays] = soundRay;
-                    successfulRays++;
-
-                    //Oskar
-                    soundInterpreter.AddSoundRay(soundRay);
+                    AddRay(soundRay);
                     break;
                 }
                 else
                 {
                     for (int j = i; j > 0; j--) // Retrace the steps of the rays reflection until the player has LOS with the reflection point
                     {
-                        Physics.Raycast(rayReflections[j].origin + (gameObject.transform.position - rayReflections[j].origin) * -0.0001f, gameObject.transform.position - rayReflections[j].origin, out hit, Mathf.Infinity);
+                        Physics.Raycast(rayReflections[j].origin + (gameObject.transform.position - rayReflections[j].origin) * -0.0001f, gameObject.transform.position - rayReflections[j].origin, out hit, Mathf.Infinity, ~playerMask);
 
 
-                        if (hit.collider.gameObject.tag == "Player")
+                        if (hit.collider.gameObject == gameObject)
                         {
                             SoundRay soundRay = new SoundRay((gameObject.transform.position - rayReflections[j].origin) * -1, reflectionIntensity, occlusion);
-                            soundDirectionsAndReflections[successfulRays] = soundRay;
-                            successfulRays++;
-
-                            //Oskar
-                            soundInterpreter.AddSoundRay(soundRay);
-
-                            // debugging
-                            if (showSoundDirectionRays)
-                            {
-                                Debug.DrawRay(rayReflections[j].origin, gameObject.transform.position - rayReflections[j].origin, new Color(1, 0.75f, 0.75f, 1));
-                            }
-
+                            AddRay(soundRay);
                             break;
                         }
                     }
@@ -153,5 +112,74 @@ public class RaycastCheck : MonoBehaviour
         {
             ShootReflectionRays(ray, reflection, reflectionValue, occlusion);
         }
+    }
+
+    int GetMostReflectRay()
+    {
+        int arrayPos;
+        SoundRay mostReflectRay = bestRays[0];
+        arrayPos = 0;
+
+        for (int i = 1; i < bestRays.Length; i++)
+        {
+            if (bestRays[i].reflections > mostReflectRay.reflections)
+            {
+                mostReflectRay = bestRays[i];
+                arrayPos = i;
+            }
+        }
+        return arrayPos;
+    }
+    public void AddRay(SoundRay soundRay)
+    {
+        if (newRayPosition < bestRays.Length)
+        {
+            bestRays[newRayPosition] = soundRay;
+            newRayPosition++;
+        }
+        else
+        {
+            int replaceRay = GetMostReflectRay();
+            if (soundRay.reflections < bestRays[replaceRay].reflections)
+            {
+                bestRays[replaceRay] = soundRay;
+            }
+        }
+    }
+    public void ResetValues()
+    {
+        bestRays = new SoundRay[rayStats.BestRayCount];
+        intensity = 0f;
+        occlusion = 0f;
+        newRayPosition = 0;
+
+    }
+    public void CalculateValues()
+    {
+        for (int i = 0; i < newRayPosition; i++)
+        {
+
+            //Calculate Ray Specific values
+            float rayIntensity = 1f - Mathf.Clamp(((float)bestRays[i].reflections * 1f / (float)rayStats.MaxReflections), 0f, 1f);
+            //Debug.Log(bestRays[i].reflections);
+            float rayOcclusion = ((float)bestRays[i].occlusions / (float)rayStats.MaxOcclusions);
+            //Adding to emitter
+            intensity += rayIntensity;
+            occlusion += rayOcclusion;
+        }
+
+        float averageOcclusion = 0;
+        if (newRayPosition > 0)
+        {
+            averageOcclusion = occlusion / (float)(newRayPosition);
+        }
+
+        float finalIntensity = 0f;
+        if (newRayPosition > 0)
+        {
+            finalIntensity = intensity / (float)(rayStats.BestRayCount);
+        }
+
+        // Add code to open door and play win sound if the sound reaches the sensor correctly
     }
 }
