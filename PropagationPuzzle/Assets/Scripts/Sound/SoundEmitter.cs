@@ -119,14 +119,8 @@ public class SoundEmitter : MonoBehaviour
         {
            Debug.Log("Occlusion: " +  occlusion + ", average occlusion:" + averageOcclusion + ", raycount:" + rayCount);
         }*/
-        //eventEmitter.EventInstance.setParameterByName("Occlusion", 5);
-        //eventEmitter.EventInstance.setParameterByName("Occlusion", 10);
-
-        //Intensity
-        /*if (intensity > rayStats.MaxIntensity)
-        {
-            intensity = rayStats.MaxIntensity;
-        }*/
+        
+    
         float finalIntensity = 0f;
         if (newRayPosition > 0)
         {
