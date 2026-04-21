@@ -59,12 +59,12 @@ public class ExitDoor : MonoBehaviour
                 inProgress = false;
                 if (open)
                 {
-                    Indicator.gameObject.GetComponent<Renderer>().material.color = new Color32(0, 255, 0, 255);
+                    Indicator.gameObject.GetComponent<SpriteRenderer>().color = new Color32(0, 255, 0, 255);
                     DoorLight.gameObject.GetComponent<Renderer>().material.SetColor("_Color", new Color32(0, 255, 0, 255));
                 } 
                 else
                 {
-                    Indicator.gameObject.GetComponent<Renderer>().material.color = new Color32(255, 0, 0, 255);
+                    Indicator.gameObject.GetComponent<SpriteRenderer>().color = new Color32(255, 0, 0, 255);
                     DoorLight.gameObject.GetComponent<Renderer>().material.SetColor("_Color", new Color32(255, 0, 0, 255));
                 }
             }
