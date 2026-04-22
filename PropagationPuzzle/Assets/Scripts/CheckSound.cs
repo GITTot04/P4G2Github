@@ -160,7 +160,6 @@ public abstract class CheckSound : MonoBehaviour
             //Calculate Ray Specific values
             float rayIntensity = 1f - Mathf.Clamp(((float)bestRays[i].reflections * 1f / (float)rayStats.MaxReflections), 0f, 1f);
             float rayOcclusion = ((float)bestRays[i].occlusions / (float)rayStats.MaxOcclusions);
-            //Adding to emitter
             intensity += rayIntensity;
             occlusion += rayOcclusion;
         }

@@ -25,11 +25,10 @@ public class ExitDoor : MonoBehaviour
     void Start()
     {
         startRotation = Hinge.transform.rotation.eulerAngles.y;
-        PlayerInput.instance.onAction += UnlockDoor;
     }
 
 
-    void UnlockDoor()
+    public void UnlockDoor()
     {
         if (openDirection < 0)
         {
