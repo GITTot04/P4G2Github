@@ -15,6 +15,9 @@ public class RaycastCheck : MonoBehaviour
     SoundRay[] soundDirectionsAndReflections;
     LayerMask playerMask;
 
+    public delegate void SoundRayAction();
+    public SoundRayAction DeleteRays;
+
     //Oskar
     public SpacialSoundInterpreter soundInterpreter;
 
@@ -26,6 +29,11 @@ public class RaycastCheck : MonoBehaviour
     {
         //Oskar 
         soundInterpreter.ResetEmitterValues();
+        if (DeleteRays != null)
+        {
+            DeleteRays.Invoke();
+            DeleteRays = null;
+        }
 
         SoundCheck();
 
@@ -102,7 +110,7 @@ public class RaycastCheck : MonoBehaviour
 
                 if (hit.collider.gameObject.tag == "Player") // Check if the player has direct LOS with the sound object
                 {
-                    SoundRay soundRay = new SoundRay((gameObject.transform.position - hit.point) * -1, reflectionIntensity, occlusion);
+                    SoundRay soundRay = SoundRayPool.instance.GetSoundRay((gameObject.transform.position - hit.point) * -1, reflectionIntensity, occlusion, this);
                     soundDirectionsAndReflections[successfulRays] = soundRay;
                     successfulRays++;
 
@@ -119,7 +127,7 @@ public class RaycastCheck : MonoBehaviour
 
                         if (hit.collider.gameObject.tag == "Player")
                         {
-                            SoundRay soundRay = new SoundRay((gameObject.transform.position - rayReflections[j].origin) * -1, reflectionIntensity, occlusion);
+                            SoundRay soundRay = SoundRayPool.instance.GetSoundRay((gameObject.transform.position - rayReflections[j].origin) * -1, reflectionIntensity, occlusion, this);
                             soundDirectionsAndReflections[successfulRays] = soundRay;
                             successfulRays++;
 
