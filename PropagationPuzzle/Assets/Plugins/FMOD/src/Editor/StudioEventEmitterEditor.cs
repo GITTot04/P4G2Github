@@ -93,8 +93,8 @@ namespace FMODUnity
             {
                 EditorGUILayout.PropertyField(occlusionParameterName, new GUIContent("Occlusion Parameter Name"));
                 EditorGUILayout.PropertyField(occlusionIntensity, new GUIContent("Occlusion Intensity"));
-                EditorGUILayout.PropertyField(occlusionMin, new GUIContent("minOcclusionValueIntensity"));
-                EditorGUILayout.PropertyField(occlusionMax, new GUIContent("maxOcclusionValueIntensity"));
+                EditorGUILayout.PropertyField(occlusionMin, new GUIContent("Min Occlusion Value Range"));
+                EditorGUILayout.PropertyField(occlusionMax, new GUIContent("Max Occlusion Value Range"));
             }
 #endif
 
