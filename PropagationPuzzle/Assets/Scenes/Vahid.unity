@@ -763,6 +763,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioEventEmitter
   CollisionTag: 
+  occlusionThingTest: 0
   occlusionEnabled: 1
   occlusionParameterName: Occlusion
   minOcclusionValueRange: 0
@@ -772,11 +773,11 @@ MonoBehaviour:
   nextOcclusionUpdate: 0
   EventReference:
     Guid:
-      Data1: -1426710761
-      Data2: 1246971964
-      Data3: -2020352127
-      Data4: 1144976086
-    Path: event:/SoundCode1
+      Data1: 1984781898
+      Data2: 1239486868
+      Data3: 1691446165
+      Data4: 1881812457
+    Path: event:/Music
   Event: 
   EventPlayTrigger: 1
   EventStopTrigger: 12
@@ -786,7 +787,7 @@ MonoBehaviour:
   NonRigidbodyVelocity: 0
   Params: []
   OverrideAttenuation: 0
-  OverrideMinDistance: 1
+  OverrideMinDistance: 0
   OverrideMaxDistance: 40
 --- !u!114 &413931807
 MonoBehaviour:
@@ -2622,12 +2623,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84e1c69ed5426ca4f980d975223e0201, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RaycastCheck
-  rayStats: {fileID: 0}
   showReflectionRays: 0
   showSoundDirectionRays: 1
   showAverageSoundDirection: 1
   occlusionForFmod: 0
-  soundInterpreter: {fileID: 0}
 --- !u!1 &1946715882
 GameObject:
   m_ObjectHideFlags: 0
