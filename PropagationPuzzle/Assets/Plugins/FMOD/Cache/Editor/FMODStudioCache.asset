@@ -90,7 +90,7 @@ MonoBehaviour:
   - {fileID: 3880908286966964761}
   IsStream: 0
   Is3D: 1
-  IsOneShot: 0
+  IsOneShot: 1
   Parameters:
   - {fileID: 5232564085196085614}
   MinDistance: 1
@@ -118,7 +118,7 @@ MonoBehaviour:
   - {fileID: 3880908286966964761}
   IsStream: 0
   Is3D: 1
-  IsOneShot: 0
+  IsOneShot: 1
   Parameters:
   - {fileID: 6655593788578622373}
   MinDistance: 1
@@ -193,7 +193,7 @@ MonoBehaviour:
   - {fileID: 3880908286966964761}
   IsStream: 0
   Is3D: 1
-  IsOneShot: 0
+  IsOneShot: 1
   Parameters:
   - {fileID: -4879186527541986125}
   MinDistance: 1
@@ -272,7 +272,7 @@ MonoBehaviour:
   - {fileID: 3880908286966964761}
   IsStream: 0
   Is3D: 1
-  IsOneShot: 0
+  IsOneShot: 1
   Parameters:
   - {fileID: -8664755241792091908}
   MinDistance: 1
@@ -320,7 +320,7 @@ MonoBehaviour:
   - {fileID: 3880908286966964761}
   IsStream: 0
   Is3D: 1
-  IsOneShot: 0
+  IsOneShot: 1
   Parameters:
   - {fileID: -17753815623409084}
   MinDistance: 1
@@ -428,7 +428,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: 2797704637506245926}
   cacheVersion: 131858
-  cacheTime: 639124548639296522
+  cacheTime: 639124580880883515
   SerializableEventsDict:
   - key: event:/Music
     index: 0
@@ -504,7 +504,7 @@ MonoBehaviour:
   - {fileID: 3880908286966964761}
   IsStream: 0
   Is3D: 1
-  IsOneShot: 0
+  IsOneShot: 1
   Parameters:
   - {fileID: 3974966643967744170}
   MinDistance: 1
@@ -545,10 +545,10 @@ MonoBehaviour:
   Path: ../FMOD test1/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639124548639255126
+  lastModified: 639124580880637388
   FileSizes:
   - Name: Desktop
-    Value: 2432576
+    Value: 2432448
   Exists: 1
 --- !u!114 &2243812063178151001
 MonoBehaviour:
@@ -605,7 +605,7 @@ MonoBehaviour:
   Path: ../FMOD test1/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639124548639275396
+  lastModified: 639124580880637388
   FileSizes:
   - Name: Desktop
     Value: 1390
@@ -676,7 +676,7 @@ MonoBehaviour:
   - {fileID: 1684218612973378681}
   IsStream: 1
   Is3D: 1
-  IsOneShot: 0
+  IsOneShot: 1
   Parameters:
   - {fileID: 3315971631908134076}
   MinDistance: 0
@@ -697,10 +697,10 @@ MonoBehaviour:
   Path: ../FMOD test1/Build/Desktop/PuzzleSoundCodes.bank
   Name: PuzzleSoundCodes
   StudioPath: bank:/PuzzleSoundCodes
-  lastModified: 639124548639296522
+  lastModified: 639124580880883515
   FileSizes:
   - Name: Desktop
-    Value: 111840
+    Value: 111072
   Exists: 1
 --- !u!114 &3974966643967744170
 MonoBehaviour:
