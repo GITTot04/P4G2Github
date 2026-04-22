@@ -55,9 +55,9 @@ public abstract class SoundRayPool<T> : SoundRayPool where T : SoundRayPool<T>
 
     public void ReturnAllSoundRays ()
     {
-        foreach (SoundRay soundRay in ActiveSoundRays)
+        for (int i = ActiveSoundRays.Count; i > 0; i --)
         {
-            ReturnSoundRay(soundRay);
+            ReturnSoundRay(ActiveSoundRays[i - 1]);
         }
     }
 }
