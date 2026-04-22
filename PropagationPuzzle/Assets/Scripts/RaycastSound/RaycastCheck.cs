@@ -10,7 +10,6 @@ public class RaycastCheck : MonoBehaviour
     public bool showAverageSoundDirection;
 
     int degreesOfRays = 360;
-    public float occlusionForFmod;
     int successfulRays;
     Ray[] rayReflections;
     SoundRay[] soundDirectionsAndReflections;
