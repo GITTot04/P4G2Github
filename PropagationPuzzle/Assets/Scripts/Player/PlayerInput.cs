@@ -13,6 +13,7 @@ public class PlayerInput : MonoBehaviour
     public delegate void PlayerAction();
     public PlayerAction onAction;
     public PlayerAction onInteraction;
+    public delegate void PlayerActionPlace(string keyName);
 
     void Awake ()
     {
@@ -55,6 +56,14 @@ public class PlayerInput : MonoBehaviour
             {
                 onInteraction.Invoke();
             }
+        }
+    }
+
+    public void OnNumberKey(InputAction.CallbackContext ctx)
+    {
+        if (ctx.started)
+        {
+            Debug.Log(ctx.control.name);
         }
     }
 }
