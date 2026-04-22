@@ -10,14 +10,10 @@ public class RaycastCheck : MonoBehaviour
     public bool showAverageSoundDirection;
 
     int degreesOfRays = 360;
-    public float occlusionForFmod;
     int successfulRays;
     Ray[] rayReflections;
     SoundRay[] soundDirectionsAndReflections;
     LayerMask playerMask;
-
-    public delegate void SoundRayAction();
-    public SoundRayAction DeleteRays;
 
     //Oskar
     public SpacialSoundInterpreter soundInterpreter;
@@ -30,11 +26,8 @@ public class RaycastCheck : MonoBehaviour
     {
         //Oskar 
         soundInterpreter.ResetEmitterValues();
-        if (DeleteRays != null)
-        {
-            DeleteRays.Invoke();
-            DeleteRays = null;
-        }
+
+        RaycastCheckPool.instance.ReturnAllSoundRays();
 
         SoundCheck();
 
@@ -111,7 +104,7 @@ public class RaycastCheck : MonoBehaviour
 
                 if (hit.collider.gameObject.tag == "Player") // Check if the player has direct LOS with the sound object
                 {
-                    SoundRay soundRay = SoundRayPool.instance.GetSoundRay((gameObject.transform.position - hit.point) * -1, reflectionIntensity, occlusion, this);
+                    SoundRay soundRay = RaycastCheckPool.instance.GetSoundRay((gameObject.transform.position - hit.point) * -1, reflectionIntensity, occlusion);
                     soundDirectionsAndReflections[successfulRays] = soundRay;
                     successfulRays++;
 
@@ -128,7 +121,7 @@ public class RaycastCheck : MonoBehaviour
 
                         if (hit.collider.gameObject.tag == "Player")
                         {
-                            SoundRay soundRay = SoundRayPool.instance.GetSoundRay((gameObject.transform.position - rayReflections[j].origin) * -1, reflectionIntensity, occlusion, this);
+                            SoundRay soundRay = RaycastCheckPool.instance.GetSoundRay((gameObject.transform.position - rayReflections[j].origin) * -1, reflectionIntensity, occlusion);
                             soundDirectionsAndReflections[successfulRays] = soundRay;
                             successfulRays++;
 
