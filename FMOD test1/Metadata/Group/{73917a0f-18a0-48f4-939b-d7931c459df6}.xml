@@ -14,48 +14,14 @@
 			<destination>{9e4fda23-b535-47d5-bb49-f15cdd357eb5}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{79358a80-c4f7-4b4f-ac02-c76cd4e9caf0}</destination>
+			<destination>{2ae03aad-f861-4ab1-a6dc-ee48bd780f7f}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusEffectChain" id="{20fa0cfd-e0cc-4531-a43b-8cc647657e85}">
 		<relationship name="effects">
-			<destination>{61e6f78e-0b60-4bc5-928d-2e8d3a2e1a9f}</destination>
 			<destination>{dc4f8fa6-e430-4636-b259-c4988cc599fd}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{9e4fda23-b535-47d5-bb49-f15cdd357eb5}" />
-	<object class="PluginEffect" id="{61e6f78e-0b60-4bc5-928d-2e8d3a2e1a9f}">
-		<relationship name="plugin">
-			<destination>{7af3b434-b689-4c86-bac6-4f0edfa124f4}</destination>
-		</relationship>
-	</object>
 	<object class="MixerBusFader" id="{dc4f8fa6-e430-4636-b259-c4988cc599fd}" />
-	<object class="Plugin" id="{7af3b434-b689-4c86-bac6-4f0edfa124f4}">
-		<property name="identifier">
-			<value>Resonance Audio Listener</value>
-		</property>
-		<relationship name="pluginParameters">
-			<destination>{0c723c15-7a70-4c08-a42c-5d32bc626861}</destination>
-			<destination>{c795e462-df2c-462a-8762-4bd1391df9a3}</destination>
-		</relationship>
-	</object>
-	<object class="FloatPluginParameter" id="{0c723c15-7a70-4c08-a42c-5d32bc626861}">
-		<property name="name">
-			<value>Gain</value>
-		</property>
-		<property name="value">
-			<value>-9.99999975e-06</value>
-		</property>
-		<property name="curve">
-			<value>{(0.000000,-80.000000)(1.000000,0.000000)}</value>
-		</property>
-	</object>
-	<object class="DataPluginParameter" id="{c795e462-df2c-462a-8762-4bd1391df9a3}">
-		<property name="name">
-			<value>Room Properties</value>
-		</property>
-		<property name="dataType">
-			<value>0</value>
-		</property>
-	</object>
 </objects>
