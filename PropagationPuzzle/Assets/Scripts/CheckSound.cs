@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CheckSound : MonoBehaviour
+public abstract class CheckSound : MonoBehaviour
 {
     public SoundRayStats rayStats;
 
@@ -21,12 +21,8 @@ public class CheckSound : MonoBehaviour
         playerMask = LayerMask.GetMask("Player");
         SoundManager.instance.onPlaySound += FindOcclusionAndIntensity;
     }
-    public void FindOcclusionAndIntensity()
-    {
-        ResetValues();
-        SoundCheck();
-        CalculateValues();
-    }
+    public abstract void FindOcclusionAndIntensity(); // Implement ResetValues(), SoundCheck(), and CalculateValues()
+
     public void SoundCheck()
     {
         Ray ray = new Ray();
@@ -49,7 +45,7 @@ public class CheckSound : MonoBehaviour
         for (int i = priorReflections; i < rayStats.MaxReflections && reflectionIntensity < rayStats.MaxReflections; i++)
         {
             rayReflections[i] = ray;
-            Physics.Raycast(ray, out hit, Mathf.Infinity, ~playerMask); // Shoots the initial ray ignoring the player
+            Physics.Raycast(ray, out hit, Mathf.Infinity, ~playerMask); // Shoots the initial ray
 
             // debugging
             if (showReflectionRays)
@@ -74,7 +70,7 @@ public class CheckSound : MonoBehaviour
             {
                 Physics.Raycast(hit.point + (gameObject.transform.position - hit.point) * -0.0001f, gameObject.transform.position - hit.point, out hit, Mathf.Infinity, ~playerMask);
 
-                if (hit.collider.gameObject == gameObject) // Check if the player has direct LOS with the sound object
+                if (hit.collider.gameObject == gameObject)
                 {
                     SoundRay soundRay = new SoundRay((gameObject.transform.position - hit.point) * -1, reflectionIntensity, occlusion);
                     AddRay(soundRay);
@@ -82,7 +78,7 @@ public class CheckSound : MonoBehaviour
                 }
                 else
                 {
-                    for (int j = i; j > 0; j--) // Retrace the steps of the rays reflection until the player has LOS with the reflection point
+                    for (int j = i; j > 0; j--)
                     {
                         Physics.Raycast(rayReflections[j].origin + (gameObject.transform.position - rayReflections[j].origin) * -0.0001f, gameObject.transform.position - rayReflections[j].origin, out hit, Mathf.Infinity, ~playerMask);
 
@@ -154,14 +150,13 @@ public class CheckSound : MonoBehaviour
         newRayPosition = 0;
 
     }
-    public void CalculateValues()
+    public (float,float) CalculateValues()
     {
         for (int i = 0; i < newRayPosition; i++)
         {
 
             //Calculate Ray Specific values
             float rayIntensity = 1f - Mathf.Clamp(((float)bestRays[i].reflections * 1f / (float)rayStats.MaxReflections), 0f, 1f);
-            //Debug.Log(bestRays[i].reflections);
             float rayOcclusion = ((float)bestRays[i].occlusions / (float)rayStats.MaxOcclusions);
             //Adding to emitter
             intensity += rayIntensity;
@@ -180,6 +175,6 @@ public class CheckSound : MonoBehaviour
             finalIntensity = intensity / (float)(rayStats.BestRayCount);
         }
 
-        // Add code to open door and play win sound if the sound reaches the sensor correctly
+        return (averageOcclusion, finalIntensity);
     }
 }

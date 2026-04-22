@@ -1,16 +1,12 @@
 using UnityEngine;
 
-public class Amplifier : MonoBehaviour
+public class Amplifier : CheckSound
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public int order;
+    public override void FindOcclusionAndIntensity()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        ResetValues();
+        SoundCheck();
+        CalculateValues(); // (occlusion,intensity) is returned from this method.
     }
 }
