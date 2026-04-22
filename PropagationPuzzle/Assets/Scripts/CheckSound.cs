@@ -72,7 +72,7 @@ public abstract class CheckSound : MonoBehaviour
 
                 if (hit.collider.gameObject == gameObject)
                 {
-                    SoundRay soundRay = new SoundRay((gameObject.transform.position - hit.point) * -1, reflectionIntensity, occlusion);
+                    SoundRay soundRay = CheckSoundPool.instance.GetSoundRay((gameObject.transform.position - hit.point) * -1, reflectionIntensity, occlusion);
                     AddRay(soundRay);
                     break;
                 }
@@ -85,7 +85,7 @@ public abstract class CheckSound : MonoBehaviour
 
                         if (hit.collider.gameObject == gameObject)
                         {
-                            SoundRay soundRay = new SoundRay((gameObject.transform.position - rayReflections[j].origin) * -1, reflectionIntensity, occlusion);
+                            SoundRay soundRay = CheckSoundPool.instance.GetSoundRay((gameObject.transform.position - rayReflections[j].origin) * -1, reflectionIntensity, occlusion);
                             AddRay(soundRay);
                             break;
                         }
@@ -144,6 +144,8 @@ public abstract class CheckSound : MonoBehaviour
     }
     public void ResetValues()
     {
+        CheckSoundPool.instance.ReturnAllSoundRays();
+
         bestRays = new SoundRay[rayStats.BestRayCount];
         intensity = 0f;
         occlusion = 0f;
