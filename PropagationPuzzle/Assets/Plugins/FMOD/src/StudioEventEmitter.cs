@@ -65,7 +65,9 @@ namespace FMODUnity
 
         public bool occlusionEnabled = false;
         public string occlusionParameterName = null;
-        [Range(0.0f, 10.0f)]
+        //[Range(0.0f, 10.0f)]
+        public float minOcclussionValueRange = 0.0f;
+        public float maxOcclussionValueRange = 10.0f;
         public float occlusionIntensity = 1.0f;
         public float currentOcclusion = 0.0f;
         public float nextOcclusionUpdate = 0.0f;
@@ -481,6 +483,7 @@ namespace FMODUnity
                 }
                 else if (Time.time >= nextOcclusionUpdate)
                 {
+                    occlusionIntensity = Mathf.Clamp(occlusionIntensity, minOcclussionValueRange, maxOcclussionValueRange);
                     nextOcclusionUpdate = Time.time + occlusionDetectionInterval;
                     currentOcclusion = occlusionIntensity;
                     instance.setParameterByName(occlusionParameterName, currentOcclusion);
