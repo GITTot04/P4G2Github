@@ -26,6 +26,7 @@ public class SoundManager : MonoBehaviour
         if (onPlaySound != null)
         {
             CalculateAmplifiers();
+
             doorSensor.FindOcclusionAndIntensity();
             onPlaySound.Invoke();
         }

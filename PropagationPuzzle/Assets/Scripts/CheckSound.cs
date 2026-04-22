@@ -16,10 +16,11 @@ public abstract class CheckSound : MonoBehaviour
     public float intensity;
     public float occlusion;
 
+    public float THEFINALINTENSITY;
+
     private void Start()
     {
         playerMask = LayerMask.GetMask("Player");
-        SoundManager.instance.onPlaySound += FindOcclusionAndIntensity;
     }
     public abstract void FindOcclusionAndIntensity(); // Implement ResetValues(), SoundCheck(), and CalculateValues()
 
@@ -174,8 +175,9 @@ public abstract class CheckSound : MonoBehaviour
         if (newRayPosition > 0)
         {
             finalIntensity = intensity / (float)(rayStats.BestRayCount);
+            Debug.Log(gameObject + " " + finalIntensity);
         }
-
+        THEFINALINTENSITY = finalIntensity;
         return (averageOcclusion, finalIntensity);
     }
 }
