@@ -34,6 +34,7 @@ public class Door : MonoBehaviour
 
     void Open(Vector3 viewDirection)
     {
+
         if (Vector3.Dot(viewDirection, transform.forward) < 0)
         {
             targetAngle = startRotation + 90;
@@ -70,11 +71,16 @@ public class Door : MonoBehaviour
                 inProgress = false;
                 if (open)
                 {
+
+                    DoorManager.instance.openDoorCount++;
+
                     Indicator.gameObject.GetComponent<Renderer>().material.color = new Color32(0, 255, 0, 255);
                     DoorLight.gameObject.GetComponent<Renderer>().material.SetColor("_Color", new Color32(0, 255, 0, 255));
                 } 
                 else
                 {
+                    DoorManager.instance.openDoorCount--;
+
                     Indicator.gameObject.GetComponent<Renderer>().material.color = new Color32(255, 0, 0, 255);
                     DoorLight.gameObject.GetComponent<Renderer>().material.SetColor("_Color", new Color32(255, 0, 0, 255));
                 }

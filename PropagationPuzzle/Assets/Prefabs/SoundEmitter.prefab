@@ -141,7 +141,7 @@ MonoBehaviour:
   intensityMulitplier: 0
   intensity: 0
   occlusion: 0
-  rayCount: 0
+  debugReflections: 0
 --- !u!114 &2579786815266416210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,16 +157,18 @@ MonoBehaviour:
   CollisionTag: 
   occlusionEnabled: 1
   occlusionParameterName: Occlusion
+  minOcclusionValueRange: 0
+  maxOcclusionValueRange: 10
   occlusionIntensity: 1
   currentOcclusion: 0
   nextOcclusionUpdate: 0
   EventReference:
     Guid:
-      Data1: 1984781898
-      Data2: 1239486868
-      Data3: 1691446165
-      Data4: 1881812457
-    Path: event:/Music
+      Data1: -1426710761
+      Data2: 1246971964
+      Data3: -2020352127
+      Data4: 1144976086
+    Path: event:/SoundCode1
   Event: 
   EventPlayTrigger: 0
   EventStopTrigger: 0
@@ -176,5 +178,5 @@ MonoBehaviour:
   NonRigidbodyVelocity: 0
   Params: []
   OverrideAttenuation: 0
-  OverrideMinDistance: 0
+  OverrideMinDistance: 1
   OverrideMaxDistance: 40
