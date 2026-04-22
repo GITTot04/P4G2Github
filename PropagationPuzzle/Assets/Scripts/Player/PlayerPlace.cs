@@ -2,15 +2,34 @@ using UnityEngine;
 
 public class PlayerPlace : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public GameObject amplifierPrefab;
+    public bool amp1Placed;
+    public bool amp2Placed;
+    public bool amp3Placed;
     void Start()
     {
-        
+        PlayerInput.instance.onPlace += ChooseAmplifier;
     }
-
-    // Update is called once per frame
-    void Update()
+    public void ChooseAmplifier(string button)
     {
-        
+        switch (button)
+        {
+            case "1":
+                break;
+            case "2":
+                break;
+            case "3":
+                break;
+            default:
+                break;
+        }
+    }
+    public void RemoveAmplifier()
+    {
+
+    }
+    public void PlaceAmplifier()
+    {
+
     }
 }
