@@ -14,6 +14,7 @@ public class PlayerInput : MonoBehaviour
     public PlayerAction onAction;
     public PlayerAction onInteraction;
     public delegate void PlayerActionPlace(string keyName);
+    public PlayerActionPlace onPlace;
 
     void Awake ()
     {
@@ -63,7 +64,10 @@ public class PlayerInput : MonoBehaviour
     {
         if (ctx.started)
         {
-            Debug.Log(ctx.control.name);
+            if (onPlace != null)
+            {
+                onPlace.Invoke(ctx.control.name);
+            }
         }
     }
 }
