@@ -1067,7 +1067,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a39c86b90712cf74288a957afe909525, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerPlace
-  amplifierPrefab: {fileID: 5744074548352939629, guid: 8a7665b08f6622b4a8bccf30d491f6bd, type: 3}
+  amplifierPrefab: {fileID: 901787814880495580, guid: 4d60b850e73565f4f905e5624a583066, type: 3}
   amp1Placed: 0
   amp2Placed: 0
   amp3Placed: 0
@@ -2822,11 +2822,14 @@ MonoBehaviour:
   showReflectionRays: 0
   intensity: 0
   occlusion: 0
+  THEFINALINTENSITY: 0
   maximumOcclusion: 1
   minimumIntensity: 0
   exitDoors:
   - {fileID: 0}
   - {fileID: 0}
+  sensorLights: []
+  doorCountExceeded: 0
 --- !u!1001 &926447810
 PrefabInstance:
   m_ObjectHideFlags: 0
