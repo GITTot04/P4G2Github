@@ -29,7 +29,7 @@ public class RaycastCheck : MonoBehaviour
 
         RaycastCheckPool.instance.ReturnAllSoundRays();
 
-        SoundCheck();
+        //SoundCheck();
 
         soundInterpreter.SetEmitterValues();
         

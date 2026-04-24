@@ -19,7 +19,6 @@ public abstract class CheckSound : MonoBehaviour
     private void Start()
     {
         playerMask = LayerMask.GetMask("Player");
-        SoundManager.instance.onPlaySound += FindOcclusionAndIntensity;
     }
     public abstract void FindOcclusionAndIntensity(); // Implement ResetValues(), SoundCheck(), and CalculateValues()
 

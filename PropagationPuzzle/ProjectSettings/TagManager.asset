@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Speaker
   - Door
+  - Amplifier
+  - Wall
   layers:
   - Default
   - TransparentFX
