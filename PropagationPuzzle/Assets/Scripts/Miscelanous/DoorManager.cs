@@ -7,6 +7,7 @@ public class DoorManager : MonoBehaviour
     public int MaxDoors;
     public GameObject minimapText;
     TextMeshProUGUI doorText;
+    public SoundManager soundManager;
     
     void Awake()
     {
@@ -26,9 +27,11 @@ public class DoorManager : MonoBehaviour
         if (openDoorCount > MaxDoors)
         {
             doorText.faceColor = new Color32(255, 0, 0, 255);
+            soundManager.doorSensor.doorCountExceeded = true;
         } else
         {
             doorText.faceColor = new Color32(0, 0, 0, 255);
+            soundManager.doorSensor.doorCountExceeded = false;
         }
     }
 
