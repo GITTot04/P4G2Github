@@ -28,6 +28,7 @@ public class SoundManager : MonoBehaviour
         {
             canDeleteAmp = false;
             CalculateAmplifiers();
+
             doorSensor.FindOcclusionAndIntensity();
             onPlaySound.Invoke();
             canDeleteAmp = true;
