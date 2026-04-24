@@ -49,7 +49,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DoorManager
   openDoorCount: 0
+  MaxDoors: 0
   minimapText: {fileID: 4176582944282352102}
+  soundManager: {fileID: 6522382309688846605}
 --- !u!114 &6522382309688846605
 MonoBehaviour:
   m_ObjectHideFlags: 0

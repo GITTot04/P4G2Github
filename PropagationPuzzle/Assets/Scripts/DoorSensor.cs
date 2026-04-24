@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using FMOD.Studio;
 
 public class DoorSensor : CheckSound
 {
@@ -7,6 +8,8 @@ public class DoorSensor : CheckSound
     public float minimumIntensity = 0;
     public ExitDoor[] exitDoors = new ExitDoor[2];
     public List<GameObject> sensorLights = new List<GameObject>();
+
+    public bool doorCountExceeded = false;
     public override void FindOcclusionAndIntensity()
     {
         Debug.Log("Called");
@@ -14,7 +17,7 @@ public class DoorSensor : CheckSound
         ResetValues();
         SoundCheck();
         (float, float) calculate = CalculateValues();
-        if (calculate.Item1 < maximumOcclusion && calculate.Item2 > minimumIntensity) // (occlusion,intensity) is returned from this method.
+        if (calculate.Item1 < maximumOcclusion && calculate.Item2 > minimumIntensity && !doorCountExceeded) // (occlusion,intensity) is returned from this method.
         {
             foreach (ExitDoor exitDoor in exitDoors)
             {
@@ -24,6 +27,7 @@ public class DoorSensor : CheckSound
             {
                 sensorLight.GetComponent<Renderer>().material.SetColor("_Color", new Color32(0, 255, 0, 255));
             }
+           
         }
     }
 }
