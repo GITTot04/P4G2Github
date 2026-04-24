@@ -9,6 +9,7 @@ public class SoundManager : MonoBehaviour
     public PlaySound onPlaySound;
     public List<Amplifier> activeAmplifiers = new List<Amplifier>();
     public DoorSensor doorSensor;
+    public bool canDeleteAmp = true;
     void Awake()
     {
         if (instance == null)
@@ -25,30 +26,35 @@ public class SoundManager : MonoBehaviour
     {
         if (onPlaySound != null)
         {
+            canDeleteAmp = false;
             CalculateAmplifiers();
 
             doorSensor.FindOcclusionAndIntensity();
             onPlaySound.Invoke();
+            canDeleteAmp = true;
         }
     }
 
     public void CalculateAmplifiers()
     {
-        int maxOrder = 0;
-        foreach (Amplifier amp in activeAmplifiers) // Find the highest order
+        if (activeAmplifiers.Count > 0)
         {
-            if (amp.order > maxOrder)
+            int maxOrder = 0;
+            foreach (Amplifier amp in activeAmplifiers) // Find the highest order
             {
-                maxOrder = amp.order;
-            }
-        }
-        for (int i = 0; i <= maxOrder; i++) // Calculate values in the correct order
-        {
-            foreach (Amplifier amp in activeAmplifiers)
-            {
-                if (amp.order == i)
+                if (amp.order > maxOrder)
                 {
-                    amp.FindOcclusionAndIntensity();
+                    maxOrder = amp.order;
+                }
+            }
+            for (int i = 0; i <= maxOrder; i++) // Calculate values in the correct order
+            {
+                foreach (Amplifier amp in activeAmplifiers)
+                {
+                    if (amp.order == i)
+                    {
+                        amp.FindOcclusionAndIntensity();
+                    }
                 }
             }
         }
@@ -56,7 +62,7 @@ public class SoundManager : MonoBehaviour
 
     public void FindDoorSensor(Scene scene, LoadSceneMode mode)
     {
-        if (GameObject.Find("DoorSensor").GetComponent<DoorSensor>() != null)
+        if (GameObject.Find("DoorSensor") != null)
         {
             doorSensor = GameObject.Find("DoorSensor").GetComponent<DoorSensor>();
         }
