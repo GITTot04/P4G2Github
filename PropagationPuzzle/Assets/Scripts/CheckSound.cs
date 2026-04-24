@@ -15,6 +15,8 @@ public abstract class CheckSound : MonoBehaviour
 
     public float intensity;
     public float occlusion;
+    bool addAmplifierOcclusion;
+    float amplifierOcclusion;
 
     public float THEFINALINTENSITY;
 
@@ -39,7 +41,7 @@ public abstract class CheckSound : MonoBehaviour
         }
     }
 
-    public void ShootReflectionRays(Ray ray, int priorReflections, int reflectionValue, int occlusion)
+    public void ShootReflectionRays(Ray ray, int priorReflections, int reflectionValue, float occlusion)
     {
         int reflectionIntensity = reflectionValue;
         RaycastHit hit;
@@ -51,7 +53,7 @@ public abstract class CheckSound : MonoBehaviour
             // debugging
             if (showReflectionRays)
             {
-                Debug.DrawRay(ray.origin, ray.direction * hit.distance, new Color(1 - (float)occlusion / 5, 1 - (float)occlusion / 5, 1, 1f - (float)reflectionIntensity / rayStats.MaxReflections));
+                Debug.DrawRay(ray.origin, ray.direction * hit.distance, new Color(1f - occlusion / 5f, 1f - occlusion / 5f, 1f, 1f - (float)reflectionIntensity / rayStats.MaxReflections));
             }
 
             if (hit.collider.gameObject.tag == "Door") // Call the method for shooting the occluded ray when a door is hit
@@ -67,14 +69,28 @@ public abstract class CheckSound : MonoBehaviour
                 }
             }
 
-            if (hit.collider.gameObject.tag == "Speaker")
+            if (hit.collider.gameObject.tag == "Speaker" || hit.collider.gameObject.tag == "Amplifier")
             {
+                if (hit.collider.gameObject.tag == "Amplifier")
+                {
+                    addAmplifierOcclusion = true;
+                    amplifierOcclusion = hit.collider.gameObject.GetComponent<Amplifier>().amplifierOcclusion;
+                }
                 Physics.Raycast(hit.point + (gameObject.transform.position - hit.point) * -0.0001f, gameObject.transform.position - hit.point, out hit, Mathf.Infinity, ~playerMask);
 
                 if (hit.collider.gameObject == gameObject)
                 {
-                    SoundRay soundRay = CheckSoundPool.instance.GetSoundRay((gameObject.transform.position - hit.point) * -1, reflectionIntensity, occlusion);
-                    AddRay(soundRay);
+                    if (addAmplifierOcclusion)
+                    {
+                        SoundRay soundRay = CheckSoundPool.instance.GetSoundRay((gameObject.transform.position - hit.point) * -1, reflectionIntensity, occlusion + amplifierOcclusion);
+                        AddRay(soundRay);
+                        addAmplifierOcclusion = false;
+                    }
+                    else
+                    {
+                        SoundRay soundRay = CheckSoundPool.instance.GetSoundRay((gameObject.transform.position - hit.point) * -1, reflectionIntensity, occlusion);
+                        AddRay(soundRay);
+                    }
                     break;
                 }
                 else
@@ -86,8 +102,17 @@ public abstract class CheckSound : MonoBehaviour
 
                         if (hit.collider.gameObject == gameObject)
                         {
-                            SoundRay soundRay = CheckSoundPool.instance.GetSoundRay((gameObject.transform.position - rayReflections[j].origin) * -1, reflectionIntensity, occlusion);
-                            AddRay(soundRay);
+                            if (addAmplifierOcclusion)
+                            {
+                                SoundRay soundRay = CheckSoundPool.instance.GetSoundRay((gameObject.transform.position - rayReflections[j].origin) * -1, reflectionIntensity, occlusion + amplifierOcclusion);
+                                AddRay(soundRay);
+                                addAmplifierOcclusion = false;
+                            }
+                            else
+                            {
+                                SoundRay soundRay = CheckSoundPool.instance.GetSoundRay((gameObject.transform.position - rayReflections[j].origin) * -1, reflectionIntensity, occlusion);
+                                AddRay(soundRay);
+                            }
                             break;
                         }
                     }
@@ -102,7 +127,7 @@ public abstract class CheckSound : MonoBehaviour
         }
     }
 
-    public void ShootOccludedRay(Ray ray, int reflection, int reflectionValue, int occlusion) // Increase occlusion and shoot out an occluded ray. May call itself a few times
+    public void ShootOccludedRay(Ray ray, int reflection, int reflectionValue, float occlusion) // Increase occlusion and shoot out an occluded ray. May call itself a few times
     {
         occlusion += 1;
         if (occlusion < rayStats.MaxOcclusions)

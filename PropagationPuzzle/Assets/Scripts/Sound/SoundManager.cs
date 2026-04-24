@@ -42,6 +42,8 @@ public class SoundManager : MonoBehaviour
             int maxOrder = 0;
             foreach (Amplifier amp in activeAmplifiers) // Find the highest order
             {
+                amp.ResetValues();
+                amp.amplifierOcclusion = 0;
                 if (amp.order > maxOrder)
                 {
                     maxOrder = amp.order;
