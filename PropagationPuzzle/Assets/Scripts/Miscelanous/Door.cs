@@ -45,6 +45,8 @@ public class Door : MonoBehaviour
         open = true;
         inProgress = true;
         progressTimer = 0f;
+
+        DoorManager.instance.openDoorCount++;
     }
 
     void Close()
@@ -72,7 +74,6 @@ public class Door : MonoBehaviour
                 if (open)
                 {
 
-                    DoorManager.instance.openDoorCount++;
 
                     Indicator.gameObject.GetComponent<Renderer>().material.color = new Color32(0, 255, 0, 255);
                     DoorLight.gameObject.GetComponent<Renderer>().material.SetColor("_Color", new Color32(0, 255, 0, 255));

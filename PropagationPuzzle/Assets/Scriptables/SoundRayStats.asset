@@ -14,8 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SoundRayStats
   maxReflections: 12
   maxOcclusions: 3
-  occlusionCap: 6
-  maxIntensity: 180
-  intensityVolume: 2.24
+  occlusionCap: 4
   intensityChangeSpeed: 5
   bestRayCount: 10
