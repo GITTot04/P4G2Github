@@ -41,6 +41,9 @@ public class ExitDoor : MonoBehaviour
         inProgress = true;
         progressTimer = 0f;
         escapeAngle = startRotation;
+
+        Indicator.gameObject.GetComponent<SpriteRenderer>().color = new Color32(0, 255, 0, 255);
+        DoorLight.gameObject.GetComponent<Renderer>().material.SetColor("_Color", new Color32(0, 255, 0, 255));
     }
 
 
@@ -53,20 +56,7 @@ public class ExitDoor : MonoBehaviour
             Hinge.transform.rotation = Quaternion.Euler(new Vector3(transform.rotation.eulerAngles.x, newRotation, transform.rotation.eulerAngles.z));
          
             progressTimer += Time.fixedDeltaTime / timeOfOperation; 
-            if (progressTimer >= 1f)
-            {
-                inProgress = false;
-                if (open)
-                {
-                    Indicator.gameObject.GetComponent<SpriteRenderer>().color = new Color32(0, 255, 0, 255);
-                    DoorLight.gameObject.GetComponent<Renderer>().material.SetColor("_Color", new Color32(0, 255, 0, 255));
-                } 
-                else
-                {
-                    Indicator.gameObject.GetComponent<SpriteRenderer>().color = new Color32(255, 0, 0, 255);
-                    DoorLight.gameObject.GetComponent<Renderer>().material.SetColor("_Color", new Color32(255, 0, 0, 255));
-                }
-            }
+         
         }
     }
 }
