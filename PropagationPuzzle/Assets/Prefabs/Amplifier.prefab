@@ -742,6 +742,7 @@ MonoBehaviour:
   THEFINALINTENSITY: 0
   order: 0
   amplifierOcclusion: 0
+  isAmplifying: 0
 --- !u!1 &1014734135781302490
 GameObject:
   m_ObjectHideFlags: 0
