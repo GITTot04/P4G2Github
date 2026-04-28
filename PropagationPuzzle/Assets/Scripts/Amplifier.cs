@@ -4,6 +4,7 @@ public class Amplifier : CheckSound
 {
     public int order;
     public float amplifierOcclusion;
+    public bool isAmplifying;
     private void OnEnable()
     {
         SoundManager.instance.activeAmplifiers.Add(this);
@@ -16,6 +17,15 @@ public class Amplifier : CheckSound
     {
         ResetValues();
         SoundCheck();
-        amplifierOcclusion = CalculateValues().Item1; // (occlusion,intensity) is returned from this method.
+        (float, float) calculatedValue = CalculateValues(); // (occlusion,intensity) is returned from this method.
+        amplifierOcclusion = calculatedValue.Item1; 
+        if (calculatedValue.Item2 > 0)
+        {
+            isAmplifying = true;
+        }
+        else
+        {
+            isAmplifying = false;
+        }
     }
 }

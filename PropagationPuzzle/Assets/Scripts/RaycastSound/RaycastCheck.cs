@@ -80,7 +80,10 @@ public class RaycastCheck : MonoBehaviour
         {
             rayReflections[i] = ray;
             Physics.Raycast(ray, out hit, Mathf.Infinity, ~playerMask); // Shoots the initial ray ignoring the player
-
+            if (hit.collider == null) 
+            {
+                return;
+            }
             // debugging
             if (showReflectionRays)
             {
@@ -104,8 +107,24 @@ public class RaycastCheck : MonoBehaviour
             {
                 if (hit.collider.gameObject.tag == "Amplifier")
                 {
-                    addAmplifierOcclusion = true;
-                    amplifierOcclusion = hit.collider.gameObject.GetComponent<Amplifier>().amplifierOcclusion;
+                    if (hit.collider.gameObject.GetComponent<Amplifier>().isAmplifying)
+                    {
+                        addAmplifierOcclusion = true;
+                        amplifierOcclusion = hit.collider.gameObject.GetComponent<Amplifier>().amplifierOcclusion;
+                    }
+                    else
+                    {
+                        if (reflectionIntensity + 1 > rayStats.MaxReflections)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            ray = new Ray(hit.point, Vector3.Reflect(ray.direction, hit.normal));
+                            ShootReflectionRays(ray, i + 1, reflectionIntensity + 1, occlusion);
+                            break;
+                        }
+                    }
                 }
                 Physics.Raycast(hit.point + (gameObject.transform.position - hit.point) * -0.0001f, gameObject.transform.position - hit.point, out hit, Mathf.Infinity);
 
@@ -174,7 +193,7 @@ public class RaycastCheck : MonoBehaviour
 
     public void ShootOccludedRay(Ray ray, int reflection, int reflectionValue, float occlusion) // Increase occlusion and shoot out an occluded ray. May call itself a few times
     {
-        occlusion += 1;
+        occlusion += 1f;
         if (occlusion < rayStats.MaxOcclusions)
         {
             ShootReflectionRays(ray, reflection, reflectionValue, occlusion);

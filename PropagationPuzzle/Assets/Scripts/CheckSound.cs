@@ -16,7 +16,7 @@ public abstract class CheckSound : MonoBehaviour
     public float intensity;
     public float occlusion;
     bool addAmplifierOcclusion;
-    float amplifierOcclusion;
+    float ampOcclusion;
 
     public float THEFINALINTENSITY;
 
@@ -49,7 +49,10 @@ public abstract class CheckSound : MonoBehaviour
         {
             rayReflections[i] = ray;
             Physics.Raycast(ray, out hit, Mathf.Infinity, ~playerMask); // Shoots the initial ray
-
+            if (hit.collider == null)
+            {
+                return;
+            }
             // debugging
             if (showReflectionRays)
             {
@@ -69,12 +72,28 @@ public abstract class CheckSound : MonoBehaviour
                 }
             }
 
-            if (hit.collider.gameObject.tag == "Speaker" || hit.collider.gameObject.tag == "Amplifier")
+            if (hit.collider.gameObject.tag == "Speaker" || hit.collider.gameObject.tag == "Amplifier" && hit.collider.gameObject != gameObject)
             {
                 if (hit.collider.gameObject.tag == "Amplifier")
                 {
-                    addAmplifierOcclusion = true;
-                    amplifierOcclusion = hit.collider.gameObject.GetComponent<Amplifier>().amplifierOcclusion;
+                    if (hit.collider.gameObject.GetComponent<Amplifier>().isAmplifying)
+                    {
+                        addAmplifierOcclusion = true;
+                        ampOcclusion = hit.collider.gameObject.GetComponent<Amplifier>().amplifierOcclusion;
+                    }
+                    else
+                    {
+                        if (reflectionIntensity + 1 > rayStats.MaxReflections)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            ray = new Ray(hit.point, Vector3.Reflect(ray.direction, hit.normal));
+                            ShootReflectionRays(ray, i + 1, reflectionIntensity + 1, occlusion);
+                            break;
+                        }
+                    }
                 }
                 Physics.Raycast(hit.point + (gameObject.transform.position - hit.point) * -0.0001f, gameObject.transform.position - hit.point, out hit, Mathf.Infinity, ~playerMask);
 
@@ -82,7 +101,7 @@ public abstract class CheckSound : MonoBehaviour
                 {
                     if (addAmplifierOcclusion)
                     {
-                        SoundRay soundRay = CheckSoundPool.instance.GetSoundRay((gameObject.transform.position - hit.point) * -1, reflectionIntensity, occlusion + amplifierOcclusion);
+                        SoundRay soundRay = CheckSoundPool.instance.GetSoundRay((gameObject.transform.position - hit.point) * -1, reflectionIntensity, occlusion + ampOcclusion);
                         AddRay(soundRay);
                         addAmplifierOcclusion = false;
                     }
@@ -104,7 +123,7 @@ public abstract class CheckSound : MonoBehaviour
                         {
                             if (addAmplifierOcclusion)
                             {
-                                SoundRay soundRay = CheckSoundPool.instance.GetSoundRay((gameObject.transform.position - rayReflections[j].origin) * -1, reflectionIntensity, occlusion + amplifierOcclusion);
+                                SoundRay soundRay = CheckSoundPool.instance.GetSoundRay((gameObject.transform.position - rayReflections[j].origin) * -1, reflectionIntensity, occlusion + ampOcclusion);
                                 AddRay(soundRay);
                                 addAmplifierOcclusion = false;
                             }
@@ -129,7 +148,7 @@ public abstract class CheckSound : MonoBehaviour
 
     public void ShootOccludedRay(Ray ray, int reflection, int reflectionValue, float occlusion) // Increase occlusion and shoot out an occluded ray. May call itself a few times
     {
-        occlusion += 1;
+        occlusion += 1f;
         if (occlusion < rayStats.MaxOcclusions)
         {
             ShootReflectionRays(ray, reflection, reflectionValue, occlusion);
@@ -185,7 +204,7 @@ public abstract class CheckSound : MonoBehaviour
 
             //Calculate Ray Specific values
             float rayIntensity = 1f - Mathf.Clamp(((float)bestRays[i].reflections * 1f / (float)rayStats.MaxReflections), 0f, 1f);
-            float rayOcclusion = ((float)bestRays[i].occlusions / (float)rayStats.MaxOcclusions);
+            float rayOcclusion = bestRays[i].occlusions / (float)rayStats.MaxOcclusions;
             intensity += rayIntensity;
             occlusion += rayOcclusion;
         }
@@ -200,7 +219,6 @@ public abstract class CheckSound : MonoBehaviour
         if (newRayPosition > 0)
         {
             finalIntensity = intensity / (float)(rayStats.BestRayCount);
-            Debug.Log(gameObject + " " + finalIntensity);
         }
         THEFINALINTENSITY = finalIntensity;
         return (averageOcclusion, finalIntensity);

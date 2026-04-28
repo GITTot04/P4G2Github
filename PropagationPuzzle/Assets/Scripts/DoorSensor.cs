@@ -12,8 +12,6 @@ public class DoorSensor : CheckSound
     public bool doorCountExceeded = false;
     public override void FindOcclusionAndIntensity()
     {
-        Debug.Log("Called");
-
         ResetValues();
         SoundCheck();
         (float, float) calculate = CalculateValues();
