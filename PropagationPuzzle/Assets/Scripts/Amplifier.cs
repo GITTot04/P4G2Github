@@ -54,10 +54,10 @@ public class Amplifier : CheckSound
         {
             if (isAmplifying)
             {
-                light.GetComponent<Renderer>().material.SetColor("_Color", new Color32(0, 255, 0, 255));
+                light.GetComponent<Renderer>().material.color = new Color32(0, 255, 0, 255);
             } else
             {
-                light.GetComponent<Renderer>().material.SetColor("_Color", new Color32(255, 0, 0, 255));
+                light.GetComponent<Renderer>().material.color = new Color32(255, 0, 0, 255);
             }
         }
     }
