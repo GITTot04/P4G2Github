@@ -13,6 +13,8 @@ public class TutorialPopup : MonoBehaviour
     public string text1;
     public string text2;
     public string text3;
+    public string text4;
+    public string text5;
     public void Start()
     {
         tutHolder.SetActive(true);
@@ -46,6 +48,14 @@ public class TutorialPopup : MonoBehaviour
             case 2:
                 nextButton.gameObject.SetActive(false);
                 tutText.text = text3;
+                break;
+            case 3:
+                nextButton.gameObject.SetActive(false);
+                tutText.text = text4;
+                break;
+            case 4:
+                nextButton.gameObject.SetActive(false);
+                tutText.text = text5;
                 break;
 
         }

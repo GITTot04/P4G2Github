@@ -124,9 +124,12 @@ public class SoundEmitter : MonoBehaviour
             finalIntensity = intensity / (float)(rayStats.BestRayCount);
         }
 
+
         intensitySet = Mathf.Lerp(lastIntensity, finalIntensity, Time.fixedDeltaTime * rayStats.IntensityChangeSpeed);
+
         eventEmitter.EventInstance.setVolume(intensitySet);
         lastIntensity = intensitySet;
+        //Debug.Log(intensitySet);
     }
     void PlaySound ()
     {

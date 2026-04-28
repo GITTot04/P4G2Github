@@ -13,6 +13,9 @@ public class PlayerInput : MonoBehaviour
     public delegate void PlayerAction();
     public PlayerAction onAction;
     public PlayerAction onInteraction;
+    public PlayerAction onNext;
+    public PlayerAction onPrevious;
+
     public delegate void PlayerActionPlace(string keyName);
     public PlayerActionPlace onPlace;
 
@@ -69,5 +72,28 @@ public class PlayerInput : MonoBehaviour
                 onPlace.Invoke(ctx.control.name);
             }
         }
+    }
+
+    public void OnNext (InputAction.CallbackContext ctx)
+    {
+        if (ctx.started) 
+        { 
+            if(onNext != null)
+            {
+                onNext.Invoke();
+            }
+        }
+    }
+
+    public void OnPrevious(InputAction.CallbackContext ctx)
+    {
+        if (ctx.started)
+        {
+            if (onPrevious != null)
+            {
+                onPrevious.Invoke();
+            }
+        }
+
     }
 }
