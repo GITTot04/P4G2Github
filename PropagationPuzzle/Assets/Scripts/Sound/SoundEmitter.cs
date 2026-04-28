@@ -129,7 +129,7 @@ public class SoundEmitter : MonoBehaviour
 
         eventEmitter.EventInstance.setVolume(intensitySet);
         lastIntensity = intensitySet;
-        Debug.Log(intensitySet);
+        //Debug.Log(intensitySet);
     }
     void PlaySound ()
     {
