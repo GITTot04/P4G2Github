@@ -14,40 +14,43 @@ public class PlayerPlace : MonoBehaviour
     }
     public void ChooseAmplifier(string button)
     {
-        switch (button)
+        if (int.Parse(button) <= SoundManager.instance.allowedAmplifiers)
         {
-            case "1":
-                if (amp1Placed)
-                {
-                    StartCoroutine(RemoveAmplifier(button));
-                }
-                else
-                {
-                    PlaceAmplifier(button);
-                }
-                break;
-            case "2":
-                if (amp2Placed)
-                {
-                    StartCoroutine(RemoveAmplifier(button));
-                }
-                else
-                {
-                    PlaceAmplifier(button);
-                }
-                break;
-            case "3":
-                if (amp3Placed)
-                {
-                    StartCoroutine(RemoveAmplifier(button));
-                }
-                else
-                {
-                    PlaceAmplifier(button);
-                }
-                break;
-            default:
-                break;
+            switch (button)
+            {
+                case "1":
+                    if (amp1Placed)
+                    {
+                        StartCoroutine(RemoveAmplifier(button));
+                    }
+                    else
+                    {
+                        PlaceAmplifier(button);
+                    }
+                    break;
+                case "2":
+                    if (amp2Placed)
+                    {
+                        StartCoroutine(RemoveAmplifier(button));
+                    }
+                    else
+                    {
+                        PlaceAmplifier(button);
+                    }
+                    break;
+                case "3":
+                    if (amp3Placed)
+                    {
+                        StartCoroutine(RemoveAmplifier(button));
+                    }
+                    else
+                    {
+                        PlaceAmplifier(button);
+                    }
+                    break;
+                default:
+                    break;
+            }
         }
     }
     public IEnumerator RemoveAmplifier(string ampNumber)
@@ -87,7 +90,8 @@ public class PlayerPlace : MonoBehaviour
         Physics.Raycast(ray, out hit, Mathf.Infinity);
         if (hit.collider.gameObject.tag == "Wall")
         {
-            GameObject amp = Instantiate(amplifierPrefab, hit.point + 0.00001f * hit.normal, new Quaternion(0,0,0,0));
+            GameObject amp = Instantiate(amplifierPrefab, hit.point + 0.00001f * hit.normal, Quaternion.LookRotation(hit.normal,hit.transform.up)/*new Quaternion(0,0,0,0)*/);
+            amp.transform.Rotate(0f, -90f, 0f);
             amp.GetComponent<Amplifier>().order = int.Parse(ampNumber) - 1;
             switch (ampNumber)
             {
