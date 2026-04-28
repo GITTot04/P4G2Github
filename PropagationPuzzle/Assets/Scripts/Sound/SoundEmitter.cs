@@ -1,6 +1,6 @@
 using UnityEngine;
 using FMODUnity;
-using Unity.VisualScripting;
+using FMOD.Studio;
 
 public class SoundEmitter : MonoBehaviour
 {
@@ -13,10 +13,11 @@ public class SoundEmitter : MonoBehaviour
     public float occlusion;
     public bool debugReflections;
 
-    
-
     SoundRay[] bestRays;
     int newRayPosition;
+
+    float intensitySet = 0f;
+    float finalOcclusion = 0;
 
     void Start()
     {
@@ -95,22 +96,18 @@ public class SoundEmitter : MonoBehaviour
             {
                 Debug.Log(bestRays[i].reflections);
             }
-            //Debug.Log(bestRays[i].reflections);
             float rayOcclusion = ((float)bestRays[i].occlusions / (float)rayStats.MaxOcclusions);
             //Adding to emitter
             intensity += rayIntensity;
             occlusion += rayOcclusion;
-            //Debug.Log(soundRay.occlusions);
         }
 
         //Occlusion
-        
         if (newRayPosition > 0)
         {
-            float averageOcclusion = 0;
-            averageOcclusion = occlusion / (float)(newRayPosition);
+            float averageOcclusion = occlusion / (float)(newRayPosition);
             
-            float finalOcclusion = Mathf.Lerp(0f, rayStats.OcclusionCap, averageOcclusion);
+            finalOcclusion = Mathf.Lerp(0f, rayStats.OcclusionCap, averageOcclusion);
 
             eventEmitter.occlusionIntensity = finalOcclusion;
         }
@@ -127,12 +124,18 @@ public class SoundEmitter : MonoBehaviour
             finalIntensity = intensity / (float)(rayStats.BestRayCount);
         }
 
-        float intensitySet = Mathf.Lerp(lastIntensity, finalIntensity, Time.fixedDeltaTime * rayStats.IntensityChangeSpeed);
+        intensitySet = Mathf.Lerp(lastIntensity, finalIntensity, Time.fixedDeltaTime * rayStats.IntensityChangeSpeed);
         eventEmitter.EventInstance.setVolume(intensitySet);
         lastIntensity = intensitySet;
     }
     void PlaySound ()
     {
-        eventEmitter.Play();
+        EventInstance eventInstance = RuntimeManager.CreateInstance(eventEmitter.EventReference);
+        RuntimeManager.AttachInstanceToGameObject(eventInstance, gameObject);
+        eventInstance.setParameterByName("Occlusion", finalOcclusion);
+        eventInstance.setVolume(intensitySet);
+        eventInstance.start();
+        eventInstance.release();
     }
+
 }
