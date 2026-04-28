@@ -13,12 +13,14 @@ public class SoundManager : MonoBehaviour
     public bool canDeleteAmp = true;
     bool canPlaySound = true;
     float playSoundCooldown = 1.5f;
+    public int allowedAmplifiers;
     void Awake()
     {
         if (instance == null)
         {
             instance = this;
             SceneManager.sceneLoaded += FindDoorSensor;
+            SceneManager.sceneLoaded += SetAllowedAmplifiers;
         }
     }
     void Start()
@@ -78,5 +80,20 @@ public class SoundManager : MonoBehaviour
         canPlaySound = false;
         yield return new WaitForSeconds(playSoundCooldown);
         canPlaySound = true;
+    }
+
+    void SetAllowedAmplifiers(Scene scene, LoadSceneMode mode)
+    {
+        switch (scene.name)
+        {
+            case "Level1":
+                allowedAmplifiers = 0;
+                break;
+            case "Level2":
+                allowedAmplifiers = 0;
+                break;
+            default:
+                break;
+        }
     }
 }

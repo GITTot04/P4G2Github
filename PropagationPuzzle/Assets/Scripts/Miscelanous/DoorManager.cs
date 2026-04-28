@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 public class DoorManager : MonoBehaviour
 {
     public static DoorManager instance;
@@ -14,6 +15,7 @@ public class DoorManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+            SceneManager.sceneLoaded += SetAllowedDoors;
         }
     }
     void Start()
@@ -35,6 +37,19 @@ public class DoorManager : MonoBehaviour
         }
     }
 
-
+    void SetAllowedDoors(Scene scene, LoadSceneMode mode)
+    {
+        switch (scene.name)
+        {
+            case "Level1":
+                MaxDoors = 1;
+                break;
+            case "Level2":
+                MaxDoors = 1;
+                break;
+            default:
+                break;
+        }
+    }
 
 }
