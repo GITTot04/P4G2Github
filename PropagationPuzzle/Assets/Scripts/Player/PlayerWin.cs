@@ -8,6 +8,7 @@ public class PlayerWin : MonoBehaviour
         if (collision.gameObject.tag == "ExitDoor" && DoorManager.instance.hasWon)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +1);
+            DoorManager.instance.openDoorCount = 0;
         }
     }
 }
