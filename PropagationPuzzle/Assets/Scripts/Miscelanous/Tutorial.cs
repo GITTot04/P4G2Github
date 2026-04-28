@@ -15,11 +15,12 @@ public class Tutorial : MonoBehaviour
         PlayerInput.instance.onPrevious += Previous;
         text = tutText.GetComponent<TextMeshProUGUI>();
         UpdateText();
+        Debug.Log(messages.Count);
     }
     
     void Next()
     {
-        if(showPosition < messages.Count)
+        if (showPosition < messages.Count)
         {
             showPosition++;
         }

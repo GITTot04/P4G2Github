@@ -434,7 +434,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4043325558599747564, guid: 7b4a0a85531e68a4a8e829495a5117f9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.15
+      value: 0.09
       objectReference: {fileID: 0}
     - target: {fileID: 4043325558599747564, guid: 7b4a0a85531e68a4a8e829495a5117f9, type: 3}
       propertyPath: m_LocalPosition.y
@@ -442,7 +442,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4043325558599747564, guid: 7b4a0a85531e68a4a8e829495a5117f9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.5
+      value: -3.4
       objectReference: {fileID: 0}
     - target: {fileID: 4043325558599747564, guid: 7b4a0a85531e68a4a8e829495a5117f9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1422,13 +1422,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 4008064937739876217, guid: 461e475032524bc46b0d55f3d1e7a9f9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6522382309688846605, guid: 461e475032524bc46b0d55f3d1e7a9f9, type: 3}
       propertyPath: doorSensor
       value: 
       objectReference: {fileID: 1296014306}
     - target: {fileID: 6522382309688846605, guid: 461e475032524bc46b0d55f3d1e7a9f9, type: 3}
       propertyPath: allowedAmplifiers
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8693211618255762743, guid: 461e475032524bc46b0d55f3d1e7a9f9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2495,6 +2499,22 @@ PrefabInstance:
     - target: {fileID: 723445283633870340, guid: cca1075450a9c3a429a711436f415e02, type: 3}
       propertyPath: m_Name
       value: Turtorial
+      objectReference: {fileID: 0}
+    - target: {fileID: 8940265368101717729, guid: cca1075450a9c3a429a711436f415e02, type: 3}
+      propertyPath: messages.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8940265368101717729, guid: cca1075450a9c3a429a711436f415e02, type: 3}
+      propertyPath: 'messages.Array.data[0]'
+      value: Now you are allowed to set 1 amplifier
+      objectReference: {fileID: 0}
+    - target: {fileID: 8940265368101717729, guid: cca1075450a9c3a429a711436f415e02, type: 3}
+      propertyPath: 'messages.Array.data[1]'
+      value: The amplifer amplifies the sound it's sensor hears from the speaker
+      objectReference: {fileID: 0}
+    - target: {fileID: 8940265368101717729, guid: cca1075450a9c3a429a711436f415e02, type: 3}
+      propertyPath: 'messages.Array.data[2]'
+      value: Press "1" while looking at a wall
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
