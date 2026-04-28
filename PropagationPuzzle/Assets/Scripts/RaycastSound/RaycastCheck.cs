@@ -14,6 +14,8 @@ public class RaycastCheck : MonoBehaviour
     Ray[] rayReflections;
     SoundRay[] soundDirectionsAndReflections;
     LayerMask playerMask;
+    bool addAmplifierOcclusion;
+    float amplifierOcclusion;
 
     //Oskar
     public SpacialSoundInterpreter soundInterpreter;
@@ -70,7 +72,7 @@ public class RaycastCheck : MonoBehaviour
         }
     }
 
-    public void ShootReflectionRays(Ray ray, int priorReflections, int reflectionValue, int occlusion)
+    public void ShootReflectionRays(Ray ray, int priorReflections, int reflectionValue, float occlusion)
     {
         int reflectionIntensity = reflectionValue;
         RaycastHit hit;
@@ -78,11 +80,14 @@ public class RaycastCheck : MonoBehaviour
         {
             rayReflections[i] = ray;
             Physics.Raycast(ray, out hit, Mathf.Infinity, ~playerMask); // Shoots the initial ray ignoring the player
-
+            if (hit.collider == null) 
+            {
+                return;
+            }
             // debugging
             if (showReflectionRays)
             {
-                Debug.DrawRay(ray.origin, ray.direction * hit.distance, new Color(1 - (float)occlusion/5, 1 - (float)occlusion/5, 1, 1f - (float)reflectionIntensity / rayStats.MaxReflections));
+                Debug.DrawRay(ray.origin, ray.direction * hit.distance, new Color(1f - occlusion/5f, 1f - occlusion/5f, 1f, 1f - (float)reflectionIntensity / rayStats.MaxReflections));
             }
 
             if (hit.collider.gameObject.tag == "Door") // Call the method for shooting the occluded ray when a door is hit
@@ -98,18 +103,48 @@ public class RaycastCheck : MonoBehaviour
                 }
             }
 
-            if (hit.collider.gameObject.tag == "Speaker")
+            if (hit.collider.gameObject.tag == "Speaker" || hit.collider.gameObject.tag == "Amplifier")
             {
+                if (hit.collider.gameObject.tag == "Amplifier")
+                {
+                    if (hit.collider.gameObject.GetComponent<Amplifier>().isAmplifying)
+                    {
+                        addAmplifierOcclusion = true;
+                        amplifierOcclusion = hit.collider.gameObject.GetComponent<Amplifier>().amplifierOcclusion;
+                    }
+                    else
+                    {
+                        if (reflectionIntensity + 1 > rayStats.MaxReflections)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            ray = new Ray(hit.point, Vector3.Reflect(ray.direction, hit.normal));
+                            ShootReflectionRays(ray, i + 1, reflectionIntensity + 1, occlusion);
+                            break;
+                        }
+                    }
+                }
                 Physics.Raycast(hit.point + (gameObject.transform.position - hit.point) * -0.0001f, gameObject.transform.position - hit.point, out hit, Mathf.Infinity);
 
                 if (hit.collider.gameObject.tag == "Player") // Check if the player has direct LOS with the sound object
                 {
-                    SoundRay soundRay = RaycastCheckPool.instance.GetSoundRay((gameObject.transform.position - hit.point) * -1, reflectionIntensity, occlusion);
-                    soundDirectionsAndReflections[successfulRays] = soundRay;
-                    successfulRays++;
+                    if (addAmplifierOcclusion)
+                    {
+                        SoundRay soundRay = RaycastCheckPool.instance.GetSoundRay((gameObject.transform.position - hit.point) * -1, reflectionIntensity, occlusion + amplifierOcclusion);
+                        soundDirectionsAndReflections[successfulRays] = soundRay;
+                        successfulRays++;
+                        soundInterpreter.AddSoundRay(soundRay);
+                    }
+                    else
+                    {
+                        SoundRay soundRay = RaycastCheckPool.instance.GetSoundRay((gameObject.transform.position - hit.point) * -1, reflectionIntensity, occlusion);
+                        soundDirectionsAndReflections[successfulRays] = soundRay;
+                        successfulRays++;
+                        soundInterpreter.AddSoundRay(soundRay);
+                    }
 
-                    //Oskar
-                    soundInterpreter.AddSoundRay(soundRay);
                     break;
                 }
                 else
@@ -121,12 +156,20 @@ public class RaycastCheck : MonoBehaviour
 
                         if (hit.collider.gameObject.tag == "Player")
                         {
-                            SoundRay soundRay = RaycastCheckPool.instance.GetSoundRay((gameObject.transform.position - rayReflections[j].origin) * -1, reflectionIntensity, occlusion);
-                            soundDirectionsAndReflections[successfulRays] = soundRay;
-                            successfulRays++;
-
-                            //Oskar
-                            soundInterpreter.AddSoundRay(soundRay);
+                            if (addAmplifierOcclusion)
+                            {
+                                SoundRay soundRay = RaycastCheckPool.instance.GetSoundRay((gameObject.transform.position - rayReflections[j].origin) * -1, reflectionIntensity, occlusion + amplifierOcclusion);
+                                soundDirectionsAndReflections[successfulRays] = soundRay;
+                                successfulRays++;
+                                soundInterpreter.AddSoundRay(soundRay);
+                            }
+                            else
+                            {
+                                SoundRay soundRay = RaycastCheckPool.instance.GetSoundRay((gameObject.transform.position - rayReflections[j].origin) * -1, reflectionIntensity, occlusion);
+                                soundDirectionsAndReflections[successfulRays] = soundRay;
+                                successfulRays++;
+                                soundInterpreter.AddSoundRay(soundRay);
+                            }
 
                             // debugging
                             if (showSoundDirectionRays)
@@ -148,9 +191,9 @@ public class RaycastCheck : MonoBehaviour
         }
     }
 
-    public void ShootOccludedRay(Ray ray, int reflection, int reflectionValue, int occlusion) // Increase occlusion and shoot out an occluded ray. May call itself a few times
+    public void ShootOccludedRay(Ray ray, int reflection, int reflectionValue, float occlusion) // Increase occlusion and shoot out an occluded ray. May call itself a few times
     {
-        occlusion += 1;
+        occlusion += 1f;
         if (occlusion < rayStats.MaxOcclusions)
         {
             ShootReflectionRays(ray, reflection, reflectionValue, occlusion);

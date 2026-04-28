@@ -253,6 +253,7 @@ GameObject:
   - component: {fileID: 5731545035534922744}
   - component: {fileID: 3413003244569296328}
   - component: {fileID: 2490788663865770254}
+  - component: {fileID: 9177248310419338707}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -536,7 +537,19 @@ MonoBehaviour:
     m_ActionId: 9caa3d8a-6b2f-4e8e-8bad-6ede561bd9be
     m_ActionName: UI/TrackedDeviceOrientation
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2918177432203211707}
+        m_TargetAssemblyTypeName: PlayerInput, Assembly-CSharp
+        m_MethodName: OnNumberKey
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 9877a4b3-1203-4bb3-aff2-e8e79f801a43
     m_ActionName: 'Player/NumberKey[/Keyboard/1,/Keyboard/2,/Keyboard/3]'
   m_NeverAutoSwitchControlSchemes: 0
@@ -576,6 +589,23 @@ MonoBehaviour:
   showSoundDirectionRays: 0
   showAverageSoundDirection: 0
   soundInterpreter: {fileID: 3413003244569296328}
+--- !u!114 &9177248310419338707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6383842709237418927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a39c86b90712cf74288a957afe909525, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerPlace
+  amplifierPrefab: {fileID: 901787814880495580, guid: 4d60b850e73565f4f905e5624a583066, type: 3}
+  amp1Placed: 0
+  amp2Placed: 0
+  amp3Placed: 0
+  playerHead: {fileID: 1491176109408986918}
 --- !u!1 &6856151014876145949
 GameObject:
   m_ObjectHideFlags: 0
