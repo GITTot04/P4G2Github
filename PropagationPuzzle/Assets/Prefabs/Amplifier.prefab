@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 6176650774649328237}
   - component: {fileID: 7738957661299945062}
   m_Layer: 0
-  m_Name: blue (1)
+  m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -743,6 +743,14 @@ MonoBehaviour:
   order: 0
   amplifierOcclusion: 0
   isAmplifying: 0
+  ampText: {fileID: 2146859846630831213}
+  colorLights:
+  - {fileID: 100502862515160184}
+  - {fileID: 7530876458874842079}
+  - {fileID: 7213773331833589893}
+  - {fileID: 3647776742424038998}
+  - {fileID: 1561905128665882861}
+  - {fileID: 2892506311533224209}
 --- !u!1 &1014734135781302490
 GameObject:
   m_ObjectHideFlags: 0
@@ -7060,7 +7068,7 @@ GameObject:
   - component: {fileID: 1769143947911121681}
   - component: {fileID: 8964387799980366215}
   m_Layer: 0
-  m_Name: blue
+  m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

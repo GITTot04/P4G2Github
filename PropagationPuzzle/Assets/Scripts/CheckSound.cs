@@ -61,14 +61,14 @@ public abstract class CheckSound : MonoBehaviour
 
             if (hit.collider.gameObject.tag == "Door") // Call the method for shooting the occluded ray when a door is hit
             {
-                if (reflectionIntensity * 2 > rayStats.MaxReflections)
+                if (reflectionIntensity + 2 > rayStats.MaxReflections)
                 {
                     break;
                 }
                 else
                 {
-                    ShootOccludedRay(new Ray(hit.point + (ray.direction.normalized * 0.0001f), ray.direction.normalized), i, reflectionIntensity * 2, occlusion);
-                    reflectionIntensity *= 2;
+                    ShootOccludedRay(new Ray(hit.point + (ray.direction.normalized * 0.0001f), ray.direction.normalized), i, reflectionIntensity + 2, occlusion);
+                    reflectionIntensity += 2;
                 }
             }
 
