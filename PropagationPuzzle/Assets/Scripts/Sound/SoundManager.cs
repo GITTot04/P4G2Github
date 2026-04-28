@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -10,6 +11,8 @@ public class SoundManager : MonoBehaviour
     public List<Amplifier> activeAmplifiers = new List<Amplifier>();
     public DoorSensor doorSensor;
     public bool canDeleteAmp = true;
+    bool canPlaySound = true;
+    float playSoundCooldown = 1.5f;
     void Awake()
     {
         if (instance == null)
@@ -24,11 +27,11 @@ public class SoundManager : MonoBehaviour
     }
     public void PlaySoundCode()
     {
-        if (onPlaySound != null)
+        if (onPlaySound != null && canPlaySound)
         {
+            StartCoroutine(PlaySoundCooldown());
             canDeleteAmp = false;
             CalculateAmplifiers();
-
             doorSensor.FindOcclusionAndIntensity();
             onPlaySound.Invoke();
             canDeleteAmp = true;
@@ -42,6 +45,8 @@ public class SoundManager : MonoBehaviour
             int maxOrder = 0;
             foreach (Amplifier amp in activeAmplifiers) // Find the highest order
             {
+                amp.ResetValues();
+                amp.amplifierOcclusion = 0;
                 if (amp.order > maxOrder)
                 {
                     maxOrder = amp.order;
@@ -66,5 +71,12 @@ public class SoundManager : MonoBehaviour
         {
             doorSensor = GameObject.Find("DoorSensor").GetComponent<DoorSensor>();
         }
+    }
+
+    IEnumerator PlaySoundCooldown()
+    {
+        canPlaySound = false;
+        yield return new WaitForSeconds(playSoundCooldown);
+        canPlaySound = true;
     }
 }

@@ -28,7 +28,7 @@ public abstract class SoundRayPool<T> : SoundRayPool where T : SoundRayPool<T>
         raysInPool = pool.Count;
         raysInActivePool = ActiveSoundRays.Count;
     }
-    public SoundRay GetSoundRay (Vector3 d, int r, int o)
+    public SoundRay GetSoundRay (Vector3 d, int r, float o)
     {
         if (pool.Count == 0)
         {
