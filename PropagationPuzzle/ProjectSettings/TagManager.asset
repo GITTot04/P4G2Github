@@ -8,6 +8,7 @@ TagManager:
   - Door
   - Amplifier
   - Wall
+  - ExitDoor
   layers:
   - Default
   - TransparentFX

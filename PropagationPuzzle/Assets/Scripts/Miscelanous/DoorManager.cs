@@ -9,6 +9,7 @@ public class DoorManager : MonoBehaviour
     public GameObject minimapText;
     TextMeshProUGUI doorText;
     public SoundManager soundManager;
+    public bool hasWon;
     
     void Awake()
     {
@@ -16,6 +17,7 @@ public class DoorManager : MonoBehaviour
         {
             instance = this;
             SceneManager.sceneLoaded += SetAllowedDoors;
+            SceneManager.sceneLoaded += ChangeWinStatus;
         }
     }
     void Start()
@@ -51,5 +53,8 @@ public class DoorManager : MonoBehaviour
                 break;
         }
     }
-
+    void ChangeWinStatus(Scene scene, LoadSceneMode mode)
+    {
+        hasWon = false;
+    }
 }

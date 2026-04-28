@@ -427,9 +427,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7564405083310991954}
+  - component: {fileID: 3276594335154730908}
   m_Layer: 0
   m_Name: ExitDoors
-  m_TagString: Untagged
+  m_TagString: ExitDoor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -453,6 +454,27 @@ Transform:
   - {fileID: 9053975174920241375}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &3276594335154730908
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1811751118243666654}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.682406, y: 1.6824224, z: 0.7729659}
+  m_Center: {x: 0.25777578, y: -0.09904647, z: 0.113517046}
 --- !u!1 &2003783230220318089
 GameObject:
   m_ObjectHideFlags: 0
