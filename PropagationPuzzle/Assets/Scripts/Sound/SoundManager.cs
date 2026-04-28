@@ -49,6 +49,7 @@ public class SoundManager : MonoBehaviour
             {
                 amp.ResetValues();
                 amp.amplifierOcclusion = 0;
+                amp.isAmplifying = false;
                 if (amp.order > maxOrder)
                 {
                     maxOrder = amp.order;

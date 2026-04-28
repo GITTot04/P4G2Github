@@ -24,7 +24,7 @@ public class Amplifier : CheckSound
     }
     private void Start()
     {
-        FindOcclusionAndIntensity();
+        SoundManager.instance.CalculateAmplifiers();
         text = ampText.GetComponent<TextMeshProUGUI>();
         text.text = (order + 1).ToString();
     }
@@ -37,15 +37,12 @@ public class Amplifier : CheckSound
         if (calculatedValue.Item2 > 0)
         {
             isAmplifying = true;
-            UpdateLights();
-
-
         }
         else
         {
-            isAmplifying = false;
-            UpdateLights();     
+            isAmplifying = false; 
         }
+        UpdateLights();
     }
 
     void UpdateLights()

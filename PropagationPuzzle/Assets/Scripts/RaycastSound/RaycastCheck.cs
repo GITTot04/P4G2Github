@@ -114,6 +114,7 @@ public class RaycastCheck : MonoBehaviour
                     }
                     else
                     {
+                        addAmplifierOcclusion = false;
                         if (reflectionIntensity + 1 > rayStats.MaxReflections)
                         {
                             break;
