@@ -19,6 +19,7 @@ public class SoundManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+            DontDestroyOnLoad(gameObject);
             SceneManager.sceneLoaded += FindDoorSensor;
             SceneManager.sceneLoaded += SetAllowedAmplifiers;
         }
@@ -92,6 +93,15 @@ public class SoundManager : MonoBehaviour
                 break;
             case "Level2":
                 allowedAmplifiers = 0;
+                break;
+            case "Level3":
+                allowedAmplifiers = 0;
+                break;
+            case "AmpLevel1":
+                allowedAmplifiers = 1;
+                break;
+            case "AmpLevel2":
+                allowedAmplifiers = 1;
                 break;
             default:
                 break;
