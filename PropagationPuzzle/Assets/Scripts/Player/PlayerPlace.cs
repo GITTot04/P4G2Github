@@ -8,7 +8,7 @@ public class PlayerPlace : MonoBehaviour
     public bool amp2Placed;
     public bool amp3Placed;
     public GameObject playerHead;
-    private void OnEnable()
+    private void Start()
     {
         PlayerInput.instance.onPlace += ChooseAmplifier;
     }
