@@ -122,6 +122,8 @@ MonoBehaviour:
   - Move around with "W, A, S and D"
   - Press "e" to open the glass doors
   - Good luck!
+  nextText: {fileID: 4770909815221960600}
+  prevText: {fileID: 4766042801279297365}
 --- !u!1 &2031341384895722636
 GameObject:
   m_ObjectHideFlags: 0
