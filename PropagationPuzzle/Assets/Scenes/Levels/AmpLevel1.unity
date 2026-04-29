@@ -2510,11 +2510,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8940265368101717729, guid: cca1075450a9c3a429a711436f415e02, type: 3}
       propertyPath: 'messages.Array.data[1]'
-      value: The amplifer amplifies the sound it's sensor hears from the speaker
+      value: The amplifer amplifies the sound its sensor hears from the speaker up
+        to a certain level but does not remove any occlusion
       objectReference: {fileID: 0}
     - target: {fileID: 8940265368101717729, guid: cca1075450a9c3a429a711436f415e02, type: 3}
       propertyPath: 'messages.Array.data[2]'
-      value: Press "1" while looking at a wall
+      value: Press "1" while looking at a wall to place an amplifier and "1" again
+        to remove it
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
