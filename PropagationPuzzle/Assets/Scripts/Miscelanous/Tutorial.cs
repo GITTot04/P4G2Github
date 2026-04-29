@@ -20,7 +20,7 @@ public class Tutorial : MonoBehaviour
     
     void Next()
     {
-        if (showPosition < messages.Count)
+        if (showPosition < messages.Count - 1)
         {
             showPosition++;
         }
