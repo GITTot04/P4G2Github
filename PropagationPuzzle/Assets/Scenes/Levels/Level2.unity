@@ -6062,7 +6062,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8940265368101717729, guid: cca1075450a9c3a429a711436f415e02, type: 3}
       propertyPath: 'messages.Array.data[0]'
-      value: In this level the sensor will only work when 1 door is open
+      value: In this level the sensor will only work when 1 door is open (This may
+        change on future levels so look under the minimap to see the current limit)
       objectReference: {fileID: 0}
     - target: {fileID: 8940265368101717729, guid: cca1075450a9c3a429a711436f415e02, type: 3}
       propertyPath: 'messages.Array.data[1]'

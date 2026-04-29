@@ -25,6 +25,7 @@ public class PlayerInput : MonoBehaviour
         {
             instance = this;
         }
+
     }
     void Update()
     {
