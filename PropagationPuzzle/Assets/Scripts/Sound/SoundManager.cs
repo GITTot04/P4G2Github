@@ -22,12 +22,10 @@ public class SoundManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
             SceneManager.sceneLoaded += FindDoorSensor;
             SceneManager.sceneLoaded += SetAllowedAmplifiers;
+            SceneManager.sceneLoaded += SetPlayerOnAction;
         }
     }
-    void Start()
-    {
-        PlayerInput.instance.onAction += PlaySoundCode;
-    }
+
     public void PlaySoundCode()
     {
         if (onPlaySound != null && canPlaySound)
@@ -106,5 +104,10 @@ public class SoundManager : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    void SetPlayerOnAction(Scene scene, LoadSceneMode mode)
+    {
+        PlayerInput.instance.onAction += PlaySoundCode;
     }
 }

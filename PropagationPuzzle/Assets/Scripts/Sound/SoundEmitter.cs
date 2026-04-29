@@ -22,8 +22,15 @@ public class SoundEmitter : MonoBehaviour
     void Start()
     {
         bestRays = new SoundRay[rayStats.BestRayCount];
-        SoundManager.instance.onPlaySound += PlaySound;
         ResetValues();
+    }
+    private void OnEnable()
+    {
+        SoundManager.instance.onPlaySound += PlaySound;
+    }
+    private void OnDisable()
+    {
+        SoundManager.instance.onPlaySound -= PlaySound;
     }
     public void ResetValues ()
     {
