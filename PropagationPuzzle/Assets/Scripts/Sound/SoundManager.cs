@@ -101,7 +101,11 @@ public class SoundManager : MonoBehaviour
             case "AmpLevel2":
                 allowedAmplifiers = 1;
                 break;
+            case "AmpLevel1COPY": // CHANGE AFTER TESTING
+                allowedAmplifiers = 1;
+                break;
             default:
+                allowedAmplifiers = 0;
                 break;
         }
     }
