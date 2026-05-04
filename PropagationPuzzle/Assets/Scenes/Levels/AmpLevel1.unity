@@ -1424,7 +1424,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4008064937739876217, guid: 461e475032524bc46b0d55f3d1e7a9f9, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6522382309688846605, guid: 461e475032524bc46b0d55f3d1e7a9f9, type: 3}
       propertyPath: doorSensor
@@ -2572,8 +2572,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8940265368101717729, guid: cca1075450a9c3a429a711436f415e02, type: 3}
       propertyPath: 'messages.Array.data[2]'
-      value: Press "1" while looking at a wall to place an amplifier and "1" again
-        to remove it
+      value: Press "1" while looking at an orange amplifier plate on a wall to place
+        an amplifier and "1" again to remove it
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
