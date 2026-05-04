@@ -149,10 +149,7 @@ public abstract class CheckSound : MonoBehaviour
     public void ShootOccludedRay(Ray ray, int reflection, int reflectionValue, float occlusion) // Increase occlusion and shoot out an occluded ray. May call itself a few times
     {
         occlusion += 1f;
-        if (occlusion < rayStats.MaxOcclusions)
-        {
             ShootReflectionRays(ray, reflection, reflectionValue, occlusion);
-        }
     }
 
     int GetMostReflectRay()
