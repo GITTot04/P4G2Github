@@ -92,9 +92,9 @@ public class PlayerPlace : MonoBehaviour
         RaycastHit hit;
         Ray ray = new Ray(gameObject.transform.position, playerHead.transform.forward); // Create the ray to be shot
         Physics.Raycast(ray, out hit, Mathf.Infinity);
-        if (hit.collider.gameObject.tag == "Wall")
+        if (hit.collider.gameObject.tag == "AmplifierPlate")
         {
-            GameObject amp = Instantiate(amplifierPrefab, hit.point + 0.00001f * hit.normal, Quaternion.LookRotation(hit.normal,hit.transform.up)/*new Quaternion(0,0,0,0)*/);
+            GameObject amp = Instantiate(amplifierPrefab, hit.transform.position + 0.00001f * hit.normal /*hit.point + 0.00001f * hit.normal*/, Quaternion.LookRotation(hit.normal,hit.transform.up));
             amp.transform.Rotate(0f, -90f, 0f);
             amp.GetComponent<Amplifier>().order = int.Parse(ampNumber) - 1;
             switch (ampNumber)
