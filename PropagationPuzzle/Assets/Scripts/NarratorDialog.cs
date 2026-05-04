@@ -29,6 +29,7 @@ public class NarratorDialog : MonoBehaviour
         if (currentLength == maxLength)
         {
             narrating = false;
+            Debug.Log("End");
         }
         Debug.Log("Running");
         StartCoroutine(NarrationTime());
@@ -36,7 +37,8 @@ public class NarratorDialog : MonoBehaviour
     public IEnumerator NarrationTime()
     {
         if (narrating) 
-        { 
+        {
+            Debug.Log("Narrating");
             narTextField.text = texts[currentLength];
             float timer = textTimer[currentLength];
             yield return new WaitForSeconds(timer);
