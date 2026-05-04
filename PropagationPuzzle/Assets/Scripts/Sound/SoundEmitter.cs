@@ -113,8 +113,8 @@ public class SoundEmitter : MonoBehaviour
         if (newRayPosition > 0)
         {
             float averageOcclusion = occlusion / (float)(newRayPosition);
-            
-            finalOcclusion = Mathf.Lerp(0f, rayStats.OcclusionCap, averageOcclusion);
+            finalOcclusion = rayStats.OcclusionCap * averageOcclusion;
+            //finalOcclusion = Mathf.Lerp(0f, rayStats.OcclusionCap, averageOcclusion);
 
             eventEmitter.occlusionIntensity = finalOcclusion;
         }

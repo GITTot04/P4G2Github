@@ -1,6 +1,9 @@
 using UnityEngine;
 using System.Collections.Generic;
 using FMOD.Studio;
+using Unity.UI;
+using UnityEngine.UI;
+
 
 public class DoorSensor : CheckSound
 {
@@ -8,6 +11,7 @@ public class DoorSensor : CheckSound
     public float minimumIntensity = 0;
     public ExitDoor[] exitDoors = new ExitDoor[2];
     public List<GameObject> sensorLights = new List<GameObject>();
+    public Image fillBar;
 
     public bool doorCountExceeded = false;
     public override void FindOcclusionAndIntensity()
@@ -27,5 +31,7 @@ public class DoorSensor : CheckSound
             }
             DoorManager.instance.hasWon = true;
         }
+
+        fillBar.fillAmount = Mathf.Lerp(0.1f, 1, calculate.Item1);
     }
 }
