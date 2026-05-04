@@ -40,7 +40,7 @@ public class RaycastCheck : MonoBehaviour
     {
         Ray ray = new Ray();
         rayReflections = new Ray[rayStats.MaxReflections];
-        soundDirectionsAndReflections = new SoundRay[degreesOfRays * rayStats.MaxOcclusions]; // 360 degrees times the maximum amount of occlusions won't exceed the array
+        //soundDirectionsAndReflections = new SoundRay[degreesOfRays * rayStats.MaxOcclusions]; // 360 degrees times the maximum amount of occlusions won't exceed the array
         successfulRays = 0;
         // Shoot rays once per degree for 360 degrees
         for (float angle = 0; angle < 360; angle += 360/degreesOfRays)
@@ -54,6 +54,7 @@ public class RaycastCheck : MonoBehaviour
 
         float soundXValue = 0;
         float soundZValue = 0;
+        /*
         for (int i = 0; i < successfulRays; i++) // Calculate total values
         {
             soundXValue += soundDirectionsAndReflections[i].direction.x * (1 - soundDirectionsAndReflections[i].reflections / rayStats.MaxReflections);
@@ -70,6 +71,7 @@ public class RaycastCheck : MonoBehaviour
                 Debug.DrawRay(gameObject.transform.position, new Vector3(averageXValue, 0, averageZValue), new Color(0, 0, 0, 1));
             }
         }
+        */
     }
 
     public void ShootReflectionRays(Ray ray, int priorReflections, int reflectionValue, float occlusion)
@@ -134,14 +136,14 @@ public class RaycastCheck : MonoBehaviour
                     if (addAmplifierOcclusion)
                     {
                         SoundRay soundRay = RaycastCheckPool.instance.GetSoundRay((gameObject.transform.position - hit.point) * -1, reflectionIntensity, occlusion + amplifierOcclusion);
-                        soundDirectionsAndReflections[successfulRays] = soundRay;
+                        //soundDirectionsAndReflections[successfulRays] = soundRay;
                         successfulRays++;
                         soundInterpreter.AddSoundRay(soundRay);
                     }
                     else
                     {
                         SoundRay soundRay = RaycastCheckPool.instance.GetSoundRay((gameObject.transform.position - hit.point) * -1, reflectionIntensity, occlusion);
-                        soundDirectionsAndReflections[successfulRays] = soundRay;
+                        //soundDirectionsAndReflections[successfulRays] = soundRay;
                         successfulRays++;
                         soundInterpreter.AddSoundRay(soundRay);
                     }
@@ -160,14 +162,14 @@ public class RaycastCheck : MonoBehaviour
                             if (addAmplifierOcclusion)
                             {
                                 SoundRay soundRay = RaycastCheckPool.instance.GetSoundRay((gameObject.transform.position - rayReflections[j].origin) * -1, reflectionIntensity, occlusion + amplifierOcclusion);
-                                soundDirectionsAndReflections[successfulRays] = soundRay;
+                               // soundDirectionsAndReflections[successfulRays] = soundRay;
                                 successfulRays++;
                                 soundInterpreter.AddSoundRay(soundRay);
                             }
                             else
                             {
                                 SoundRay soundRay = RaycastCheckPool.instance.GetSoundRay((gameObject.transform.position - rayReflections[j].origin) * -1, reflectionIntensity, occlusion);
-                                soundDirectionsAndReflections[successfulRays] = soundRay;
+                               // soundDirectionsAndReflections[successfulRays] = soundRay;
                                 successfulRays++;
                                 soundInterpreter.AddSoundRay(soundRay);
                             }
@@ -195,9 +197,7 @@ public class RaycastCheck : MonoBehaviour
     public void ShootOccludedRay(Ray ray, int reflection, int reflectionValue, float occlusion) // Increase occlusion and shoot out an occluded ray. May call itself a few times
     {
         occlusion += 1f;
-        if (occlusion < rayStats.MaxOcclusions)
-        {
-            ShootReflectionRays(ray, reflection, reflectionValue, occlusion);
-        }
+      
+        ShootReflectionRays(ray, reflection, reflectionValue, occlusion);
     }
 }

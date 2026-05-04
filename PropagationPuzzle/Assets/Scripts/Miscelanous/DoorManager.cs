@@ -59,6 +59,7 @@ public class DoorManager : MonoBehaviour
                 MaxDoors = 1;
                 break;
             default:
+                MaxDoors = 0;
                 break;
         }
     }
