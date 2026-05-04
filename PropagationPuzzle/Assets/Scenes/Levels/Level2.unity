@@ -7014,6 +7014,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ExitDoors
       objectReference: {fileID: 0}
+    - target: {fileID: 3708182908410111085, guid: 651935baf28b8274d965a361cc6e140d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 6296057167958426849, guid: 651935baf28b8274d965a361cc6e140d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7564405083310991954, guid: 651935baf28b8274d965a361cc6e140d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.049585223
