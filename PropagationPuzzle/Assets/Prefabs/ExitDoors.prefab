@@ -273,6 +273,7 @@ MonoBehaviour:
   openDirection: 1
   timeOfOperation: 1
   Hinge: {fileID: 2870913643285277523}
+  exitCam: {fileID: 4081542798111866373}
 --- !u!1 &1475251538164007273
 GameObject:
   m_ObjectHideFlags: 0
@@ -1671,6 +1672,7 @@ GameObject:
   - component: {fileID: 3708182908410111085}
   - component: {fileID: 1078468039788539908}
   - component: {fileID: 6819871105655180758}
+  - component: {fileID: 4081542798111866373}
   m_Layer: 0
   m_Name: ExitCam
   m_TagString: Untagged
@@ -1788,6 +1790,22 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!114 &4081542798111866373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6296057167958426849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4143e4463b83d8f4ba684e7122ddb91e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExitCam
+  playerCam: {fileID: 0}
+  remoteCam: {fileID: 0}
+  exitCam: {fileID: 6296057167958426849}
+  timer: 1.5
 --- !u!1 &6484748560594631500
 GameObject:
   m_ObjectHideFlags: 0
@@ -2475,6 +2493,7 @@ MonoBehaviour:
   openDirection: -1
   timeOfOperation: 1
   Hinge: {fileID: 6584799622752312198}
+  exitCam: {fileID: 4081542798111866373}
 --- !u!1 &7216241658995118596
 GameObject:
   m_ObjectHideFlags: 0

@@ -1312,6 +1312,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 70e36f7f0bbfec34fb3ebeb69a1be3ad, type: 3}
+--- !u!1 &647360656 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6856151014876145949, guid: 7b4a0a85531e68a4a8e829495a5117f9, type: 3}
+  m_PrefabInstance: {fileID: 299571625}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &651865447 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1822589567347765153, guid: d8398060aca7b494faee10c15bf8f49c, type: 3}
@@ -1688,6 +1693,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 2228210391199637018, guid: a91f6989f3678d544bb9865c4df59bc5, type: 3}
   m_PrefabInstance: {fileID: 811586873}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &859311082 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5267543383135772667, guid: 7b4a0a85531e68a4a8e829495a5117f9, type: 3}
+  m_PrefabInstance: {fileID: 299571625}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &860604837
 PrefabInstance:
@@ -3244,6 +3254,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ExitDoors
       objectReference: {fileID: 0}
+    - target: {fileID: 4081542798111866373, guid: 651935baf28b8274d965a361cc6e140d, type: 3}
+      propertyPath: playerCam
+      value: 
+      objectReference: {fileID: 859311082}
+    - target: {fileID: 4081542798111866373, guid: 651935baf28b8274d965a361cc6e140d, type: 3}
+      propertyPath: remoteCam
+      value: 
+      objectReference: {fileID: 647360656}
     - target: {fileID: 7564405083310991954, guid: 651935baf28b8274d965a361cc6e140d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.5495852
