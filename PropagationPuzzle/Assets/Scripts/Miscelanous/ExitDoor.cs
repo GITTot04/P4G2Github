@@ -20,7 +20,7 @@ public class ExitDoor : MonoBehaviour
     float progressTimer = 0;
 
     public GameObject Hinge;
-
+    public ExitCam exitCam;
 
     void Start()
     {
@@ -30,6 +30,7 @@ public class ExitDoor : MonoBehaviour
 
     public void UnlockDoor()
     {
+        exitCam.ExitDoor();
         if (openDirection < 0)
         {
             targetAngle = startRotation + 90;
