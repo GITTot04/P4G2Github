@@ -19,19 +19,27 @@ public class DoorSensor : CheckSound
         ResetValues();
         SoundCheck();
         (float, float) calculate = CalculateValues();
-        if (calculate.Item1 < maximumOcclusion && calculate.Item2 > minimumIntensity && !doorCountExceeded && !DoorManager.instance.hasWon) // (occlusion,intensity) is returned from this method.
+        if (calculate.Item2 > minimumIntensity) // (occlusion,intensity) is returned from this method.
         {
-            foreach (ExitDoor exitDoor in exitDoors)
-            {
-                exitDoor.UnlockDoor();
-            }
+            fillBar.fillAmount = Mathf.Lerp(0.1f, 1, calculate.Item1);
             foreach (GameObject sensorLight in sensorLights)
             {
                 sensorLight.GetComponent<Renderer>().material.SetColor("_Color", new Color32(0, 255, 0, 255));
             }
-            DoorManager.instance.hasWon = true;
+
+            if (!doorCountExceeded && !DoorManager.instance.hasWon && calculate.Item1 < maximumOcclusion) {
+                foreach (ExitDoor exitDoor in exitDoors)
+                {
+                    exitDoor.UnlockDoor();
+                }
+                DoorManager.instance.hasWon = true;
+            }
+        }
+        else
+        {
+            fillBar.fillAmount = 0f;
         }
 
-        fillBar.fillAmount = Mathf.Lerp(0.1f, 1, calculate.Item1);
+       
     }
 }
