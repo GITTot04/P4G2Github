@@ -49,9 +49,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DoorManager
   openDoorCount: 0
-  MaxDoors: 1
+  MaxDoors: 2
   minimapText: {fileID: 4176582944282352102}
   soundManager: {fileID: 6522382309688846605}
+  hasWon: 0
+  miniMapBackground: {fileID: 870979369238326604}
 --- !u!114 &6522382309688846605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,6 +68,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SoundManager
   activeAmplifiers: []
   doorSensor: {fileID: 0}
+  canDeleteAmp: 1
+  allowedAmplifiers: 1
 --- !u!114 &5042049877878067463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,6 +211,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 05295ba0e287475449d1e30d4d2b23b6, type: 3}
+--- !u!23 &870979369238326604 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 1240232745646153329, guid: 05295ba0e287475449d1e30d4d2b23b6, type: 3}
+  m_PrefabInstance: {fileID: 2098789590854742845}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &4176582944282352102 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2654399243582221019, guid: 05295ba0e287475449d1e30d4d2b23b6, type: 3}

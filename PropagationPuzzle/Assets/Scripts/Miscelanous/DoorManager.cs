@@ -37,7 +37,7 @@ public class DoorManager : MonoBehaviour
             soundManager.doorSensor.doorCountExceeded = true;
             if (!hasWon)
             {
-                miniMapBackground.material.color = new Color32(190, 143, 143, 255);
+                miniMapBackground.material.color = new Color32(182, 148, 148, 255);
             } else
             {
                 miniMapBackground.material.color = minimapColor;
