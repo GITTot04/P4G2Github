@@ -10,6 +10,8 @@ public class DoorManager : MonoBehaviour
     TextMeshProUGUI doorText;
     public SoundManager soundManager;
     public bool hasWon;
+    public MeshRenderer miniMapBackground;
+    Color32 minimapColor;
     
     void Awake()
     {
@@ -23,6 +25,7 @@ public class DoorManager : MonoBehaviour
     void Start()
     {
         doorText = minimapText.GetComponent<TextMeshProUGUI>();
+        minimapColor = miniMapBackground.material.color;
     }
     public void FixedUpdate()
     {
@@ -32,10 +35,19 @@ public class DoorManager : MonoBehaviour
         {
             doorText.faceColor = new Color32(255, 0, 0, 255);
             soundManager.doorSensor.doorCountExceeded = true;
+            if (!hasWon)
+            {
+                miniMapBackground.material.color = new Color32(190, 143, 143, 255);
+            } else
+            {
+                miniMapBackground.material.color = minimapColor;
+            }
         } else
         {
             doorText.faceColor = new Color32(0, 0, 0, 255);
             soundManager.doorSensor.doorCountExceeded = false;
+
+            miniMapBackground.material.color = minimapColor;
         }
     }
 
