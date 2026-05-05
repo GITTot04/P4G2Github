@@ -1,3 +1,5 @@
+using FMOD.Studio;
+using FMODUnity;
 using System.Collections;
 using TMPro;
 using Unity.VisualScripting;
@@ -19,7 +21,8 @@ public class NarratorDialog : MonoBehaviour
         //currentLength++;
         narNameField.text = nameText;
         narTextField.text = texts[currentLength];
-        //narNameField.alpha = 0f;
+        narNameField.alpha = 0f;
+        narTextField.alpha = 0f;
         maxLength = texts.Length;
         narrating = true;
         Narrator();
@@ -38,11 +41,25 @@ public class NarratorDialog : MonoBehaviour
     {
         if (narrating) 
         {
+            
             Debug.Log("Narrating");
             narTextField.text = texts[currentLength];
             float timer = textTimer[currentLength];
-            yield return new WaitForSeconds(timer);
+            
             currentLength++;
+            while  (narTextField.alpha < 1f || narNameField.alpha < 1f)
+            {
+                narNameField.alpha += Time.deltaTime;
+                narTextField.alpha += Time.deltaTime;
+                yield return null;
+            }
+            yield return new WaitForSeconds(timer);
+            while (narNameField.alpha > 0f || narTextField.alpha > 0f)
+            {
+                narTextField.alpha -= Time.deltaTime;
+                narNameField.alpha -= Time.deltaTime;
+                yield return null;
+            }
             Narrator();
         }
         Debug.Log("We here?");
