@@ -24,6 +24,7 @@ public class SoundManager : MonoBehaviour
             SceneManager.sceneLoaded += FindDoorSensor;
             SceneManager.sceneLoaded += SetAllowedAmplifiers;
             SceneManager.sceneLoaded += SetPlayerOnAction;
+            Cursor.lockState = CursorLockMode.Locked;
         }
     }
 
