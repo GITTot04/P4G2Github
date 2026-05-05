@@ -70,6 +70,9 @@ public class DoorManager : MonoBehaviour
             case "AmpLevel2":
                 MaxDoors = 1;
                 break;
+            case "LevelHard":
+                MaxDoors = 2;
+                break;
             default:
                 break;
         }
