@@ -1414,6 +1414,50 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 330822592631519507, guid: 461e475032524bc46b0d55f3d1e7a9f9, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 330822592631519507, guid: 461e475032524bc46b0d55f3d1e7a9f9, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 330822592631519507, guid: 461e475032524bc46b0d55f3d1e7a9f9, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 330822592631519507, guid: 461e475032524bc46b0d55f3d1e7a9f9, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 330822592631519507, guid: 461e475032524bc46b0d55f3d1e7a9f9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2058183149661483924, guid: 461e475032524bc46b0d55f3d1e7a9f9, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2058183149661483924, guid: 461e475032524bc46b0d55f3d1e7a9f9, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2058183149661483924, guid: 461e475032524bc46b0d55f3d1e7a9f9, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2058183149661483924, guid: 461e475032524bc46b0d55f3d1e7a9f9, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2058183149661483924, guid: 461e475032524bc46b0d55f3d1e7a9f9, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2058183149661483924, guid: 461e475032524bc46b0d55f3d1e7a9f9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3761757003971841744, guid: 461e475032524bc46b0d55f3d1e7a9f9, type: 3}
       propertyPath: MaxDoors
       value: 0
@@ -1424,7 +1468,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4008064937739876217, guid: 461e475032524bc46b0d55f3d1e7a9f9, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6522382309688846605, guid: 461e475032524bc46b0d55f3d1e7a9f9, type: 3}
       propertyPath: doorSensor
@@ -1433,6 +1477,30 @@ PrefabInstance:
     - target: {fileID: 6522382309688846605, guid: 461e475032524bc46b0d55f3d1e7a9f9, type: 3}
       propertyPath: allowedAmplifiers
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7821783736092959938, guid: 461e475032524bc46b0d55f3d1e7a9f9, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7821783736092959938, guid: 461e475032524bc46b0d55f3d1e7a9f9, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7821783736092959938, guid: 461e475032524bc46b0d55f3d1e7a9f9, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7821783736092959938, guid: 461e475032524bc46b0d55f3d1e7a9f9, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7821783736092959938, guid: 461e475032524bc46b0d55f3d1e7a9f9, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7821783736092959938, guid: 461e475032524bc46b0d55f3d1e7a9f9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8693211618255762743, guid: 461e475032524bc46b0d55f3d1e7a9f9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2559,21 +2627,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8940265368101717729, guid: cca1075450a9c3a429a711436f415e02, type: 3}
       propertyPath: messages.Array.size
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8940265368101717729, guid: cca1075450a9c3a429a711436f415e02, type: 3}
       propertyPath: 'messages.Array.data[0]'
-      value: Now you are allowed to set 1 amplifier
+      value: Now you are allowed to set 1 amplifier. This number may vary in the
+        following levels.
       objectReference: {fileID: 0}
     - target: {fileID: 8940265368101717729, guid: cca1075450a9c3a429a711436f415e02, type: 3}
       propertyPath: 'messages.Array.data[1]'
-      value: The amplifer amplifies the sound its sensor hears from the speaker up
-        to a certain level but does not remove any occlusion
+      value: The amplifier amplifies the sound its sensor hears from the speaker
+        up to a certain level but does not remove any occlusion
       objectReference: {fileID: 0}
     - target: {fileID: 8940265368101717729, guid: cca1075450a9c3a429a711436f415e02, type: 3}
       propertyPath: 'messages.Array.data[2]'
+      value: They will always play in an order from lowest number to highest
+      objectReference: {fileID: 0}
+    - target: {fileID: 8940265368101717729, guid: cca1075450a9c3a429a711436f415e02, type: 3}
+      propertyPath: 'messages.Array.data[3]'
       value: Press "1" while looking at an orange amplifier plate on a wall to place
         an amplifier and "1" again to remove it
+      objectReference: {fileID: 0}
+    - target: {fileID: 8940265368101717729, guid: cca1075450a9c3a429a711436f415e02, type: 3}
+      propertyPath: 'messages.Array.data[4]'
+      value: If you have access to more amplifiers, they will be placed and removed
+        on "2" and "3" respectively
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
