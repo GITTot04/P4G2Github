@@ -12,6 +12,8 @@ public class Amplifier : CheckSound
     TextMeshProUGUI text;
     public List<GameObject> colorLights = new List<GameObject>();
 
+
+
     private void OnEnable()
     {
 
