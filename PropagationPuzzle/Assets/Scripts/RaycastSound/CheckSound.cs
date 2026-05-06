@@ -9,7 +9,7 @@ public abstract class CheckSound : MonoBehaviour
 
     int degreesOfRays = 360;
     Ray[] rayReflections;
-    LayerMask playerMask;
+    public LayerMask playerMask;
     SoundRay[] bestRays;
     int newRayPosition;
 
@@ -19,11 +19,6 @@ public abstract class CheckSound : MonoBehaviour
     float ampOcclusion;
 
     public float THEFINALINTENSITY;
-
-    private void Start()
-    {
-        playerMask = LayerMask.GetMask("Player");
-    }
     public abstract void FindOcclusionAndIntensity(); // Implement ResetValues(), SoundCheck(), and CalculateValues()
 
     public void SoundCheck()
@@ -149,7 +144,7 @@ public abstract class CheckSound : MonoBehaviour
     public void ShootOccludedRay(Ray ray, int reflection, int reflectionValue, float occlusion) // Increase occlusion and shoot out an occluded ray. May call itself a few times
     {
         occlusion += 1f;
-            ShootReflectionRays(ray, reflection, reflectionValue, occlusion);
+        ShootReflectionRays(ray, reflection, reflectionValue, occlusion);
     }
 
     int GetMostReflectRay()

@@ -1242,6 +1242,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DoorSensor
   rayStats: {fileID: 11400000, guid: 39fcb53dd6db34548803021fa59cd8ac, type: 2}
   showReflectionRays: 0
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 128
   intensity: 0
   occlusion: 0
   THEFINALINTENSITY: 0
