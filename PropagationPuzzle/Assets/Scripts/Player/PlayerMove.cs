@@ -9,8 +9,14 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] bool miniMapFollowPlayer = false;
     void Start()
     {
-        if (miniMapFollowPlayer) {
+        if (miniMapFollowPlayer)
+        {
             miniMapCam = GameObject.Find("MiniMapCamera");
+        }
+        else 
+        { 
+            miniMapCam = GameObject.Find("MiniMapCamera");
+            miniMapCam.transform.position = new Vector3(0, miniMapCam.transform.position.y, 0);
         }
     }
 
