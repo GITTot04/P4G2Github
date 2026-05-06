@@ -356,6 +356,8 @@ MonoBehaviour:
   head: {fileID: 1491176109408986918}
   playerStats: {fileID: 11400000, guid: 6ac491d5f43d1a640b06b9b560d5ad53, type: 2}
   rigid: {fileID: 2941033102730190208}
+  miniMapCam: {fileID: 0}
+  miniMapFollowPlayer: 0
 --- !u!114 &7852266472783882639
 MonoBehaviour:
   m_ObjectHideFlags: 0

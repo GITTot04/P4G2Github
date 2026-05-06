@@ -103,6 +103,9 @@ public class SoundManager : MonoBehaviour
             case "AmpLevel2":
                 allowedAmplifiers = 1;
                 break;
+            case "LevelHard":
+                allowedAmplifiers = 1;
+                break;
             default:
                 break;
         }
