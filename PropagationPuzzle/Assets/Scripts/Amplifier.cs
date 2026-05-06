@@ -28,6 +28,10 @@ public class Amplifier : CheckSound
         text = ampText.GetComponent<TextMeshProUGUI>();
         text.text = (order + 1).ToString();
     }
+    private void FixedUpdate()
+    {
+        FindOcclusionAndIntensity(); // DELETE LATER
+    }
     public override void FindOcclusionAndIntensity()
     {
         ResetValues();

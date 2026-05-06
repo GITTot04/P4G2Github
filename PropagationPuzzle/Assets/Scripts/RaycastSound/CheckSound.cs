@@ -57,6 +57,7 @@ public abstract class CheckSound : MonoBehaviour
             if (showReflectionRays)
             {
                 Debug.DrawRay(ray.origin, ray.direction * hit.distance, new Color(1f - occlusion / 5f, 1f - occlusion / 5f, 1f, 1f - (float)reflectionIntensity / rayStats.MaxReflections));
+                Debug.Log(hit.collider.gameObject.tag); // DELETE LATER
             }
 
             if (hit.collider.gameObject.tag == "Door") // Call the method for shooting the occluded ray when a door is hit

@@ -1419,6 +1419,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2231245792360827542, guid: 7b4a0a85531e68a4a8e829495a5117f9, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 3081291727705935867, guid: 7b4a0a85531e68a4a8e829495a5117f9, type: 3}
       propertyPath: miniMapFollowPlayer
       value: 1
