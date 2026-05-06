@@ -101,7 +101,10 @@ public class SoundManager : MonoBehaviour
                 allowedAmplifiers = 1;
                 break;
             case "AmpLevel2":
-                allowedAmplifiers = 1;
+                allowedAmplifiers = 3;
+                break;
+            case "LevelExtreme":
+                allowedAmplifiers = 2;
                 break;
             case "LevelHard":
                 allowedAmplifiers = 1;
