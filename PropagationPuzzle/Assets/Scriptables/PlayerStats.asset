@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 248c2541cea4b8d48ab0667197c89307, type: 3}
   m_Name: PlayerStats
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
-  lookSpeed: 1
+  lookSpeed: 0.1
   moveSpeed: 1000
   maxSpeed: 2.05
