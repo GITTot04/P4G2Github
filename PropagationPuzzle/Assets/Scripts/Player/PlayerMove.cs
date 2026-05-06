@@ -5,9 +5,13 @@ public class PlayerMove : MonoBehaviour
     public GameObject head;
     public PlayerStats playerStats;
     public Rigidbody rigid;
+    GameObject miniMapCam;
+    [SerializeField] bool miniMapFollowPlayer = false;
     void Start()
     {
-        
+        if (miniMapFollowPlayer) {
+            miniMapCam = GameObject.Find("MiniMapCamera");
+        }
     }
 
     void FixedUpdate()
@@ -19,7 +23,10 @@ public class PlayerMove : MonoBehaviour
     void Move(Vector2 movement)
     {
            
-       
+        if (miniMapFollowPlayer)
+        {
+            miniMapCam.transform.position = new Vector3(transform.position.x, miniMapCam.transform.position.y, transform.position.z);
+        }
             
         Vector3 accVector = new Vector3(movement.x, 0, movement.y);
         rigid.AddForce(accVector, ForceMode.Acceleration);

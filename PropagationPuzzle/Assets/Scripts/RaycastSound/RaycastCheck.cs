@@ -8,16 +8,16 @@ public class RaycastCheck : MonoBehaviour
     public bool showReflectionRays;
     public bool showSoundDirectionRays;
     public bool showAverageSoundDirection;
+    /*
+    SoundRay[] soundDirectionsAndReflections;
+    int successfulRays;
+    */
 
     int degreesOfRays = 360;
-    int successfulRays;
     Ray[] rayReflections;
-    SoundRay[] soundDirectionsAndReflections;
     LayerMask playerMask;
     bool addAmplifierOcclusion;
     float amplifierOcclusion;
-
-    //Oskar
     public SpacialSoundInterpreter soundInterpreter;
 
     private void Start()
@@ -26,22 +26,17 @@ public class RaycastCheck : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        //Oskar 
         soundInterpreter.ResetEmitterValues();
-
         RaycastCheckPool.instance.ReturnAllSoundRays();
-
         SoundCheck();
-
         soundInterpreter.SetEmitterValues();
-        
     }
     public void SoundCheck()
     {
         Ray ray = new Ray();
         rayReflections = new Ray[rayStats.MaxReflections];
         //soundDirectionsAndReflections = new SoundRay[degreesOfRays * rayStats.MaxOcclusions]; // 360 degrees times the maximum amount of occlusions won't exceed the array
-        successfulRays = 0;
+        //successfulRays = 0;
         // Shoot rays once per degree for 360 degrees
         for (float angle = 0; angle < 360; angle += 360/degreesOfRays)
         {
@@ -51,10 +46,9 @@ public class RaycastCheck : MonoBehaviour
             ray = new Ray(gameObject.transform.position, new Vector3(xMove, 0f, zMove).normalized); // Create the ray to be shot
             ShootReflectionRays(ray, 0, 0, 0);
         }
-
+        /*
         float soundXValue = 0;
         float soundZValue = 0;
-        /*
         for (int i = 0; i < successfulRays; i++) // Calculate total values
         {
             soundXValue += soundDirectionsAndReflections[i].direction.x * (1 - soundDirectionsAndReflections[i].reflections / rayStats.MaxReflections);
@@ -137,14 +131,14 @@ public class RaycastCheck : MonoBehaviour
                     {
                         SoundRay soundRay = RaycastCheckPool.instance.GetSoundRay((gameObject.transform.position - hit.point) * -1, reflectionIntensity, occlusion + amplifierOcclusion);
                         //soundDirectionsAndReflections[successfulRays] = soundRay;
-                        successfulRays++;
+                        //successfulRays++;
                         soundInterpreter.AddSoundRay(soundRay);
                     }
                     else
                     {
                         SoundRay soundRay = RaycastCheckPool.instance.GetSoundRay((gameObject.transform.position - hit.point) * -1, reflectionIntensity, occlusion);
                         //soundDirectionsAndReflections[successfulRays] = soundRay;
-                        successfulRays++;
+                        //successfulRays++;
                         soundInterpreter.AddSoundRay(soundRay);
                     }
 
@@ -162,15 +156,15 @@ public class RaycastCheck : MonoBehaviour
                             if (addAmplifierOcclusion)
                             {
                                 SoundRay soundRay = RaycastCheckPool.instance.GetSoundRay((gameObject.transform.position - rayReflections[j].origin) * -1, reflectionIntensity, occlusion + amplifierOcclusion);
-                               // soundDirectionsAndReflections[successfulRays] = soundRay;
-                                successfulRays++;
+                                //soundDirectionsAndReflections[successfulRays] = soundRay;
+                                //successfulRays++;
                                 soundInterpreter.AddSoundRay(soundRay);
                             }
                             else
                             {
                                 SoundRay soundRay = RaycastCheckPool.instance.GetSoundRay((gameObject.transform.position - rayReflections[j].origin) * -1, reflectionIntensity, occlusion);
-                               // soundDirectionsAndReflections[successfulRays] = soundRay;
-                                successfulRays++;
+                                //soundDirectionsAndReflections[successfulRays] = soundRay;
+                                //successfulRays++;
                                 soundInterpreter.AddSoundRay(soundRay);
                             }
 

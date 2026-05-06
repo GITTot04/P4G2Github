@@ -14,6 +14,7 @@ public class SoundManager : MonoBehaviour
     bool canPlaySound = true;
     float playSoundCooldown = 1.5f;
     public int allowedAmplifiers;
+    public AmplifierUI AmplifierUI;
     void Awake()
     {
         if (instance == null)
@@ -23,6 +24,7 @@ public class SoundManager : MonoBehaviour
             SceneManager.sceneLoaded += FindDoorSensor;
             SceneManager.sceneLoaded += SetAllowedAmplifiers;
             SceneManager.sceneLoaded += SetPlayerOnAction;
+            Cursor.lockState = CursorLockMode.Locked;
         }
     }
 
@@ -101,8 +103,16 @@ public class SoundManager : MonoBehaviour
             case "AmpLevel2":
                 allowedAmplifiers = 1;
                 break;
+            case "LevelHard":
+                allowedAmplifiers = 1;
+                break;
             default:
                 break;
+        }
+        AmplifierUI.SetAmplifierUI(allowedAmplifiers);
+        for (int i = 1; i <= allowedAmplifiers; i++)
+        {
+            AmplifierUI.UpdateAmplifierUI(i.ToString(), true);
         }
     }
 

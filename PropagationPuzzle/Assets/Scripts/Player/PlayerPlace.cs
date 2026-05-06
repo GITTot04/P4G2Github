@@ -85,6 +85,7 @@ public class PlayerPlace : MonoBehaviour
             default:
                 break;
         }
+        SoundManager.instance.AmplifierUI.UpdateAmplifierUI(ampNumber, true);
         yield return null;
     }
     public void PlaceAmplifier(string ampNumber)
@@ -111,6 +112,7 @@ public class PlayerPlace : MonoBehaviour
                 default:
                     break;
             }
+            SoundManager.instance.AmplifierUI.UpdateAmplifierUI(ampNumber, false);
         }
         else
         {

@@ -737,6 +737,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Amplifier
   rayStats: {fileID: 11400000, guid: 39fcb53dd6db34548803021fa59cd8ac, type: 2}
   showReflectionRays: 0
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 128
   intensity: 0
   occlusion: 0
   THEFINALINTENSITY: 0
@@ -1878,8 +1881,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 1
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6861b7f8e67224d43a5688ff6e9bb591, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 6861b7f8e67224d43a5688ff6e9bb591, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
