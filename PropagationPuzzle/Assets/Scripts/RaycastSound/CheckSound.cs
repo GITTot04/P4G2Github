@@ -9,7 +9,7 @@ public abstract class CheckSound : MonoBehaviour
 
     int degreesOfRays = 360;
     Ray[] rayReflections;
-    LayerMask playerMask;
+    public LayerMask playerMask;
     SoundRay[] bestRays;
     int newRayPosition;
 
@@ -19,11 +19,6 @@ public abstract class CheckSound : MonoBehaviour
     float ampOcclusion;
 
     public float THEFINALINTENSITY;
-
-    private void Start()
-    {
-        playerMask = LayerMask.GetMask("Player");
-    }
     public abstract void FindOcclusionAndIntensity(); // Implement ResetValues(), SoundCheck(), and CalculateValues()
 
     public void SoundCheck()
@@ -57,7 +52,6 @@ public abstract class CheckSound : MonoBehaviour
             if (showReflectionRays)
             {
                 Debug.DrawRay(ray.origin, ray.direction * hit.distance, new Color(1f - occlusion / 5f, 1f - occlusion / 5f, 1f, 1f - (float)reflectionIntensity / rayStats.MaxReflections));
-                Debug.Log(hit.collider.gameObject.tag); // DELETE LATER
             }
 
             if (hit.collider.gameObject.tag == "Door") // Call the method for shooting the occluded ray when a door is hit
