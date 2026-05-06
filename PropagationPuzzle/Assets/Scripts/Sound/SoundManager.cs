@@ -106,6 +106,9 @@ public class SoundManager : MonoBehaviour
             case "LevelHard":
                 allowedAmplifiers = 1;
                 break;
+            case "Win":
+                allowedAmplifiers = 0;
+                break;
             default:
                 break;
         }
@@ -118,6 +121,9 @@ public class SoundManager : MonoBehaviour
 
     void SetPlayerOnAction(Scene scene, LoadSceneMode mode)
     {
-        PlayerInput.instance.onAction += PlaySoundCode;
+        if (scene.name != "Win")
+        {
+            PlayerInput.instance.onAction += PlaySoundCode;
+        }
     }
 }
